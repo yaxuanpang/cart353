@@ -1,4 +1,4 @@
-# Animal Sanctuary
+# Survive the Island
 
 Yaxuan Pang
 
