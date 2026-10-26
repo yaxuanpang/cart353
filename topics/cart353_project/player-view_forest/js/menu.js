@@ -47,32 +47,10 @@ const MainResourceMenu = {
     cornerRadius: 3
 };
 
-function setup() {
-    createCanvas(1300, 750);
-    angleMode(DEGREES);
-}
-
-function draw() {
-    background(84, 212, 255);
-    drawSand();
+function drawMenu() {
     drawResourceCollectedMenu(collectedResourcesMenu);
     drawGoldCoinsMenu(goldCoinsMenu);
     drawMainResourceMenu(MainResourceMenu);
-}
-
-function drawSand() {
-    push();
-    noStroke();
-    fill(255, 213, 122);
-    beginShape();
-    for (let x = 0; x <= width; x += 10) {
-        let y = 435 + sin(x * 1) * 5;
-        vertex(x, y);
-    }
-    vertex(width, height);
-    vertex(0, height);
-    endShape(CLOSE);
-    pop();
 }
 
 function drawGoldCoinsMenu(menu) {
@@ -80,19 +58,19 @@ function drawGoldCoinsMenu(menu) {
     if (showGoldCoinsMenu) {
         strokeWeight(3);
         stroke(181, 110, 24);
-        fill(181, 110, 24, 170);
+        fill(181, 110, 24, 200);
         rect(menu.x, menu.y, menu.w, menu.h, menu.cornerRadius);
         noFill();
         noStroke();
         rect(menu.closeButton.x, menu.closeButton.y, menu.closeButton.w, menu.closeButton.h, menu.closeButton.cornerRadius);
-        pop();
     }
     else if (showGoldCoinsMenu === false) {
         stroke(181, 110, 24);
-        fill(181, 110, 24, 170);
+        fill(181, 110, 24, 200);
         strokeWeight(3);
         rect(1248, 463, 50, 60, goldCoinsMenu.closeButton.cornerRadius);
     }
+    pop();
 
 }
 
@@ -101,7 +79,7 @@ function drawResourceCollectedMenu(menu) {
     if (showCollectedResourcesMenu) {
         strokeWeight(3);
         stroke(181, 110, 24);
-        fill(181, 110, 24, 170);
+        fill(181, 110, 24, 200);
         rect(menu.x, menu.y, menu.w, menu.h, menu.cornerRadius);
 
         strokeWeight(3);
@@ -109,7 +87,8 @@ function drawResourceCollectedMenu(menu) {
 
         noStroke();
         textSize(16);
-        fill(84, 37, 4);
+        //fill(84, 37, 4);
+        fill(255);
         text("Resources Collected", menu.x + 35, menu.y + 30);
         textSize(18);
         text("<", menu.closeButton.x + 10, menu.closeButton.y + 30);
@@ -117,12 +96,13 @@ function drawResourceCollectedMenu(menu) {
 
     else if (showCollectedResourcesMenu === false) {
         stroke(181, 110, 24);
-        fill(181, 110, 24, 170);
+        fill(181, 110, 24, 200);
         strokeWeight(3);
         rect(collectedResourcesMenu.openButton.x, collectedResourcesMenu.openButton.y, collectedResourcesMenu.openButton.w, collectedResourcesMenu.openButton.h, collectedResourcesMenu.openButton.cornerRadius);
         noStroke();
         textSize(18);
-        fill(84, 37, 4);
+        //fill(84, 37, 4);
+        fill(255);
         text(">", collectedResourcesMenu.openButton.x + 10, collectedResourcesMenu.openButton.y + 30);
     }
     pop();
@@ -133,24 +113,53 @@ function drawMainResourceMenu(menu) {
     if (showMainResourceMenu) {
         strokeWeight(3);
         stroke(181, 110, 24);
-        fill(181, 110, 24, 170);
+        fill(181, 110, 24, 200);
         rect(menu.x, menu.y, menu.w, menu.h, menu.cornerRadius);
+        islandButton();
     }
     else if (!showMainResourceMenu) {
         stroke(181, 110, 24);
-        fill(181, 110, 24, 170);
+        fill(181, 110, 24, 200);
         strokeWeight(3);
         rect(MainResourceMenu.x + MainResourceMenu.w / 2, 717, 40, 30, 3);
         noStroke();
         textSize(18);
-        fill(84, 37, 4);
+        //fill(84, 37, 4);
+        fill(255);
         text("^", MainResourceMenu.x + MainResourceMenu.w / 2 + 15, 743);
     }
     pop();
 
 }
 
-function mousePressed() {
+function islandButton() {
+    push();
+    stroke(117, 66, 2);
+    strokeWeight(8);
+    fill(140, 83, 13);
+    ellipse(647.5, 695, 100);
+
+    noStroke();
+    fill(15, 111, 189);
+    ellipse(647.5, 695, 85);
+
+    fill(71, 184, 214, 140);
+    ellipse(647.5, 695, 80, 60);
+
+    fill(29, 162, 216, 120);
+    ellipse(647.5, 695, 85, 70);
+
+    //island
+    noStroke();
+    fill(225, 205, 145);
+    ellipse(647.5, 695, 70, 50);
+
+    fill(75, 140, 70);
+    ellipse(655, 695, 50, 35);
+    pop();
+}
+
+function menuMousePressed() {
     if (showCollectedResourcesMenu) {
         let btn = collectedResourcesMenu.closeButton;
         if (mouseX >= btn.x && mouseX <= btn.x + btn.w &&
@@ -192,7 +201,7 @@ function mousePressed() {
     }
 }
 
-function keyPressed() {
+function menuKeyPressed() {
     if (key === '1') {
         showCollectedResourcesMenu = !showCollectedResourcesMenu;
     }
