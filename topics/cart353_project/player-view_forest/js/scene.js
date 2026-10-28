@@ -1,4 +1,4 @@
-let showIsland = false;
+let showIsland = true;
 
 function setup() {
     createCanvas(1300, 750);

@@ -6,6 +6,36 @@ function islandSetup() {
 function islandDraw() {
     background(6, 66, 115); // Deep ocean
 
+    islandDetails();
+    forestArrow();
+    campArrow();
+    beachArrow();
+
+}
+
+function drawIsland(baseRadius, variance, col, noiseFreq, waveOffset = 0) {
+    push();
+    fill(col);
+    noStroke();
+
+    beginShape();
+
+    for (let a = 0; a < 360; a += 1) {
+        let nx = map(cos(a), -1, 1, 0, noiseFreq);
+        let ny = map(sin(a), -1, 0.8, 0, noiseFreq);
+
+        let asymmetry = sin(a * 2) * 30;
+        let r = baseRadius + waveOffset + asymmetry + map(noise(nx, ny), 0, 1, -variance, variance);
+
+        let x = r * cos(a);
+        let y = r * sin(a);
+        vertex(x, y);
+    }
+    endShape(CLOSE);
+    pop();
+}
+
+function islandDetails() {
     randomSeed(seed);
     noiseSeed(seed);
 
@@ -30,29 +60,46 @@ function islandDraw() {
 
     // 2. Sandy beach border
     drawIsland(225, 90, color(225, 205, 145), 0.7);
+    drawIsland(225, 105, color(150, 100, 29, 50), 0.7);
+    drawIsland(205, 100, color(196, 159, 106, 100), 0.6);
+    drawIsland(220, 150, color(196, 159, 106, 200), 0.5);
 
     // 3. Main grass landmass
     drawIsland(200, 180, color(75, 140, 70), 0.7);
+
+    noStroke();
+    fill(45, 128, 38);
+    ellipse(85, 140, 220, 130);
+    ellipse(130, 80, 170, 130);
+    ellipse(80, 20, 150, 70);
+
+    ellipse(-60, -30, 100, 40);
+    ellipse(-30, -10, 80, 30);
 }
 
-function drawIsland(baseRadius, variance, col, noiseFreq, waveOffset = 0) {
+function forestArrow() {
     push();
-    fill(col);
     noStroke();
+    fill(255, 112, 10);
+    circle(120, 100, 30);
+    triangle(120, 130, 130, 90, 110, 90);
+    pop();
+}
 
-    beginShape();
+function campArrow() {
+    push();
+    noStroke();
+    fill(255, 112, 10);
+    circle(-110, -130, 30);
+    triangle(-110, -100, -100, -140, -120, -140);
+    pop();
+}
 
-    for (let a = 0; a < 360; a += 1) {
-        let nx = map(cos(a), -1, 1, 0, noiseFreq);
-        let ny = map(sin(a), -1, 0.8, 0, noiseFreq);
-
-        let asymmetry = sin(a * 2) * 30;
-        let r = baseRadius + waveOffset + asymmetry + map(noise(nx, ny), 0, 1, -variance, variance);
-
-        let x = r * cos(a);
-        let y = r * sin(a);
-        vertex(x, y);
-    }
-    endShape(CLOSE);
+function beachArrow() {
+    push();
+    noStroke();
+    fill(255, 112, 10);
+    circle(-183, -35, 30);
+    triangle(-183, -5, -173, -45, -193, -45);
     pop();
 }
