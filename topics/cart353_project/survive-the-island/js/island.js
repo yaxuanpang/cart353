@@ -1,18 +1,15 @@
 let seed = 42;
 
-function islandSetup() {
-}
-
+//island elements
 function islandDraw() {
-    background(6, 66, 115); // Deep ocean
-
+    background(6, 66, 115);
     islandDetails();
-    forestArrow();
-    campArrow();
-    beachArrow();
-
+    forestArrowDraw();
+    campArrowDraw();
+    beachArrowDraw();
 }
 
+//drawing the island shape
 function drawIsland(baseRadius, variance, col, noiseFreq, waveOffset = 0) {
     push();
     fill(col);
@@ -35,7 +32,9 @@ function drawIsland(baseRadius, variance, col, noiseFreq, waveOffset = 0) {
     pop();
 }
 
+//drawing details of the island
 function islandDetails() {
+    push();
     randomSeed(seed);
     noiseSeed(seed);
 
@@ -45,24 +44,35 @@ function islandDetails() {
     let t = frameCount * 1.5;
 
     // 1. Ocean
+    let nowhereOcean = sin(t) * 12;
+    drawIsland(630, 155, color(15, 111, 189, 100), 0.7, nowhereOcean);
+
+    let waveDeepOcean = sin(t) * 12;
+    drawIsland(580, 155, color(15, 111, 189, 100), 0.7, waveDeepOcean);
+
+    let waveOcean = sin(t) * 12;
+    drawIsland(530, 155, color(15, 111, 189, 100), 0.7, waveOcean);
+
     let waveMostOuter = sin(t) * 12;
-    drawIsland(430, 155, color(15, 111, 189, 100), 0.7, waveMostOuter);
+    drawIsland(480, 155, color(11, 136, 219, 100), 0.7, waveMostOuter);
 
     let waveOuter = sin(t) * 12;
-    drawIsland(380, 155, color(11, 136, 219, 100), 0.7, waveOuter);
+    drawIsland(430, 155, color(29, 162, 216, 100), 0.7, waveOuter);
 
+    let waveMid = sin(t) * 12;
+    drawIsland(380, 155, color(29, 162, 216, 100), 0.7, waveMid);
 
-    let waveMid = sin(t + 60) * 9;
-    drawIsland(330, 155, color(29, 162, 216, 120), 0.7, waveMid);
+    let waveInner = sin(t + 60) * 9;
+    drawIsland(330, 155, color(71, 184, 214, 120), 0.7, waveInner);
 
-    let waveInner = sin(t + 120) * 12;
-    drawIsland(275, 115, color(71, 184, 214, 140), 0.7, waveInner);
+    let waveMostInner = sin(t + 120) * 12;
+    drawIsland(275, 115, color(71, 184, 214, 140), 0.7, waveMostInner);
 
     // 2. Sandy beach border
     drawIsland(225, 90, color(225, 205, 145), 0.7);
-    drawIsland(225, 105, color(150, 100, 29, 50), 0.7);
+    drawIsland(225, 105, color(150, 100, 29, 40), 0.7);
     drawIsland(205, 100, color(196, 159, 106, 100), 0.6);
-    drawIsland(220, 150, color(196, 159, 106, 200), 0.5);
+    drawIsland(220, 150, color(196, 159, 106), 0.5);
 
     // 3. Main grass landmass
     drawIsland(200, 180, color(75, 140, 70), 0.7);
@@ -75,31 +85,10 @@ function islandDetails() {
 
     ellipse(-60, -30, 100, 40);
     ellipse(-30, -10, 80, 30);
-}
 
-function forestArrow() {
-    push();
-    noStroke();
-    fill(255, 112, 10);
-    circle(120, 100, 30);
-    triangle(120, 130, 130, 90, 110, 90);
     pop();
 }
 
-function campArrow() {
-    push();
-    noStroke();
-    fill(255, 112, 10);
-    circle(-110, -130, 30);
-    triangle(-110, -100, -100, -140, -120, -140);
-    pop();
-}
+function islandMousePressed() {
 
-function beachArrow() {
-    push();
-    noStroke();
-    fill(255, 112, 10);
-    circle(-183, -35, 30);
-    triangle(-183, -5, -173, -45, -193, -45);
-    pop();
 }

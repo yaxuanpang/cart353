@@ -115,6 +115,12 @@ function drawMainResourceMenu(menu) {
         stroke(181, 110, 24);
         fill(181, 110, 24, 200);
         rect(menu.x, menu.y, menu.w, menu.h, menu.cornerRadius);
+        rect(MainResourceMenu.x + MainResourceMenu.w / 2, 500, 40, 30, 3);
+        textSize(18);
+        noStroke();
+        fill(255);
+        text("^", MainResourceMenu.x + MainResourceMenu.w / 2 + 15, 510, 40, 30, 3);
+
         islandButton();
     }
     else if (!showMainResourceMenu) {
@@ -124,7 +130,6 @@ function drawMainResourceMenu(menu) {
         rect(MainResourceMenu.x + MainResourceMenu.w / 2, 717, 40, 30, 3);
         noStroke();
         textSize(18);
-        //fill(84, 37, 4);
         fill(255);
         text("^", MainResourceMenu.x + MainResourceMenu.w / 2 + 15, 743);
     }
@@ -137,25 +142,25 @@ function islandButton() {
     stroke(117, 66, 2);
     strokeWeight(8);
     fill(140, 83, 13);
-    ellipse(647.5, 695, 100);
+    ellipse(670.5, 695, 100);
 
     noStroke();
     fill(15, 111, 189);
-    ellipse(647.5, 695, 85);
+    ellipse(670.5, 695, 85);
 
     fill(71, 184, 214, 140);
-    ellipse(647.5, 695, 80, 60);
+    ellipse(670.5, 695, 80, 60);
 
     fill(29, 162, 216, 120);
-    ellipse(647.5, 695, 85, 70);
+    ellipse(670.5, 695, 85, 70);
 
     //island
     noStroke();
     fill(225, 205, 145);
-    ellipse(647.5, 695, 70, 50);
+    ellipse(670.5, 695, 70, 50);
 
     fill(75, 140, 70);
-    ellipse(655, 695, 50, 35);
+    ellipse(678, 695, 50, 35);
     pop();
 }
 
@@ -189,8 +194,8 @@ function menuMousePressed() {
     }
 
     if (showMainResourceMenu) {
-        if (mouseX >= MainResourceMenu.x && mouseX <= MainResourceMenu.x + MainResourceMenu.w &&
-            mouseY >= MainResourceMenu.y && mouseY <= MainResourceMenu.y + MainResourceMenu.h) {
+        if (mouseX >= MainResourceMenu.x + MainResourceMenu.w / 2 - 40 && mouseX <= MainResourceMenu.x + MainResourceMenu.w / 2 + 40 &&
+            mouseY >= 500 - 40 && mouseY <= 500 + 40) {
             showMainResourceMenu = false;
         }
     }

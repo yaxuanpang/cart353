@@ -12,7 +12,6 @@ function campDraw() {
     drawSand();
 }
 
-// ---------- Palm trees ----------
 
 const TREE_SPACING = 30;   // smaller number = trees closer together
 const SIDE_WIDTH = 420;    // how far in from each edge the trees go (bigger = wider tree areas)
