@@ -1,14 +1,17 @@
 let palmTrees = [];
+let backPalmTrees = [];
 
 function campSetup() {
+    createBackPalmTrees();
     createPalmTrees();
 }
 
 function campDraw() {
     background(84, 212, 255);
     drawSky();
+    drawBackPalmTrees();
     drawBackSand();
-    drawPalmTrees();   // drawn before the sand so the sand hides the trunk bases
+    drawPalmTrees();
     drawSand();
 }
 
@@ -42,6 +45,35 @@ function drawPalmTrees() {
         drawPalmTree(tree);
     }
 }
+
+const BACK_TREE_SPACING = 25;   // smaller number = denser back row
+
+function createBackPalmTrees() {
+    backPalmTrees = [];
+    for (let x = 0; x < width + 40; x += BACK_TREE_SPACING) {
+        backPalmTrees.push({
+            x: x + random(-12, 12),
+            h: random(280, 400),      // taller than the front trees (160-350)
+            lean: random(-45, 45),
+            w: random(8, 14),
+            fronds: floor(random(6, 9)),
+            len: random(135, 200),
+            phase: random(360)
+        });
+    }
+}
+
+function drawBackPalmTrees() {
+    for (let tree of backPalmTrees) {
+        drawPalmTree(tree);   // same function as the front trees
+    }
+    push();
+    noStroke();
+    fill(84, 212, 255, 40);
+    rect(0, 0, width, 435);
+    pop();
+}
+
 
 function drawPalmTree(t) {
     push();
@@ -166,4 +198,14 @@ function drawBackSand() {
     vertex(0, height);
     endShape(CLOSE);
     pop();
+}
+
+function campMousePressed() {
+    let campCX = width / 2 + (-110);
+    let campCY = height / 2 - 30 + (-130);
+
+    if (dist(mouseX, mouseY, campCX, campCY) < 10) {
+        showIsland = false;
+        showCamp = true;
+    }
 }

@@ -1,4 +1,5 @@
 let showIsland = true;
+let showCamp = false;
 
 function setup() {
     createCanvas(1300, 750);
@@ -7,10 +8,11 @@ function setup() {
 }
 
 function draw() {
-    campDraw();
-    drawMenu();
     if (showIsland) {
         islandDraw();
+    } else if (showCamp) {
+        campDraw();
+        drawMenu();
     }
 }
 
@@ -18,24 +20,24 @@ function mousePressed() {
     menuMousePressed();
     if (showIsland) {
         islandMousePressed();
-
-        let campCX = width / 2 + (-110);
-        let campCY = height / 2 - 30 + (-130);
-
-        if (dist(mouseX, mouseY, campCX, campCY) < 10) {
-            showIsland = false;
-        }
+        campMousePressed();
     }
-    else if (!showIsland) {
+    else if (!showIsland && showIslandButton) {
         if (dist(mouseX, mouseY, 670.5, 695) < 50) {
             showIsland = true;
+            showCamp = false;
         }
     }
 }
 
 function keyPressed() {
     menuKeyPressed();
-    if (keyCode === 73) {
-        showIsland = !showIsland;
+    if (keyCode === 73 && showIsland) {
+        showIsland = false;
+        showCamp = true;
+    }
+    else if (keyCode === 73 && showCamp) {
+        showIsland = true;
+        showCamp = false;
     }
 }

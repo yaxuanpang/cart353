@@ -2,6 +2,8 @@ let showCollectedResourcesMenu = true;
 let showGoldCoinsMenu = true;
 let showMainResourceMenu = true;
 
+let showIslandButton = true;
+
 const collectedResourcesMenu = {
     x: 3,
     y: 210,
@@ -51,6 +53,9 @@ function drawMenu() {
     drawResourceCollectedMenu(collectedResourcesMenu);
     drawGoldCoinsMenu(goldCoinsMenu);
     drawMainResourceMenu(MainResourceMenu);
+    if (showIslandButton) {
+        islandButton();
+    }
 }
 
 function drawGoldCoinsMenu(menu) {
@@ -121,7 +126,7 @@ function drawMainResourceMenu(menu) {
         fill(255);
         text("^", MainResourceMenu.x + MainResourceMenu.w / 2 + 15, 510, 40, 30, 3);
 
-        islandButton();
+        showIslandButton = true;
     }
     else if (!showMainResourceMenu) {
         stroke(181, 110, 24);
@@ -132,6 +137,7 @@ function drawMainResourceMenu(menu) {
         textSize(18);
         fill(255);
         text("^", MainResourceMenu.x + MainResourceMenu.w / 2 + 15, 743);
+        showIslandButton = false;
     }
     pop();
 
