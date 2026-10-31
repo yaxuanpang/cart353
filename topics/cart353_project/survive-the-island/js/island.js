@@ -88,7 +88,3 @@ function islandDetails() {
 
     pop();
 }
-
-function islandMousePressed() {
-
-}

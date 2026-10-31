@@ -1,0 +1,86 @@
+function drawPalmTree(t) {
+    push();
+    translate(t.x, 450);   // origin = base of the trunk (the sand covers it)
+
+    // curved trunk
+    noFill();
+    stroke(120, 72, 30);
+    strokeWeight(t.w);
+    bezier(0, 0, 0, -t.h * 0.5, t.lean * 0.6, -t.h * 0.8, t.lean, -t.h);
+
+    // trunk rings
+    stroke(90, 52, 20);
+    strokeWeight(2);
+    for (let s = 0.1; s < 1; s += 0.12) {
+        let px = bezierPoint(0, 0, t.lean * 0.6, t.lean, s);
+        let py = bezierPoint(0, -t.h * 0.5, -t.h * 0.8, -t.h, s);
+        line(px - t.w / 2, py, px + t.w / 2, py);
+    }
+
+    // move the origin to the top of the trunk for the fronds
+    translate(t.lean, -t.h);
+    noStroke();
+    for (let i = 0; i < t.fronds; i++) {
+        let angle = map(i, 0, t.fronds - 1, -175, -5);
+        angle += sin(frameCount * 2 + t.phase + i * 20) * 3;   // gentle sway
+        drawFrond(angle, t.len);
+    }
+
+    pop();
+}
+
+// One frond, drawn from (0, 0): a curved stem with thin leaflets angled off both sides,
+// like a real palm leaf. The tip droops downward and the middle arches up.
+function drawFrond(angle, len) {
+    push();
+    const ex = cos(angle) * len;
+    const ey = sin(angle) * len + len * 0.45;
+    const cx = cos(angle) * len * 0.8;
+    const cy = sin(angle) * len * 0.8 - len * 0.2;
+
+    const leafletCount = 30;   // leaflets on each side of the stem
+
+    // leaflets
+    stroke(34, 139, 34);
+    strokeWeight(3);
+    for (let i = 1; i <= leafletCount; i++) {
+        let s = i / leafletCount;
+        let px = quadPoint(0, cx, ex, s);
+        let py = quadPoint(0, cy, ey, s);
+
+        // which way the stem is pointing at this spot
+        let stemAngle = atan2(quadSlope(0, cy, ey, s), quadSlope(0, cx, ex, s));
+
+        // leaflets get shorter toward the tip of the frond
+        let leafletLen = len * 0.3 * (1 - s * 0.7);
+
+        // one leaflet on each side, swept toward the tip and drooping a little
+        for (let side = -1; side <= 1; side += 2) {
+            let a = stemAngle + side * 55;
+            line(px, py, px + cos(a) * leafletLen, py + sin(a) * leafletLen + leafletLen * 0.3);
+        }
+    }
+
+    // stem
+    stroke(20, 100, 20);
+    strokeWeight(3);
+    noFill();
+    beginShape();
+    for (let i = 0; i <= 10; i++) {
+        let s = i / 10;
+        vertex(quadPoint(0, cx, ex, s), quadPoint(0, cy, ey, s));
+    }
+    endShape();
+    noStroke();
+    pop();
+}
+
+// point on a curve that starts at a, bends toward b, and ends at c (s goes from 0 to 1)
+function quadPoint(a, b, c, s) {
+    return (1 - s) * (1 - s) * a + 2 * (1 - s) * s * b + s * s * c;
+}
+
+// how fast that same curve is moving at s (tells us which way it points)
+function quadSlope(a, b, c, s) {
+    return 2 * (1 - s) * (b - a) + 2 * s * (c - b);
+}
