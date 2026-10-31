@@ -31,7 +31,7 @@ function createBackPalmTrees() {
     for (let x = 0; x < width + 40; x += BACK_TREE_SPACING) {
         backPalmTrees.push({
             x: x + random(-12, 12),
-            h: random(250, 400),      // taller than the front trees (160-350)
+            h: random(250, 300),      // taller than the front trees (160-350)
             lean: random(-45, 45),
             w: random(8, 14),
             fronds: floor(random(6, 9)),
@@ -47,7 +47,7 @@ function drawBackPalmTrees() {
     }
     push();
     noStroke();
-    fill(84, 212, 255, 100);
+    fill(84, 212, 255, 30);
     rect(0, 0, width, 435);
     pop();
 }
@@ -76,7 +76,7 @@ function drawMidPalmTrees() {
     }
     push();
     noStroke();
-    fill(84, 212, 255, 50);
+    fill(84, 212, 255, 30);
     rect(0, 0, width, 435);
     pop();
 }

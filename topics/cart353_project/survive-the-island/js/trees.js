@@ -1,3 +1,65 @@
+function drawClosestPalmTree(t) {
+    push();
+    translate(t.x, 850);   // origin = base of the trunk (the sand covers it)
+
+    // curved trunk
+    noFill();
+    stroke(120, 72, 30);
+    strokeWeight(t.w);
+    bezier(0, 0, 0, -t.h * 0.5, t.lean * 0.6, -t.h * 0.8, t.lean, -t.h);
+
+    // trunk rings
+    stroke(90, 52, 20);
+    strokeWeight(2);
+    for (let s = 0.1; s < 1; s += 0.12) {
+        let px = bezierPoint(0, 0, t.lean * 0.6, t.lean, s);
+        let py = bezierPoint(0, -t.h * 0.5, -t.h * 0.8, -t.h, s);
+        line(px - t.w / 2, py, px + t.w / 2, py);
+    }
+
+    // move the origin to the top of the trunk for the fronds
+    translate(t.lean, -t.h);
+    noStroke();
+    for (let i = 0; i < t.fronds; i++) {
+        let angle = map(i, 0, t.fronds - 1, -175, -5);
+        angle += sin(frameCount * 2 + t.phase + i * 20) * 3;   // gentle sway
+        drawFrond(angle, t.len);
+    }
+
+    pop();
+}
+
+function drawCloserPalmTree(t) {
+    push();
+    translate(t.x, 650);   // origin = base of the trunk (the sand covers it)
+
+    // curved trunk
+    noFill();
+    stroke(120, 72, 30);
+    strokeWeight(t.w);
+    bezier(0, 0, 0, -t.h * 0.5, t.lean * 0.6, -t.h * 0.8, t.lean, -t.h);
+
+    // trunk rings
+    stroke(90, 52, 20);
+    strokeWeight(2);
+    for (let s = 0.1; s < 1; s += 0.12) {
+        let px = bezierPoint(0, 0, t.lean * 0.6, t.lean, s);
+        let py = bezierPoint(0, -t.h * 0.5, -t.h * 0.8, -t.h, s);
+        line(px - t.w / 2, py, px + t.w / 2, py);
+    }
+
+    // move the origin to the top of the trunk for the fronds
+    translate(t.lean, -t.h);
+    noStroke();
+    for (let i = 0; i < t.fronds; i++) {
+        let angle = map(i, 0, t.fronds - 1, -175, -5);
+        angle += sin(frameCount * 2 + t.phase + i * 20) * 3;   // gentle sway
+        drawFrond(angle, t.len);
+    }
+
+    pop();
+}
+
 function drawPalmTree(t) {
     push();
     translate(t.x, 450);   // origin = base of the trunk (the sand covers it)
