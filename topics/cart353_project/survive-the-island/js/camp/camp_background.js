@@ -24,14 +24,14 @@ function campBackgroundDraw() {
 
 // ======== PALM TREES =======
 // ======== back row trees (no gaps) ======
-const BACK_TREE_SPACING = 20;   // smaller number = denser back row
+const BACK_TREE_SPACING = 20;
 
 function createBackPalmTrees() {
     backPalmTrees = [];
     for (let x = 0; x < width + 40; x += BACK_TREE_SPACING) {
         backPalmTrees.push({
             x: x + random(-12, 12),
-            h: random(250, 300),      // taller than the front trees (160-350)
+            h: random(250, 300),
             lean: random(-45, 45),
             w: random(8, 14),
             fronds: floor(random(6, 9)),
@@ -43,7 +43,7 @@ function createBackPalmTrees() {
 
 function drawBackPalmTrees() {
     for (let tree of backPalmTrees) {
-        drawPalmTree(tree);   // same function as the front trees
+        drawPalmTree(tree);
     }
     push();
     noStroke();
@@ -53,14 +53,14 @@ function drawBackPalmTrees() {
 }
 
 // ======== middle row trees (no gaps) ======
-const MID_TREE_SPACING = 55;   // smaller number = denser back row
+const MID_TREE_SPACING = 55;
 
 function createMidPalmTrees() {
     midPalmTrees = [];
     for (let x = 0; x < width + 40; x += MID_TREE_SPACING) {
         midPalmTrees.push({
             x: x + random(-12, 12),
-            h: random(200, 380),      // taller than the front trees (160-350)
+            h: random(200, 380),
             lean: random(-45, 45),
             w: random(8, 14),
             fronds: floor(random(6, 9)),
@@ -82,14 +82,13 @@ function drawMidPalmTrees() {
 }
 
 //====== front trees (smaller gap) =====
-const FRONT_TREE_SPACING = 40;   // smaller number = trees closer together
-const FRONT_SIDE_WIDTH = 520;    // how far in from each edge the trees go (bigger = wider tree areas)
+const FRONT_TREE_SPACING = 40;
+const FRONT_SIDE_WIDTH = 520;
 
 function createFrontPalmTrees() {
     push();
     frontPalmTrees = [];
     for (let x = 20; x < width; x += FRONT_TREE_SPACING) {
-        // skip the middle so only the left and right sides get trees
         if (x > FRONT_SIDE_WIDTH && x < width - FRONT_SIDE_WIDTH) {
             continue;
         }

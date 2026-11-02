@@ -46,30 +46,32 @@ function mousePressed() {
 
 function keyPressed() {
     menuKeyPressed();
-    if (keyCode === 73 && showIsland) {
-        showIsland = false;
-        showCamp = true;
-    }
-    else if (keyCode === 73 && showCamp) {
+    if (keyCode === 32) {
         showIsland = true;
         showCamp = false;
+        showBeach = false;
+        showForest = false;
     }
 
-    if (keyCode === 66 && showIsland) {
+    if (keyCode === 73) {
+        showIsland = false;
+        showCamp = true;
+        showBeach = false;
+        showForest = false;
+    }
+
+    if (keyCode === 66) {
         showBeach = true;
         showIsland = false;
+        showCamp = false;
+        showForest = false;
 
     }
-    else if (keyCode === 66 && showBeach) {
-        showBeach = false;
-        showIsland = true;
-    }
-    if (keyCode === 70 && showIsland) {
+
+    if (keyCode === 70) {
         showForest = true;
         showIsland = false;
-    }
-    else if (keyCode === 70 && showForest) {
-        showForest = false;
-        showIsland = true;
+        showCamp = false;
+        showBeach = false;
     }
 }

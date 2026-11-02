@@ -29,7 +29,7 @@ function drawMidSand3() {
     endShape(CLOSE);
 
     noStroke();
-    fill(84, 212, 255, 40);
+    fill(84, 212, 255, 30);
     rect(0, 0, width, 655);
 
     pop();
@@ -48,7 +48,7 @@ function drawFrontSand() {
     vertex(0, height);
     endShape(CLOSE);
     noStroke();
-    fill(84, 212, 255, 40);
+    fill(84, 212, 255, 30);
     rect(0, 0, width, 785);
     pop();
 }

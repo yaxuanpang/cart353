@@ -4,9 +4,14 @@ const ocean = {
     gradientStart: 215
 };
 
+function oceanSetup() {
+    fishSetup();
+}
+
 function oceanDraw() {
     drawFoam();
     drawWater();
+    fishDraw();
 }
 
 function drawWater() {
@@ -19,7 +24,7 @@ function drawWater() {
     // slow tide: the whole waterline rises and falls
     let tide = sin(frameCount * 0.8) * 20;
 
-    // 1. the wave shape, one solid color
+    // wave shape
     fill(col1);
     beginShape();
     for (let x = 0; x <= width; x += 10) {
@@ -31,13 +36,12 @@ function drawWater() {
     vertex(0, height);
     endShape(CLOSE);
 
-    // 2. flat gradient bands below the waves
+    // flat gradient bands below the waves
     for (let y = ocean.gradientStart; y < height; y += 5) {
         let t = (y - ocean.gradientStart) / (height - ocean.gradientStart);
         fill(lerpColor(col1, col2, t));
         rect(0, y, width, 5);
-    }
-
+    };
     pop();
 }
 
@@ -46,12 +50,10 @@ function drawFoam() {
     noStroke();
     fill(222, 252, 255);
 
-    // slow tide: the whole waterline rises and falls
     let tide = sin(frameCount * 0.8) * 25;
 
     beginShape();
     for (let x = 0; x <= width; x += 10) {
-        // big slow swell + small fast ripple, both drifting sideways
         let swell = sin(x * 0.5 + frameCount * 2) * 15;
         let ripple = sin(x * 1.5 + frameCount * 0.4) * 10;
         let y = 160 + tide + swell + ripple;

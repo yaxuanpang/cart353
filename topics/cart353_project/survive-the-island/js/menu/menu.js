@@ -55,6 +55,7 @@ function drawMenu() {
     drawMainResourceMenu(MainResourceMenu);
     if (showIslandButton) {
         islandButton();
+        energyDraw();
     }
 }
 

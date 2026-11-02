@@ -1,4 +1,5 @@
 function beachBackgroundSetup() {
+    oceanSetup();
 }
 
 function beachBackgroundDraw() {
