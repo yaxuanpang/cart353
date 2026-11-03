@@ -98,6 +98,12 @@ function drawResourceCollectedMenu(menu) {
         text("Resources Collected", menu.x + 35, menu.y + 30);
         textSize(18);
         text("<", menu.closeButton.x + 10, menu.closeButton.y + 30);
+
+        drawFishIcon(menu.x + 40, menu.y + 80, 0.9);
+        drawLog(menu.x + 50, menu.y + 165, 60, 20, 0);
+        drawLog(menu.x + 45, menu.y + 155, 60, 20, 0);
+        drawLog(menu.x + 40, menu.y + 165, 60, 20, 0);
+        drawWaterIcon(menu.x + 40, menu.y + 250, 0.8);
     }
 
     else if (showCollectedResourcesMenu === false) {

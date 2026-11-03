@@ -16,18 +16,17 @@ const energy = {
         eighth: "#ff3d07ff",
         ninth: "#ff0202ff",
         tenth: "#ff00aeff",
-        eleventh: "#ff00fbff",
-        twelfth: "#ee00ffff"
-    }
+        eleventh: "#e607f2ff",
+        twelfth: "#d400ffff"
+    },
+    off: "#8c530d"
+
 };
-
-function energySetup() {
-
-}
 
 function energyDraw() {
 
     drawEnergyBar();
+    drawLightningBolt(35, 653, 45);
 }
 
 function drawEnergyBar() {
@@ -157,5 +156,6 @@ function drawEnergy12() {
     rect(energy.body.x + 440, energy.body.y, energy.body.w, energy.body.h);
     pop();
 }
+
 
 
