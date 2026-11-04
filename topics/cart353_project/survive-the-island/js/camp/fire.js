@@ -61,10 +61,10 @@ class FireParticle {
 }
 
 // x, y = same point you were passing to drawFire
-function drawCampfire(x, y,) {
+function drawCampfire(x, y) {
     // two crossed logs behind the flames
     drawLog(x, y + 12, 130, 18, 15);
-    drawLog(width / 2, height - 180, 140, 20, 0);
+    drawLog(width / 2 + 20, height - 180, 140, 20, 0);
     drawLog(x, y + 12, 130, 18, -15);
 }
 

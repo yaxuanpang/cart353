@@ -1,23 +1,24 @@
 const energy = {
     body: {
-        x: 85.5,
-        y: 657.5,
+        x: 70,
+        y: 667.5,
         w: 40,
-        h: 35
+        h: 15
     },
     color: {
-        first: "#008000",
-        second: "#55AA00",
-        third: "#AAD500",
-        fourth: "#FFFF00",
-        fifth: "#FFD200",
-        sixth: "#FFA500",
-        seventh: "#FF6900",
-        eighth: "#ff3d07ff",
-        ninth: "#ff0202ff",
-        tenth: "#ff00aeff",
-        eleventh: "#e607f2ff",
-        twelfth: "#d400ffff"
+        first: "#d400ffff",
+        second: "#e607f2ff", //#e607f2ff
+        third: "#ff00aeff", //#ff00aeff
+        fourth: "#ff0202ff", //#ff0202ff
+        fifth: "#ff3d07ff", //#ff3d07ff
+        sixth: "#FF6900", //#FF6900
+        seventh: "#FFA500",
+        eighth: "#FFD200",
+        ninth: "#FFFF00",
+        tenth: "#AAD500",
+        eleventh: "#55AA00",
+        twelfth: "#008000",//#008000
+        thirteenth: "#006837ff"
     },
     off: "#8c530d"
 
@@ -26,14 +27,14 @@ const energy = {
 function energyDraw() {
 
     drawEnergyBar();
-    drawLightningBolt(35, 653, 45);
+    drawLightningBolt(25, 653, 45);
 }
 
 function drawEnergyBar() {
     push();
     noStroke();
     fill(140, 83, 13);
-    rect(83.5, 657.5, 485, 35, 5);
+    rect(68, 667.5, 523.5, 15, 5);
 
     drawEnergy1();
     drawEnergy2();
@@ -47,11 +48,12 @@ function drawEnergyBar() {
     drawEnergy10();
     drawEnergy11();
     drawEnergy12();
+    drawEnergy13();
 
-    strokeWeight(5);
+    strokeWeight(3);
     stroke(117, 66, 2);
-    fill(140, 83, 13, 70);
-    rect(83.5, 657.5, 485, 35, 5);
+    fill(140, 83, 13, 50);
+    rect(68, 667.5, 523.5, 15, 5);
     pop();
 }
 
@@ -157,5 +159,18 @@ function drawEnergy12() {
     pop();
 }
 
+function drawEnergy12() {
+    push();
+    noStroke();
+    fill(energy.color.twelfth);
+    rect(energy.body.x + 440, energy.body.y, energy.body.w, energy.body.h);
+    pop();
+}
 
-
+function drawEnergy13() {
+    push();
+    noStroke();
+    fill(energy.color.thirteenth);
+    rect(energy.body.x + 480, energy.body.y, energy.body.w, energy.body.h);
+    pop();
+}

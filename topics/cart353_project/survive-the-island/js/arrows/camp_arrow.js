@@ -40,6 +40,6 @@ function campArrowSign() {
     textAlign(CENTER, CENTER);
     textSize(16);
     fill(255);
-    text("Camp (i)", -110, -165);
+    text("Camp (c)", -110, -165);
     pop();
 }

@@ -20,9 +20,12 @@ function campBackgroundDraw() {
     drawMidSand();
     drawPalmTrees();
     drawSand();
-    floorGlow(width / 2, height - 190);
-    drawFire(width / 2, height - 200);
-    drawCampfire(width / 2, height - 195);
+
+    drawResourcePot(width / 2 + 20, height / 2);
+
+    floorGlow(width / 2 + 20, height - 190);
+    drawFire(width / 2 + 20, height - 200);
+    drawCampfire(width / 2 + 20, height - 195);
 }
 
 // ======== PALM TREES =======

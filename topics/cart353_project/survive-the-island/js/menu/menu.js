@@ -6,20 +6,20 @@ let showIslandButton = true;
 
 const collectedResourcesMenu = {
     x: 3,
-    y: 210,
+    y: 230,
     w: 210,
     h: 300,
     cornerRadius: 3,
     closeButton: {
         x: 213,
-        y: 335,
+        y: 355,
         w: 30,
         h: 50,
         cornerRadius: 3
     },
     openButton: {
         x: 2,
-        y: 335,
+        y: 355,
         w: 30,
         h: 50,
         cornerRadius: 3
@@ -27,14 +27,14 @@ const collectedResourcesMenu = {
 };
 
 const goldCoinsMenu = {
-    x: 1067,
-    y: 463,
-    w: 230,
+    x: 1097,
+    y: 483,
+    w: 200,
     h: 60,
     cornerRadius: 3,
     closeButton: {
-        x: 1067,
-        y: 463,
+        x: 1097,
+        y: 483,
         w: 50,
         h: 60,
         cornerRadius: 3
@@ -43,9 +43,9 @@ const goldCoinsMenu = {
 
 const MainResourceMenu = {
     x: 3,
-    y: 530,
+    y: 550,
     w: 1295,
-    h: 207,
+    h: 187,
     cornerRadius: 3
 };
 
@@ -69,12 +69,16 @@ function drawGoldCoinsMenu(menu) {
         noFill();
         noStroke();
         rect(menu.closeButton.x, menu.closeButton.y, menu.closeButton.w, menu.closeButton.h, menu.closeButton.cornerRadius);
+        drawCoin(1124, 512);
+
     }
     else if (showGoldCoinsMenu === false) {
         stroke(181, 110, 24);
         fill(181, 110, 24, 200);
         strokeWeight(3);
-        rect(1248, 463, 50, 60, goldCoinsMenu.closeButton.cornerRadius);
+        rect(1248, 483, 50, 60, goldCoinsMenu.closeButton.cornerRadius);
+
+        drawCoin(1274, 512);
     }
     pop();
 
@@ -127,11 +131,17 @@ function drawMainResourceMenu(menu) {
         stroke(181, 110, 24);
         fill(181, 110, 24, 200);
         rect(menu.x, menu.y, menu.w, menu.h, menu.cornerRadius);
-        rect(MainResourceMenu.x + MainResourceMenu.w / 2, 500, 40, 30, 3);
+        rect(MainResourceMenu.x + MainResourceMenu.w / 2, 520, 40, 30, 3);
         textSize(18);
         noStroke();
         fill(255);
-        text("^", MainResourceMenu.x + MainResourceMenu.w / 2 + 15, 510, 40, 30, 3);
+        text("^", MainResourceMenu.x + MainResourceMenu.w / 2 + 15, 546);
+
+        drawFishIcon(menu.x + 820, menu.y + 60, 0.9);
+        drawLog(menu.x + 1020, menu.y + 65, 60, 20, 0); //furthest back
+        drawLog(menu.x + 1015, menu.y + 55, 60, 20, 0); // top
+        drawLog(menu.x + 1010, menu.y + 65, 60, 20, 0); // front
+        drawWaterIcon(menu.x + 1210, menu.y + 60, 0.8);
 
         showIslandButton = true;
     }
@@ -208,7 +218,7 @@ function menuMousePressed() {
 
     if (showMainResourceMenu) {
         if (mouseX >= MainResourceMenu.x + MainResourceMenu.w / 2 - 40 && mouseX <= MainResourceMenu.x + MainResourceMenu.w / 2 + 40 &&
-            mouseY >= 500 - 40 && mouseY <= 500 + 40) {
+            mouseY >= 520 - 40 && mouseY <= 520 + 40) {
             showMainResourceMenu = false;
         }
     }

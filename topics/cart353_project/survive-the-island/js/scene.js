@@ -1,6 +1,6 @@
 let showIsland = false;
-let showCamp = true;
-let showBeach = false;
+let showCamp = false;
+let showBeach = true;
 let showForest = false;
 
 
@@ -53,7 +53,7 @@ function keyPressed() {
         showForest = false;
     }
 
-    if (keyCode === 73) {
+    if (keyCode === 67) {
         showIsland = false;
         showCamp = true;
         showBeach = false;

@@ -50,3 +50,28 @@ function drawWaterIcon(x, y, s) {
     ellipse(-10, -8, 5, 5);
     pop();
 }
+
+function drawCoin(x, y) {
+    push();
+    strokeWeight(1.5);
+    stroke(217, 157, 17);
+    fill(255, 179, 0);
+    ellipse(x, y, 30, 36);
+
+    noStroke();
+    fill(217, 157, 17);
+    ellipse(x, y, 24, 36);
+
+    fill(255, 232, 56);
+    ellipse(x + 2, y, 25, 35);
+
+    fill(217, 157, 17);
+    textSize(20);
+    text("$", x - 3, y + 7);
+
+    fill(255, 179, 0);
+    textSize(18);
+    text("$", x - 1.5, y + 6);
+
+    pop();
+}
