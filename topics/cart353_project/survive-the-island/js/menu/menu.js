@@ -4,22 +4,32 @@ let showMainResourceMenu = true;
 
 let showIslandButton = true;
 
+let goldCoins = 1000;
+let fishCollected = 0;
+let woodCollected = 0;
+let waterCollected = 0;
+
+
+let fishTaken = 0;
+let woodTaken = 0;
+let waterTaken = 0;
+
 const collectedResourcesMenu = {
     x: 3,
-    y: 230,
+    y: 270,
     w: 210,
     h: 300,
     cornerRadius: 3,
     closeButton: {
         x: 213,
-        y: 355,
+        y: 395,
         w: 30,
         h: 50,
         cornerRadius: 3
     },
     openButton: {
         x: 2,
-        y: 355,
+        y: 395,
         w: 30,
         h: 50,
         cornerRadius: 3
@@ -28,13 +38,13 @@ const collectedResourcesMenu = {
 
 const goldCoinsMenu = {
     x: 1097,
-    y: 483,
+    y: 523,
     w: 200,
     h: 60,
     cornerRadius: 3,
     closeButton: {
         x: 1097,
-        y: 483,
+        y: 523,
         w: 50,
         h: 60,
         cornerRadius: 3
@@ -43,13 +53,14 @@ const goldCoinsMenu = {
 
 const MainResourceMenu = {
     x: 3,
-    y: 550,
+    y: 590,
     w: 1295,
-    h: 187,
+    h: 147,
     cornerRadius: 3
 };
 
 function drawMenu() {
+
     drawResourceCollectedMenu(collectedResourcesMenu);
     drawGoldCoinsMenu(goldCoinsMenu);
     drawMainResourceMenu(MainResourceMenu);
@@ -69,16 +80,21 @@ function drawGoldCoinsMenu(menu) {
         noFill();
         noStroke();
         rect(menu.closeButton.x, menu.closeButton.y, menu.closeButton.w, menu.closeButton.h, menu.closeButton.cornerRadius);
-        drawCoin(1124, 512);
+        drawCoin(1124, 552);
+
+        textAlign(RIGHT, CENTER);
+        textSize(25);
+        fill(255);
+        text(goldCoins, 1280, 555);
 
     }
     else if (showGoldCoinsMenu === false) {
         stroke(181, 110, 24);
         fill(181, 110, 24, 200);
         strokeWeight(3);
-        rect(1248, 483, 50, 60, goldCoinsMenu.closeButton.cornerRadius);
+        rect(1248, 523, 50, 60, goldCoinsMenu.closeButton.cornerRadius);
 
-        drawCoin(1274, 512);
+        drawCoin(1274, 552);
     }
     pop();
 
@@ -108,6 +124,14 @@ function drawResourceCollectedMenu(menu) {
         drawLog(menu.x + 45, menu.y + 155, 60, 20, 0);
         drawLog(menu.x + 40, menu.y + 165, 60, 20, 0);
         drawWaterIcon(menu.x + 40, menu.y + 250, 0.8);
+
+
+        textSize(25);
+        fill(255);
+        text(": " + fishCollected, menu.x + 110, menu.y + 86);
+        text(": " + woodCollected, menu.x + 110, menu.y + 168);
+        text(": " + waterCollected, menu.x + 110, menu.y + 246);
+
     }
 
     else if (showCollectedResourcesMenu === false) {
@@ -131,17 +155,24 @@ function drawMainResourceMenu(menu) {
         stroke(181, 110, 24);
         fill(181, 110, 24, 200);
         rect(menu.x, menu.y, menu.w, menu.h, menu.cornerRadius);
-        rect(MainResourceMenu.x + MainResourceMenu.w / 2, 520, 40, 30, 3);
+        rect(MainResourceMenu.x + MainResourceMenu.w / 2, 560, 40, 30, 3);
         textSize(18);
         noStroke();
         fill(255);
-        text("^", MainResourceMenu.x + MainResourceMenu.w / 2 + 15, 546);
+        text("^", MainResourceMenu.x + MainResourceMenu.w / 2 + 15, 586);
 
-        drawFishIcon(menu.x + 820, menu.y + 60, 0.9);
-        drawLog(menu.x + 1020, menu.y + 65, 60, 20, 0); //furthest back
-        drawLog(menu.x + 1015, menu.y + 55, 60, 20, 0); // top
-        drawLog(menu.x + 1010, menu.y + 65, 60, 20, 0); // front
-        drawWaterIcon(menu.x + 1210, menu.y + 60, 0.8);
+        drawFishIcon(menu.x + 820, menu.y + 50, 0.9);
+        drawLog(menu.x + 1020, menu.y + 55, 60, 20, 0); //furthest back
+        drawLog(menu.x + 1015, menu.y + 45, 60, 20, 0); // top
+        drawLog(menu.x + 1010, menu.y + 55, 60, 20, 0); // front
+        drawWaterIcon(menu.x + 1210, menu.y + 50, 0.8);
+
+        textSize(25);
+        fill(255);
+        text(fishTaken, menu.x + 820, menu.y + 116);
+        text(woodTaken, menu.x + 1010, menu.y + 116);
+        text(waterTaken, menu.x + 1203, menu.y + 116);
+
 
         showIslandButton = true;
     }
@@ -197,7 +228,7 @@ function menuMousePressed() {
     }
     else if (!showCollectedResourcesMenu) {
         if (mouseX >= 2 && mouseX <= 2 + 30 &&
-            mouseY >= 335 && mouseY <= 335 + 50) {
+            mouseY >= 375 && mouseY <= 375 + 50) {
             showCollectedResourcesMenu = true;
         }
     }
@@ -211,14 +242,14 @@ function menuMousePressed() {
     }
     else if (!showGoldCoinsMenu) {
         if (mouseX >= 1248 && mouseX <= 1248 + 50 &&
-            mouseY >= 463 && mouseY <= 463 + 60) {
+            mouseY >= 503 && mouseY <= 503 + 60) {
             showGoldCoinsMenu = true;
         }
     }
 
     if (showMainResourceMenu) {
         if (mouseX >= MainResourceMenu.x + MainResourceMenu.w / 2 - 40 && mouseX <= MainResourceMenu.x + MainResourceMenu.w / 2 + 40 &&
-            mouseY >= 520 - 40 && mouseY <= 520 + 40) {
+            mouseY >= 520 - 40 && mouseY <= 560 + 40) {
             showMainResourceMenu = false;
         }
     }

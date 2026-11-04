@@ -75,3 +75,14 @@ function drawCoin(x, y) {
 
     pop();
 }
+
+function drawFireWood(x, y, s) {
+    push();
+    translate(x, y);
+    scale(s);
+    drawLog(x + 50, y + 165, 60, 20, s);
+    drawLog(x + 45, y + 155, 60, 20, s);
+    drawLog(x + 40, y + 165, 60, 20, s);
+    pop();
+
+}
