@@ -1,6 +1,6 @@
-let showIsland = false;
+let showIsland = true;
 let showCamp = false;
-let showBeach = true;
+let showBeach = false;
 let showForest = false;
 
 

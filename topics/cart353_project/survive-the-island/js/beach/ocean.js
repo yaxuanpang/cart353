@@ -6,12 +6,14 @@ const ocean = {
 
 function oceanSetup() {
     fishSetup();
+    salmonSetup();
 }
 
 function oceanDraw() {
     drawFoam();
     drawWater();
     fishDraw();
+    salmonDraw();
 }
 
 function drawWater() {
