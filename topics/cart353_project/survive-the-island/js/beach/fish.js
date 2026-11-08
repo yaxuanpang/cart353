@@ -44,7 +44,7 @@ class Boid {
         this.maxforce = 0.05;
         this.phase = random(360);       // tail wiggle
         this.opacity = random(70, 230);   // low = far away, high = close
-        this.minY = 300; // min Y position
+        this.minY = 250; // min Y position
         this.maxY = 750; // max Y position
     }
 

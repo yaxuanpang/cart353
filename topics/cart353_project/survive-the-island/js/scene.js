@@ -1,11 +1,11 @@
 let showIsland = false;
-let showCamp = true;
-let showBeach = false;
+let showCamp = false;
+let showBeach = true;
 let showForest = false;
 
 
 function setup() {
-    createCanvas(1300, 750);
+    createCanvas(1500, 750);
     angleMode(DEGREES);
     campSetup();
     beachSetup();
@@ -35,7 +35,7 @@ function mousePressed() {
         forestMousePressed();
     }
     else if (!showIsland && showIslandButton) {
-        if (dist(mouseX, mouseY, 670.5, 695) < 50) {
+        if (dist(mouseX, mouseY, width / 2 + 20, 695) < 50) {
             showIsland = true;
             showCamp = false;
             showBeach = false;

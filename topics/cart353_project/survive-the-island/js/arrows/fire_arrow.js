@@ -39,7 +39,7 @@ function fireArrowSign() {
     textAlign(CENTER, CENTER);
     textSize(16);
     fill(255);
-    text("x3    = fire", 140, 58);
+    text("x3   =   fire", 135, 58);
 
     drawFireWood(35, -14, 0.5);
     pop();

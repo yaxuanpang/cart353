@@ -122,7 +122,7 @@ function drawMidPalmTrees2() {
 }
 
 const FRONT_TREE_SPACING1 = 30;
-const SIDE_WIDTH1 = 600;
+const SIDE_WIDTH1 = 720;
 
 function createFrontPalmTrees1() {
     push();
@@ -156,7 +156,7 @@ function drawFrontPalmTrees1() {
 }
 
 const FRONT_TREE_SPACING4 = 40;
-const SIDE_WIDTH4 = 590;
+const SIDE_WIDTH4 = 690;
 
 function createFrontPalmTrees4() {
     push();
@@ -190,7 +190,7 @@ function drawFrontPalmTrees4() {
 }
 
 const FRONT_TREE_SPACING5 = 40;
-const SIDE_WIDTH5 = 550;
+const SIDE_WIDTH5 = 650;
 
 function createFrontPalmTrees5() {
     push();
@@ -224,7 +224,7 @@ function drawFrontPalmTrees5() {
 }
 
 const FRONT_TREE_SPACING6 = 40;
-const SIDE_WIDTH6 = 500;
+const SIDE_WIDTH6 = 600;
 
 function createFrontPalmTrees6() {
     push();
@@ -253,7 +253,7 @@ function drawFrontPalmTrees6() {
 }
 
 const FRONT_TREE_SPACING7 = 70;
-const SIDE_WIDTH7 = 500;
+const SIDE_WIDTH7 = 560;
 
 function createFrontPalmTrees7() {
     push();
@@ -286,8 +286,8 @@ function drawFrontPalmTrees7() {
     pop();
 }
 
-const FRONT_TREE_SPACING8 = 50;
-const SIDE_WIDTH8 = 300;
+const FRONT_TREE_SPACING8 = 70;
+const SIDE_WIDTH8 = 400;
 
 function createFrontPalmTrees8() {
     push();

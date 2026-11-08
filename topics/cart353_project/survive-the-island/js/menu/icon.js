@@ -23,8 +23,6 @@ function drawLightningBolt(x, y, s) {
 }
 
 function drawFishIcon(x, y, s) {
-    let L = this.r * 2.2;
-
     push();
     translate(x, y);
     scale(s);
@@ -32,7 +30,7 @@ function drawFishIcon(x, y, s) {
     fill(159, 211, 224);
     ellipse(10, 0, 50, 20);
     triangle(-15, 0, -35, -10, -25, 0);
-    triangle(-15, 0, -35, 10, -25, 0)
+    triangle(-15, 0, -35, 10, -25, 0);
     pop();
 }
 
