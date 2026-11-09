@@ -27,12 +27,12 @@ function purchaseButton(x, y) {
     vertex(212, 77); vertex(205, 75); vertex(205, 35);
     endShape(CLOSE);
 
-    strokeWeight(2);
+    strokeWeight(1.5);
     stroke(255);
     fill(255, 71, 10);
     rect(35, 35, 170, 40, 5);
 
-    strokeWeight(2);
+    strokeWeight(1.5);
     stroke(255);
     line(30, 33, 36, 36);
     line(210, 33, 203, 36);

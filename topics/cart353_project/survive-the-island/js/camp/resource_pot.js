@@ -4,8 +4,8 @@ function drawResourcePot(x, y) {
     noStroke();
 
     // shadow
-    fill(43, 12, 0, 100);
-    ellipse(0, 120, 370, 25);
+    fill(43, 12, 0, 50);
+    ellipse(0, 120, 360, 25);
 
     // clay body
     fill(184, 98, 56);

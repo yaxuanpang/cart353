@@ -3,6 +3,10 @@ let showCamp = true;
 let showBeach = false;
 let showForest = false;
 
+let nightTime = false;
+
+let startTime = 0;
+
 
 function setup() {
     createCanvas(1500, 750);
@@ -18,6 +22,15 @@ function draw() {
     }
     if (showCamp) {
         campDraw();
+        if (nightTime) {
+            noStroke();
+            fill(0, 0, 0, 200);
+            rect(0, 0, width, height);
+            floorGlow(width / 2 + 20, height - 190);
+            drawFire(width / 2 + 20, height - 200);
+            drawCampfire(width / 2 + 20, height - 195);
+            fireGlow(width / 2 + 20, height / 2 + 100);
+        }
     }
     if (showBeach) {
         beachDraw();

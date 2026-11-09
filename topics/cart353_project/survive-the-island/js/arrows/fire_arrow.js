@@ -11,7 +11,6 @@ function fireArrowDraw() {
     }
     if (showPayFireSign) {
         payFireSign();
-
     }
 }
 //fire arrow
@@ -68,13 +67,13 @@ function payFireSign() {
     text(woodTaken + "x", 72, 56);
     drawFireWood(48, -11, 0.45);
 
-    if (woodTaken - 3 <= 0) {
+    if (woodTaken - 3 < 0) {
         textSize(12);
         text("Not enough", 198, 50);
         text("wood", 182, 62);
     }
 
-    if (woodTaken - 3 < 10 && woodTaken - 3 > 0) {
+    if (woodTaken - 3 < 10 && woodTaken - 3 >= 0) {
         text(woodTaken - 3 + "x", 150, 56);
         drawFireWood(103, -11, 0.45);
     }
@@ -97,7 +96,12 @@ function fireMousePressed() {
     showPayFireSign = dist(mouseX, mouseY, fireArrowCX, fireArrowCY) < 10;
 
     if (mouseX >= width / 2 - 100 + (25) && mouseX <= width / 2 - 100 + (215) && mouseY >= height / 2 + 30 && mouseY <= height / 2 + 80 && woodTaken < 0) {
+        woodTaken = 0;
+        firePurchased = false;
+    }
+    else if (mouseX >= width / 2 - 100 + (25) && mouseX <= width / 2 - 100 + (215) && mouseY >= height / 2 + 30 && mouseY <= height / 2 + 80 && woodTaken >= 3) {
         woodTaken = woodTaken - 3;
         firePurchased = true;
+        fireTimer = millis();
     }
 }

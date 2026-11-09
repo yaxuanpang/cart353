@@ -13,7 +13,7 @@ let waterCollected = 0;
 
 
 let fishTaken = 0;
-let woodTaken = 2;
+let woodTaken = 12;
 let waterTaken = 0;
 
 const collectedResourcesMenu = {
@@ -198,7 +198,7 @@ function drawMainResourceMenu(menu) {
         fill(255);
         text(fishTaken, menu.x + 950, menu.y + 116);
         text(woodTaken, menu.x + 1160, menu.y + 116);
-        text(waterTaken, menu.x + 1363, menu.y + 116);
+        text(waterTaken, menu.x + 1353, menu.y + 116);
 
 
         showIslandButton = true;
