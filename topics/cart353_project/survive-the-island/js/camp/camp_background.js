@@ -24,14 +24,12 @@ function campBackgroundDraw() {
     drawResourcePot(width / 2 + 20, height / 2);
 
     //fire in camp
-    if (woodTaken >= 2) {
-        if (woodTaken >= 3) {
-            floorGlow(width / 2 + 20, height - 190);
-            drawFire(width / 2 + 20, height - 200);
-        }
+    if (firePurchased && woodTaken >= 3) {
+        floorGlow(width / 2 + 20, height - 190);
+        drawFire(width / 2 + 20, height - 200);
         drawCampfire(width / 2 + 20, height - 195);
     }
-    else if (woodTaken <= 1) {
+    else {
         fireArrowDraw();
     }
 }

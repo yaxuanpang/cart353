@@ -1,6 +1,6 @@
 let showIsland = false;
-let showCamp = false;
-let showBeach = true;
+let showCamp = true;
+let showBeach = false;
 let showForest = false;
 
 
@@ -41,6 +41,10 @@ function mousePressed() {
             showBeach = false;
             showForest = false;
         }
+    }
+
+    if (showCamp) {
+        fireMousePressed();
     }
 }
 

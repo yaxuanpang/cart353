@@ -13,7 +13,7 @@ let waterCollected = 0;
 
 
 let fishTaken = 0;
-let woodTaken = 0;
+let woodTaken = 2;
 let waterTaken = 0;
 
 const collectedResourcesMenu = {
@@ -94,6 +94,7 @@ function drawMenu() {
         energyDraw();
     }
     drawNetMenu(netMenu);
+    drawPlacedNet();
 }
 
 function drawGoldCoinsMenu(menu) {
@@ -231,12 +232,9 @@ function drawNetMenu(netMenu) {
             fill(255);
             text(">", netMenu.closeButton.x + 10, netMenu.closeButton.y + 30);
 
-            textSize(23);
-            text("x3", netMenu.x + 55, netMenu.y + 35);
-
             textSize(13);
             text("fishing net", netMenu.x + 40, netMenu.y + 190);
-
+            netDraw();
 
             drawNetBag(netMenu.x + 25, netMenu.y + 45, 1.4);
         }
@@ -283,6 +281,7 @@ function islandButton(x, y) {
 }
 
 function menuMousePressed() {
+    netMousePressed();
     if (showCollectedResourcesMenu) {
         let btn = collectedResourcesMenu.closeButton;
         if (mouseX >= btn.x && mouseX <= btn.x + btn.w &&
