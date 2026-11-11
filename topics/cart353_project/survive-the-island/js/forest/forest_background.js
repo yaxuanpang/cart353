@@ -10,6 +10,8 @@ let frontPalmTrees6 = [];
 let frontPalmTrees7 = [];
 let frontPalmTrees8 = [];
 
+let showAxe = false;
+
 function forestBackgroundSetup() {
     createPalmTrees1();
     createMidPalmTrees1();
@@ -40,6 +42,25 @@ function forestBackgroundDraw() {
     drawFrontPalmTrees7();
     drawFrontPalmTrees8();
 
+    if (showAxe && mouseIsPressed) {
+        drawAxe(mouseX - 45, mouseY, 1);
+    }
+
+    if (mouseIsPressed) {
+        if (showCollectedResourcesMenu && mouseX >= 3 && mouseX <= 213 && mouseY >= 270 && mouseY <= 570) {
+            showAxe = false;
+        }
+        else if (showGoldCoinsMenu && mouseX >= 1297 && mouseX <= 1497 && mouseY >= 523 && mouseY <= 583) {
+            showAxe = false;
+
+        }
+        else if (showMainResourceMenu && mouseX >= 3 && mouseX <= 1497 && mouseY >= 590 && mouseY <= 737) {
+            showAxe = false;
+        }
+        else {
+            showAxe = true;
+        }
+    }
 }
 
 const TREE_SPACING1 = 5;   // smaller number = denser back row

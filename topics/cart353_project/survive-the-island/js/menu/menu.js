@@ -287,12 +287,14 @@ function menuMousePressed() {
         if (mouseX >= btn.x && mouseX <= btn.x + btn.w &&
             mouseY >= btn.y && mouseY <= btn.y + btn.h) {
             showCollectedResourcesMenu = false;
+            showAxe = false;
         }
     }
     else if (!showCollectedResourcesMenu) {
         if (mouseX >= 2 && mouseX <= 2 + 30 &&
             mouseY >= 375 && mouseY <= 375 + 50) {
             showCollectedResourcesMenu = true;
+            showAxe = false;
         }
     }
 
@@ -301,12 +303,14 @@ function menuMousePressed() {
         if (mouseX >= btn.x && mouseX <= btn.x + btn.w &&
             mouseY >= btn.y && mouseY <= btn.y + btn.h) {
             showGoldCoinsMenu = false;
+            showAxe = false;
         }
     }
     else if (!showGoldCoinsMenu) {
         if (mouseX >= 1448 && mouseX <= 1448 + 50 &&
             mouseY >= 503 && mouseY <= 503 + 60) {
             showGoldCoinsMenu = true;
+            showAxe = false;
         }
     }
 
@@ -314,11 +318,13 @@ function menuMousePressed() {
         if (mouseX >= mainResourceMenu.x + mainResourceMenu.w / 2 - 40 && mouseX <= mainResourceMenu.x + mainResourceMenu.w / 2 + 40 &&
             mouseY >= 590 - 40 && mouseY <= 630 + 40) {
             showMainResourceMenu = false;
+            showAxe = false;
         }
     }
     else if (!showMainResourceMenu) {
         if (mouseX >= mainResourceMenu.x + mainResourceMenu.w / 2 && mouseX <= mainResourceMenu.x + mainResourceMenu.w / 2 + 40 && mouseY >= 717 && mouseY <= 717 + 30) {
             showMainResourceMenu = true;
+            showAxe = false;
         }
     }
 
