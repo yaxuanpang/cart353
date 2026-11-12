@@ -1,7 +1,7 @@
 let showIsland = false;
-let showCamp = false;
+let showCamp = true;
 let showBeach = false;
-let showForest = true;
+let showForest = false;
 
 let nightTime = false;
 
@@ -58,6 +58,7 @@ function mousePressed() {
 
     if (showCamp) {
         fireMousePressed();
+        potMousePressed();
     }
 }
 

@@ -1,6 +1,7 @@
-function drawResourcePot(x, y) {
+function drawResourcePot(x, y, s) {
     push();
     translate(x, y);
+    scale(s);
     noStroke();
 
     // shadow

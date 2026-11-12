@@ -5,6 +5,7 @@ let backPalmTrees = [];
 
 let fireTimer = 0;
 let checkFireRepurchase = 0;
+let showFire = false;
 
 function campBackgroundSetup() {
     createBackPalmTrees();
@@ -24,19 +25,24 @@ function campBackgroundDraw() {
     drawPalmTrees();
     drawSand();
 
-    drawResourcePot(width / 2 + 20, height / 2);
+    drawResourcePot(width / 2 + 20, height / 2, 1);
+    potArrowDraw();
 
     if (firePurchased && woodTaken >= 0) {
-        if (millis() - fireTimer > 30000) {
+        if (millis() - fireTimer > 30000) { // 30 seconds for testing
             firePurchased = false;   // 5 minutes passed, fire goes out
             checkFireRepurchase++;
+            showFire = false;
+            flames = [];
         }
 
         else {
-            floorGlow(width / 2 + 20, height - 190);
-            drawFire(width / 2 + 20, height - 200);
-            drawCampfire(width / 2 + 20, height - 195);
-            fireGlow(width / 2 + 20, height / 2 + 100);
+            if (showFire) {
+                floorGlow(width / 2 + 20, height - 190);
+                drawFire(width / 2 + 20, height - 200);
+                drawCampfire(width / 2 + 20, height - 195);
+                fireGlow(width / 2 + 20, height / 2 + 100);
+            }
         }
     }
     else {

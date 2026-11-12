@@ -1,8 +1,8 @@
-function drawAxe(x, y, s) {
+function drawAxe(x, y, s, r) {
     push();
     translate(x, y);
     scale(s);
-    rotate(-45);
+    rotate(r);
 
     // wooden handle
     stroke(117, 66, 2);

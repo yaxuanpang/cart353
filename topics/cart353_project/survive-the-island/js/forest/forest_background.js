@@ -11,6 +11,8 @@ let frontPalmTrees7 = [];
 let frontPalmTrees8 = [];
 
 let showAxe = false;
+let hitCount = 0;
+let axeTimer = 0;
 
 function forestBackgroundSetup() {
     createPalmTrees1();
@@ -42,8 +44,25 @@ function forestBackgroundDraw() {
     drawFrontPalmTrees7();
     drawFrontPalmTrees8();
 
-    if (showAxe && mouseIsPressed) {
-        drawAxe(mouseX - 45, mouseY, 1);
+    if (showAxe && mouseIsPressed && showForest) {
+        let t = 0;
+        t = constrain((millis() - axeTimer) / 1000, 0, 1);
+
+        const swing = sin(t * 180);// starts slowly, speeds up into the strike
+
+        drawAxe(
+            lerp(mouseX - 5, mouseX - 112, swing),
+            lerp(mouseY - 63, mouseY - 7.5, swing),
+            1,
+            lerp(25, -45, swing)
+        );
+
+        if (millis() - axeTimer > 1000) {
+            hitCount++;
+            axeTimer = millis();
+        }
+    } else {
+        axeTimer = millis();       // not holding, timer reset
     }
 
     if (mouseIsPressed) {
@@ -60,6 +79,11 @@ function forestBackgroundDraw() {
         else {
             showAxe = true;
         }
+    }
+
+    if (hitCount >= 5) {
+        woodCollected++;
+        hitCount = 0;
     }
 }
 

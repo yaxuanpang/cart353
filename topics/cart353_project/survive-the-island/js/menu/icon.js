@@ -22,10 +22,11 @@ function drawLightningBolt(x, y, s) {
     pop();
 }
 
-function drawFishIcon(x, y, s) {
+function drawFishIcon(x, y, s, r) {
     push();
     translate(x, y);
     scale(s);
+    rotate(r);
     noStroke();
     fill(159, 211, 224);
     ellipse(10, 0, 50, 20);

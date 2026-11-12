@@ -13,7 +13,7 @@ let waterCollected = 0;
 
 
 let fishTaken = 0;
-let woodTaken = 12;
+let woodTaken = 0;
 let waterTaken = 0;
 
 const collectedResourcesMenu = {
@@ -146,7 +146,7 @@ function drawResourceCollectedMenu(menu) {
         textSize(18);
         text("<", menu.closeButton.x + 10, menu.closeButton.y + 30);
 
-        drawFishIcon(menu.x + 40, menu.y + 80, 0.9);
+        drawFishIcon(menu.x + 40, menu.y + 80, 0.9, 0);
         drawLog(menu.x + 50, menu.y + 165, 60, 20, 0);
         drawLog(menu.x + 45, menu.y + 155, 60, 20, 0);
         drawLog(menu.x + 40, menu.y + 165, 60, 20, 0);
@@ -188,7 +188,7 @@ function drawMainResourceMenu(menu) {
         fill(255);
         text("^", mainResourceMenu.x + mainResourceMenu.w / 2 + 15, 586);
 
-        drawFishIcon(menu.x + 950, menu.y + 50, 0.9);
+        drawFishIcon(menu.x + 950, menu.y + 50, 0.9, 0);
         drawLog(menu.x + 1170, menu.y + 55, 60, 20, 0); //furthest back
         drawLog(menu.x + 1165, menu.y + 45, 60, 20, 0); // top
         drawLog(menu.x + 1160, menu.y + 55, 60, 20, 0); // front

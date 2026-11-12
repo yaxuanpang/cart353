@@ -92,17 +92,38 @@ function payFireSign() {
 }
 
 function fireMousePressed() {
-    let fireArrowCX = width / 2 - 100 + (120);
-    let fireArrowCY = height / 2 + 60 + (100);
-    showPayFireSign = dist(mouseX, mouseY, fireArrowCX, fireArrowCY) < 10;
+    if (showCamp) {
+        let fireArrowCX = width / 2 - 100 + 120;
+        let fireArrowCY = height / 2 + 60 + 100;
 
-    if (mouseX >= width / 2 - 100 + (25) && mouseX <= width / 2 - 100 + (215) && mouseY >= height / 2 + 30 && mouseY <= height / 2 + 80 && woodTaken < 0) {
-        woodTaken = 0;
-        firePurchased = false;
-    }
-    else if (mouseX >= width / 2 - 100 + (25) && mouseX <= width / 2 - 100 + (215) && mouseY >= height / 2 + 30 && mouseY <= height / 2 + 80 && woodTaken >= 3) {
-        woodTaken = woodTaken - 3;
-        firePurchased = true;
-        fireTimer = millis();
+        let clickedFireArrow = dist(mouseX, mouseY, fireArrowCX, fireArrowCY) < 10;
+
+        let clickedPurchaseFireButton =
+            mouseX >= width / 2 - 100 + 25 &&
+            mouseX <= width / 2 - 100 + 215 &&
+            mouseY >= height / 2 + 30 &&
+            mouseY <= height / 2 + 80;
+
+        if (clickedFireArrow) {
+            showPayFireSign = true;
+            return;
+        }
+
+        if (showPayFireSign) {
+            if (clickedPurchaseFireButton && woodTaken <= 0) {
+                woodTaken = 0;
+                firePurchased = false;
+                showFire = false;
+                showPayFireSign = false;
+            } else if (clickedPurchaseFireButton && woodTaken >= 3) {
+                woodTaken = woodTaken - 3;
+                firePurchased = true;
+                fireTimer = millis();
+                showFire = true;
+                showPayFireSign = false;
+            } else if (!clickedPurchaseFireButton) {
+                showPayFireSign = false;
+            }
+        }
     }
 }

@@ -1,6 +1,5 @@
 let flames = [];
 
-// x, y = centre of the base of the fire
 function drawFire(x, y) {
     // spawn new particles
     for (let i = 0; i < 4; i++) {
@@ -60,7 +59,6 @@ class FireParticle {
     }
 }
 
-// x, y = same point you were passing to drawFire
 function drawCampfire(x, y) {
     // two crossed logs behind the flames
     drawLog(x, y + 12, 130, 18, 15);
@@ -75,7 +73,7 @@ function drawBurntCampfire(x, y) {
     drawBurntLog(x, y + 12, 130, 18, -15);
 }
 
-// angle is in degrees (your sketch uses angleMode(DEGREES))
+// angle is in degrees
 function drawLog(x, y, len, thick, angle) {
     push();
     translate(x, y);

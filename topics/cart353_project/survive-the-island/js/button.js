@@ -1,7 +1,7 @@
 function purchaseButton(x, y) {
     noStroke();
     fill(255, 112, 10);
-    rect(x + 25, y + 30, 190, 50, 12);
+    rect(x - 625, y - 345, 190, 50, 12);
 
     fill(255, 190, 110, 200);          // top highlight
     beginShape();
