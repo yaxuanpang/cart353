@@ -228,6 +228,7 @@ function drawMainResourceMenu(menu) {
 }
 
 function drawNetMenu(netMenu) {
+    push();
     if (showBeach) {
         if (showNetMenu) {
             strokeWeight(3);
@@ -239,13 +240,15 @@ function drawNetMenu(netMenu) {
             textSize(18);
             noStroke();
             fill(255);
-            text(">", netMenu.closeButton.x + 10, netMenu.closeButton.y + 30);
+            textAlign(CENTER, CENTER);
+            text(">", netMenu.closeButton.x + 15, netMenu.closeButton.y + 26);
 
             textSize(13);
-            text("fishing net", netMenu.x + 40, netMenu.y + 190);
+            text("fishing net", netMenu.x + 68, netMenu.y + 190);
             netDraw();
 
             drawNetBag(netMenu.x + 25, netMenu.y + 45, 1.4);
+            purchaseNet();
         }
         else if (!showNetMenu) {
             strokeWeight(3);
@@ -259,6 +262,7 @@ function drawNetMenu(netMenu) {
             text("<", netMenu.openButton.x + 10, netMenu.openButton.y + 30);
         }
     }
+    pop();
 }
 
 function islandButton(x, y) {

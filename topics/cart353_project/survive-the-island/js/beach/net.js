@@ -1,10 +1,14 @@
 let bagPlaced = false;
 let fishingClickCount = 0;
 let netLeftCount = 3;
+let industrialNet = true;
 
 function netDraw() {
+    push();
     textSize(23);
-    text("x" + netLeftCount, 1422, 165);
+    textAlign(CENTER, CENTER);
+    text("x" + netLeftCount, 1435, 160);
+    pop();
 }
 
 function drawNetBag(x, y, s) {
@@ -14,7 +18,12 @@ function drawNetBag(x, y, s) {
 
     // bag shape (filled backing)
     noStroke();
-    fill(90, 55, 10, 140);
+    if (industrialNet) {
+        fill(140, 236, 255, 140);
+    }
+    else {
+        fill(90, 55, 10, 140);
+    }
     if (netLeftCount === 0 && !bagPlaced) {
         fill(90, 55, 10, 140, 100);
     }
@@ -42,7 +51,12 @@ function drawNetBag(x, y, s) {
         rowPts.push(row);
     }
 
-    stroke(225, 205, 145);
+    if (industrialNet) {
+        stroke(255);
+    }
+    else {
+        stroke(225, 205, 145);
+    }
     if (netLeftCount === 0 && !bagPlaced) {
         stroke(225, 205, 145, 100);
     }
@@ -56,7 +70,12 @@ function drawNetBag(x, y, s) {
 
     // bag outline
     noFill();
-    stroke(117, 66, 2);
+    if (industrialNet) {
+        stroke(255);
+    }
+    else {
+        stroke(117, 66, 2);
+    }
     if (netLeftCount === 0 && !bagPlaced) {
         stroke(117, 66, 2, 100);
     }
@@ -68,7 +87,12 @@ function drawNetBag(x, y, s) {
     endShape();
 
     // rim and drawstring
-    stroke(140, 83, 13);
+    if (industrialNet) {
+        stroke(0, 163, 212);
+    }
+    else {
+        stroke(140, 83, 13);
+    }
     if (netLeftCount === 0 && !bagPlaced) {
         stroke(140, 83, 13, 100);
     }
@@ -77,7 +101,23 @@ function drawNetBag(x, y, s) {
     pop();
 }
 
+function purchaseNet() {
+    if (netLeftCount === 0 && !bagPlaced) {
+        otherPurchaseButton(1385, 230, 0.6)
+        drawFireWood(929, 102, 0.5)
+
+        textAlign(CENTER, LEFT);
+        textSize(12);
+        text("1x    ", 1396, 233);
+        text("= 3 nets", 1459, 233);
+
+    }
+}
+
 function netMousePressed() {
+    if (bagPlaced && fishingClickCount === 1) {
+        catchFish();
+    }
     if (showNetMenu && mouseX <= 1497 && mouseX >= 1367 && mouseY <= 330 && mouseY >= 130) {
 
         if (!bagPlaced) {
