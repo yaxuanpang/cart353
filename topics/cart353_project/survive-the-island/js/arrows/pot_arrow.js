@@ -12,7 +12,10 @@ function potArrowDraw() {
         putInPotSign();
     }
     if (showTakeOutPotSign) {
-        takeOutPotSign()
+        takeOutPotSign();
+    }
+    if (potCollected && showPotArrowSign) {
+        potArrowSign();
     }
 }
 //pot arrow
@@ -48,7 +51,7 @@ function potArrowSign() {
         textSize(16);
         fill(255);
         textSize(12);
-        text("(click the pot)", 120, 68);
+        text("(click the arrow)", 120, 68);
         text("+", 85, 45);
         text("+", 155, 45);
         drawFireWood(20, -25, 0.5);
@@ -75,7 +78,7 @@ function potArrowSign() {
 
 function putInPotSign() {
     push();
-    translate(width / 2 - 100, height / 2 - 120);
+    translate(width / 2 - 105, height / 2 - 120);
     purchaseButton(width / 2 - 100, height / 2);
 
     noStroke();
@@ -93,7 +96,7 @@ function putInPotSign() {
 
 function takeOutPotSign() {
     push();
-    translate(width / 2 - 100, height / 2 - 180);
+    translate(width / 2 - 105, height / 2 - 180);
     purchaseButton(width / 2 - 100, height / 2);
 
     noStroke();
@@ -111,11 +114,10 @@ function takeOutPotSign() {
 
 function potMousePressed() {
     if (showCamp) {
-        let clickedPot =
-            mouseX >= width / 2 - 130 &&
-            mouseX <= width / 2 + 170 &&
-            mouseY >= height / 2 + 20 &&
-            mouseY <= height / 2 + 130;
+        let potArrowCX = width / 2 - 100 + (120);
+        let potArrowCY = height / 2 - 105 + (100);
+
+        let clickedPot = dist(mouseX, mouseY, potArrowCX, potArrowCY) < 10;
 
         let clickedPutInPotButton =
             mouseX >= width / 2 - 75 &&

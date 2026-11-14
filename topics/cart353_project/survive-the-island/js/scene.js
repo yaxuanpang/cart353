@@ -1,6 +1,6 @@
 let showIsland = false;
-let showCamp = true;
-let showBeach = false;
+let showCamp = false;
+let showBeach = true;
 let showForest = false;
 
 let nightTime = false;
@@ -11,12 +11,14 @@ let startTime = 0;
 function setup() {
     createCanvas(1500, 750);
     angleMode(DEGREES);
+    frameRate(60);
     campSetup();
     beachSetup();
     forestSetup();
 }
 
 function draw() {
+    console.log(frameRate());
     if (showIsland) {
         islandDraw();
     }
@@ -30,10 +32,20 @@ function draw() {
             drawFire(width / 2 + 20, height - 200);
             drawCampfire(width / 2 + 20, height - 195);
             fireGlow(width / 2 + 20, height / 2 + 100);
+            drawMenu();
         }
     }
     if (showBeach) {
+        beachDark = nightTime;
         beachDraw();
+        if (nightTime) {
+            noStroke();
+            fill(0, 0, 0, 200);
+            rect(0, 0, width, height);
+
+            fishGlowDraw();
+            drawMenu();
+        }
     }
     if (showForest) {
         forestDraw();

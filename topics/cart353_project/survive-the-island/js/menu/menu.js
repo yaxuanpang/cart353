@@ -90,7 +90,7 @@ function drawMenu() {
     drawGoldCoinsMenu(goldCoinsMenu);
     drawMainResourceMenu(mainResourceMenu);
     if (showIslandButton) {
-        islandButton(width / 2 + 20, 0);
+        islandButton(width / 2 + 15, 0);
         energyDraw();
     }
     drawNetMenu(netMenu);
@@ -183,22 +183,31 @@ function drawMainResourceMenu(menu) {
         fill(181, 110, 24, 200);
         rect(menu.x, menu.y, menu.w, menu.h, menu.cornerRadius);
         rect(mainResourceMenu.x + mainResourceMenu.w / 2, 560, 40, 30, 3);
+
+        strokeWeight(5);
+        stroke(130, 75, 9);
+        fill(130, 75, 9, 100);
+        rect(mainResourceMenu.w / 2 + 145, mainResourceMenu.y + 5, 130, mainResourceMenu.h - 10, 10);
+        rect(mainResourceMenu.w / 2 + 345, mainResourceMenu.y + 5, 130, mainResourceMenu.h - 10, 10);
+        rect(mainResourceMenu.w / 2 + 545, mainResourceMenu.y + 5, 130, mainResourceMenu.h - 10, 10);
+
         textSize(18);
         noStroke();
         fill(255);
         text("^", mainResourceMenu.x + mainResourceMenu.w / 2 + 15, 586);
 
         drawFishIcon(menu.x + 950, menu.y + 50, 0.9, 0);
-        drawLog(menu.x + 1170, menu.y + 55, 60, 20, 0); //furthest back
-        drawLog(menu.x + 1165, menu.y + 45, 60, 20, 0); // top
-        drawLog(menu.x + 1160, menu.y + 55, 60, 20, 0); // front
-        drawWaterIcon(menu.x + 1360, menu.y + 50, 0.8);
+        drawLog(menu.x + 1160, menu.y + 55, 60, 20, 0); //furthest back
+        drawLog(menu.x + 1155, menu.y + 45, 60, 20, 0); // top
+        drawLog(menu.x + 1150, menu.y + 55, 60, 20, 0); // front
+        drawWaterIcon(menu.x + 1355, menu.y + 55, 0.8);
 
         textSize(25);
         fill(255);
-        text(fishTaken, menu.x + 950, menu.y + 116);
-        text(woodTaken, menu.x + 1160, menu.y + 116);
-        text(waterTaken, menu.x + 1353, menu.y + 116);
+        textAlign(CENTER, CENTER);
+        text(fishTaken, menu.x + 955, menu.y + 116);
+        text(woodTaken, menu.x + 1155, menu.y + 116);
+        text(waterTaken, menu.x + 1355, menu.y + 116);
 
 
         showIslandButton = true;

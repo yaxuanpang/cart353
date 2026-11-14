@@ -14,8 +14,8 @@ let energy13;
 
 const energy = {
     body: {
-        x: 100,
-        y: 655.5,
+        x: 80,
+        y: 680.5,
         w: 45,
         h: 15
     },
@@ -41,21 +41,21 @@ const energy = {
 function energyDraw() {
 
     drawEnergyBar();
-    drawLightningBolt(50, 645, 45);
+    drawLightningBolt(30, 665, 45);
 }
 
 function drawEnergyBar() {
     push();
     noStroke();
     fill(140, 83, 13);
-    rect(98, 655.5, 587.5, 15, 5);
+    rect(78, 680.5, 587.5, 15, 5);
 
     drawEnergyLevel();
 
     strokeWeight(3);
     stroke(117, 66, 2);
     fill(140, 83, 13, 50);
-    rect(98, 655.5, 587.5, 15, 5);
+    rect(78, 680.5, 587.5, 15, 5);
     pop();
 }
 
