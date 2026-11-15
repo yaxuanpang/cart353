@@ -81,7 +81,10 @@ class Salmon {
         this.r = map(g[0], 0, 1, 15, 20);
         this.maxspeed = map(g[1], 0, 1, 2.2, 3.8) * this.depth;
         this.opacity = map(g[2], 0, 1, 70, 230);
-        this.bodyColor2 = g[3] < 0.98;
+
+        this.alleles = [false, false];
+        this.updateColor();
+
         this.maxforce = 0.05;
         this.phase = random(360);
         this.minY = 250;
@@ -90,9 +93,18 @@ class Salmon {
         this.maturityAge = random(1800, 2700);
         this.lifespan = random(7200, 10800);
         this.babyLifespan = random(450, this.maturityAge);
-        this.age = random(this.maturityAge, this.maturityAge + 1800); // age of fish at the start
+        this.age = random(this.maturityAge, this.maturityAge + 3000); // age of fish at the start
         this.cooldown = 0;
         this.diesYoung = false;
+    }
+
+    updateColor() {
+        if (this.alleles[0] || this.alleles[1]) {
+            this.bodyColor2 = false;
+        }
+        else {
+            this.bodyColor2 = true;
+        }
     }
 
     run(school) {
@@ -240,18 +252,14 @@ class Salmon {
         translate(this.position.x, this.position.y);
         rotate(this.velocity.heading());
         noStroke();
+
         if (this.bodyColor2) {
             c = salmonColor1;
         } else {
             c = salmonColor2;
         }
+        fill(red(c), green(c), blue(c), this.opacity);
 
-        if (this.bodyColor2) {
-            fill(red(c), green(c), blue(c), this.opacity);
-        }
-        else {
-            fill(red(c), green(c), blue(c), this.opacity);
-        }
 
 
         beginShape();
@@ -296,24 +304,22 @@ class Salmon {
         let range;
         let chance;
 
-        if (this.bodyColor2) {
-            range = 30;
-        } else {
-            range = 50;
-        }
+        range = 50;
 
         // the fewer fish = faster reproduction
         if (population < 5) {
             if (this.bodyColor2) {
-                chance = 0.05;      // 50% per frame
+                chance = 0.5;      // 50% per frame
+                range = 100;
             } else {
-                chance = 0.07;       // 70% per frame
+                chance = 0.7;       // 70% per frame
+                range = 100;
             }
-        } else if (population <= 50) {
+        } else if (population <= 55) {
             if (this.bodyColor2) {
-                chance = 0.001;    // 0.1% per frame
+                chance = 0.005;    // 0.5% per frame
             } else {
-                chance = 0.1;     // 1% per frame
+                chance = 0.01;     // 1% per frame
             }
         } else {
             if (this.bodyColor2) {
@@ -341,34 +347,26 @@ class Salmon {
         let mid = p5.Vector.add(this.position, other.position).div(2);
 
         let childDNA = this.dna.crossover(other.dna);
-        childDNA.mutate(0.08);   // 8% chance to mutate
+        childDNA.mutate(0.05);
 
         let baby = new Salmon(mid.x, mid.y, childDNA);
 
-        baby.age = 0;
-        baby.r = baby.adultR * 0.5;
-        baby.cooldown = 900;
-        baby.velocity = this.velocity.copy();
+        baby.alleles = [random(this.alleles), random(other.alleles)];
+
+        for (let i = 0; i < 2; i++) {
+            if (random() < 0.08) { // 8% of mutating to color2
+                baby.alleles[i] = true;
+            }
+        }
 
         if (random() < 0.1) {
             baby.diesYoung = true;
         }
-
-        if (this.bodyColor2 && other.bodyColor2) {
-            baby.bodyColor2 = random() < 0.80;   // both color1 = 80% color1
-        } else if (!this.bodyColor2 && !other.bodyColor2) {
-            baby.bodyColor2 = random() < 0.10;   // both color2 = 10% color1
-        } else {
-            baby.bodyColor2 = random() < 0.25;   // mixed = 25% color1
-        }
-
-        //  grandchildren can inherit color
-        if (baby.bodyColor2) {
-            baby.dna.genes[3] = random(0, 0.98);
-        } else {
-            baby.dna.genes[3] = random(0.98, 1);
-        }
-
+        baby.age = 0;
+        baby.r = baby.adultR * 0.5;
+        baby.cooldown = 900; // babies can't breed right away when they become adults
+        baby.velocity = this.velocity.copy();
+        baby.updateColor();
         return baby;
     }
 }

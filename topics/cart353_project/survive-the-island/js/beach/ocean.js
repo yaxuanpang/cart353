@@ -1,5 +1,5 @@
 const ocean = {
-    topR: 35, topG: 208, topB: 247,
+    topR: 35, topG: 225, topB: 247,
     botR: 4, botG: 20, botB: 138,
     gradientStart: 215
 };

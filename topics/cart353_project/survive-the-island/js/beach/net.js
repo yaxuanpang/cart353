@@ -115,7 +115,7 @@ function purchaseNet() {
 }
 
 function netMousePressed() {
-    if (bagPlaced && fishingClickCount === 1) {
+    if (showNetMenu && bagPlaced && fishingClickCount === 1) {
         catchFish();
     }
     if (showNetMenu && mouseX <= 1497 && mouseX >= 1367 && mouseY <= 330 && mouseY >= 130) {

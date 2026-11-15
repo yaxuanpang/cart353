@@ -1,12 +1,14 @@
 let flock;
 let fishColor1
 let fishColor2;
+let fishColor3;
 let bodyColor;
 let beachDark = false;
 
 function fishSetup() {
     fishColor1 = color(159, 211, 224);
     fishColor2 = color(92, 255, 150);
+    fishColor3 = color(255, 150, 60);
 
     flock = new Flock();
 
@@ -15,10 +17,25 @@ function fishSetup() {
         b.velocity = createVector(random(1.5, 3), random(-0.4, 0.4));
         flock.addBoid(b);
     }
+
+    for (let i = 0; i < 40; i++) {
+        // first 40 fishes in the boid are carriers of the color2 allele but do not show it
+        flock.boids[i].alleles = [true, false];
+        flock.boids[i].updateColor();
+
+    }
 }
 
 function fishDraw() {
     flock.run();
+}
+
+function fishGlowDraw() {
+    for (let boid of flock.boids) {
+        if (!boid.bodyColor) {
+            boid.show();
+        }
+    }
 }
 
 class Flock {
@@ -70,8 +87,8 @@ class DNA {
             this.genes = genes;
         } else {
             this.genes = [];
-            for (let i = 0; i < 5; i++) {
-                this.genes[i] = random(0, 1);
+            for (let i = 0; i < 5; i++) { // 5 genes -> 0 to 4
+                this.genes[i] = random(0, 1); // genes varies from 0 to 1
             }
         }
     }
@@ -101,14 +118,6 @@ class DNA {
     }
 }
 
-function fishGlowDraw() {
-    for (let boid of flock.boids) {
-        if (!boid.bodyColor) {
-            boid.show();
-        }
-    }
-}
-
 // ---------------------------------------------------------------
 
 class Boid {
@@ -117,9 +126,10 @@ class Boid {
             this.dna = dna;
         } else {
             this.dna = new DNA(); // starting fish get random DNA
+            this.dna.genes[3] = random(0, 0.93); // gives gene 3 a random number between 0 and 0.93
+            // no fish starts at orange since gene 3 would have to be above 0.95
         }
         let g = this.dna.genes;
-        let lifeBonus = map(g[4], 0, 1, 0.7, 1.3) * map(g[1], 0, 1, 1.2, 0.8);
 
         this.position = createVector(x, y);
         this.velocity = createVector(random(-3, 3), random(-3, 3));
@@ -131,7 +141,11 @@ class Boid {
         this.maxspeed = map(g[1], 0, 1, 2.2, 3.8) * this.depth;
         this.opacity = map(g[2], 0, 1, 70, 230);
         this.bodyColor = g[3] < 0.98;
-        this.opacity2 = random(200, 255);
+        let lifeBonus = map(g[4], 0, 1, 0.7, 1.3) * map(g[1], 0, 1, 1.2, 0.8);
+
+        this.alleles = [true, true];
+        this.updateColor();
+
         this.maxforce = 0.05;
         this.phase = random(360);
         this.minY = 250;
@@ -144,6 +158,20 @@ class Boid {
         this.age = random(this.maturityAge, this.maturityAge + 600); // age of fish at the start
         this.cooldown = 0;
         this.diesYoung = false;
+    }
+
+    updateColor() {
+        if (this.dna.genes[3] >= 0.95) {
+            this.colorFish = 3;
+        }
+        else if (!this.alleles[0] && !this.alleles[1]) { // color2 only when they have both alleles
+            this.colorFish = 2;
+        }
+        else {
+            this.colorFish = 1;
+        }
+
+        this.bodyColor = (this.colorFish === 1);
     }
 
     run(boids) {
@@ -282,26 +310,29 @@ class Boid {
         this.position.y = constrain(this.position.y, this.minY, this.maxY);
     }
 
+    getColor() {
+        if (this.colorFish === 1) {
+            return fishColor1;
+        }
+        else if (this.colorFish === 2) {
+            return fishColor2;
+        }
+        else {
+            return fishColor3;
+        }
+    }
+
     show() {
         let L = this.r * 2.2;
         let wig = sin(this.phase) * 0.18 * L;
-        let c;
+        let c = this.getColor();
 
         push();
         translate(this.position.x, this.position.y);
         rotate(this.velocity.heading());
         noStroke();
-        if (this.bodyColor) {
-            c = fishColor1;
-        } else {
-            c = fishColor2;
-        }
 
-        if (this.bodyColor) {
-            fill(red(c), green(c), blue(c), this.opacity);
-        } else {
-            fill(red(c), green(c), blue(c), this.opacity2);
-        }
+        fill(red(c), green(c), blue(c), this.opacity);
 
         beginShape();
         // top edge of the body, nose to tail
@@ -358,18 +389,23 @@ class Boid {
             } else {
                 chance = 0.5;       // 50% per frame
             }
-        } else if (population <= 100) {
+        } else if (population <= 230) {
             if (this.bodyColor) {
                 chance = 0.005;    // 0.5% per frame
             } else {
-                chance = 0.05;     // 5% per frame
+                chance = 0.01;     // 5% per frame
             }
         } else {
             if (this.bodyColor) {
-                chance = 0.00001;   // 0.001% per frame
+                chance = 0.000001;   // 0.0001% per frame
             } else {
-                chance = 0.001;    // 0.1% per frame
+                chance = 0.0001;    // 0.01% per frame
             }
+        }
+
+        // any fish with 1 color 2 allele reproduces twice as much than those who dont
+        if (!this.alleles[0] || !this.alleles[1]) {
+            chance = chance * 2;
         }
 
         for (let other of boids) {
@@ -377,8 +413,8 @@ class Boid {
 
             let d = p5.Vector.dist(this.position, other.position);
             if (d < range && random() < chance) {
-                this.cooldown = 900;
-                other.cooldown = 900;
+                this.cooldown = 600;
+                other.cooldown = 600;
                 return this.makeChild(other);
             }
         }
@@ -389,15 +425,32 @@ class Boid {
         let mid = p5.Vector.add(this.position, other.position).div(2);
 
         let childDNA = this.dna.crossover(other.dna);
-        childDNA.mutate(0.01);  // 1% chance to mutate
+        childDNA.mutate(0.01);  // 1% chance to mutate into green (color2)
+        if (random() < 0.05) { // 5% to mutate into orange (color3)
+            childDNA.genes[3] = constrain(childDNA.genes[3] + random(0, 0.15), 0, 1);
+            //add a number between 0 and 0.15 to gene 3 (between 0 and 1)
+        }
 
         let baby = new Boid(mid.x, mid.y, childDNA);
+
+        baby.alleles = [random(this.alleles), random(other.alleles)]; // child gets alleles from both parents
+
+        for (let i = 0; i < 2; i++) { //has 2 alleles
+            if (random() < 0.03) { // 3% chance of babies being born with the color2 allele
+                baby.alleles[i] = false; // carrier of color2
+            }
+        }
+
+        baby.updateColor();
+
         baby.age = 0;
         baby.r = baby.adultR * 0.3;
-        baby.cooldown = 900;
         baby.velocity = this.velocity.copy();
 
-        if (random() < 0.3) {
+        if (random() < 0.2 && bodyColor) { // 20% of blue baby fishes will die before adulthood
+            baby.diesYoung = true;
+        }
+        else if (random() < 0.3 && !bodyColor) { // 30% of non-blue baby fishes will die before adulthood
             baby.diesYoung = true;
         }
         return baby;
