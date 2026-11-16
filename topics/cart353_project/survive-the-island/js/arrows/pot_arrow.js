@@ -130,7 +130,7 @@ function potMousePressed() {
         let potArrowCX = width / 2 - 100 + (120);
         let potArrowCY = height / 2 - 105 + (100);
 
-        let clickedPot = dist(mouseX, mouseY, potArrowCX, potArrowCY) < 10;
+        clickedPot = dist(mouseX, mouseY, potArrowCX, potArrowCY) < 10;
 
         if (potCollected) {
             putInPot = height / 2 - 240;

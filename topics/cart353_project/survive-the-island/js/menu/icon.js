@@ -85,3 +85,30 @@ function drawFireWood(x, y, s) {
     pop();
 
 }
+
+function drawStomachIcon(x, y, s) {
+    push();
+    translate(x, y);
+    scale(s);
+    rotate(25);
+    noFill();
+
+    stroke(190, 90, 100);
+    stroke(240, 150, 160);
+    strokeWeight(12);
+    line(-23, -36, -8, -18);
+    line(-12, 25, -10, 40);
+
+    strokeWeight(18);
+    line(18, 17, -8, 27);
+
+    strokeWeight(28);
+    arc(4, 0, 40, 46, 250, 430);
+
+    // shine
+    stroke(255, 205, 210);
+    strokeWeight(3);
+    arc(4, 0, 60, 66, 285, 335);
+
+    pop();
+}

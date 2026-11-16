@@ -92,6 +92,9 @@ function drawMenu() {
     if (showIslandButton) {
         islandButton(width / 2 + 15, 0);
         energyDraw();
+        hungerDraw();
+        thirstDraw();
+
     }
     drawNetMenu(netMenu);
     drawPlacedNet();

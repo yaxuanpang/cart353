@@ -62,7 +62,7 @@ function forestBackgroundDraw() {
             axeTimer = millis();
         }
     } else {
-        axeTimer = millis();       // not holding, timer reset
+        axeTimer = millis(); // not holding, timer reset
     }
 
     if (mouseIsPressed) {

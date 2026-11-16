@@ -68,7 +68,7 @@ function createBackPalmTrees() {
             x: x + random(-12, 12),
             h: random(250, 300),
             lean: random(-45, 45),
-            w: random(8, 14),
+            w: random(8, 13),
             fronds: floor(random(6, 9)),
             len: random(135, 200),
             phase: random(360)
@@ -97,7 +97,7 @@ function createMidPalmTrees() {
             x: x + random(-12, 12),
             h: random(200, 380),
             lean: random(-45, 45),
-            w: random(8, 14),
+            w: random(8, 13),
             fronds: floor(random(6, 9)),
             len: random(135, 200),
             phase: random(360)
@@ -131,7 +131,7 @@ function createFrontPalmTrees() {
             x: x + random(-8, 8),
             h: random(200, 350),      // trunk height
             lean: random(-45, 45),    // how far the top leans left/right
-            w: random(8, 15),        // trunk thickness
+            w: random(8, 13),        // trunk thickness
             fronds: floor(random(6, 9)),
             len: random(135, 205),    // frond length
             phase: random(360)        // so the trees don't all sway in sync
@@ -167,7 +167,7 @@ function createPalmTrees() {
             x: x + random(-8, 8),
             h: random(160, 350),      // trunk height
             lean: random(-45, 45),    // how far the top leans left/right
-            w: random(8, 15),        // trunk thickness
+            w: random(8, 13),        // trunk thickness
             fronds: floor(random(6, 9)),
             len: random(135, 205),    // frond length
             phase: random(360)        // so the trees don't all sway in sync

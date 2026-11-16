@@ -12,27 +12,29 @@ let energy11;
 let energy12;
 let energy13;
 
+let hunger1;
+
 const energy = {
     body: {
         x: 80,
-        y: 680.5,
+        y: 690.5,
         w: 45,
         h: 15
     },
     color: {
-        first: "#d400ffff",
-        second: "#e607f2ff", //#e607f2ff
-        third: "#ff00aeff", //#ff00aeff
-        fourth: "#ff0202ff", //#ff0202ff
-        fifth: "#ff3d07ff", //#ff3d07ff
-        sixth: "#FF6900", //#FF6900
-        seventh: "#FFA500",
-        eighth: "#FFD200",
-        ninth: "#FFFF00",
-        tenth: "#AAD500",
-        eleventh: "#55AA00",
-        twelfth: "#008000",//#008000
-        thirteenth: "#006837ff"
+        first: "#ff0202ff",
+        second: "#ff3d07ff", //#e607f2ff
+        third: "#FF6900", //#ff00aeff
+        fourth: "#FFA500", //#ff0202ff
+        fifth: "#FFD200", //#ff3d07ff
+        sixth: "#FFFF00", //#FF6900
+        seventh: "#AAD500",
+        eighth: "#55AA00",
+        ninth: "#008000",
+        tenth: "#006837ff",
+        eleventh: "#004c68ff",
+        twelfth: "#003268ff",//#008000
+        thirteenth: "#001d68ff"
     },
     off: "#8c530d"
 
@@ -41,21 +43,25 @@ const energy = {
 function energyDraw() {
 
     drawEnergyBar();
-    drawLightningBolt(30, 665, 45);
+    strokeWeight(3);
+    stroke(130, 75, 9);
+    fill(130, 75, 9, 100);
+    rect(15, 673, 60, 60, 5);
+    drawLightningBolt(30, 680, 45);
 }
 
 function drawEnergyBar() {
     push();
     noStroke();
     fill(140, 83, 13);
-    rect(78, 680.5, 587.5, 15, 5);
+    rect(78, 690.5, 587.5, 15, 5);
 
     drawEnergyLevel();
 
     strokeWeight(3);
     stroke(117, 66, 2);
     fill(140, 83, 13, 50);
-    rect(78, 680.5, 587.5, 15, 5);
+    rect(78, 690.5, 587.5, 15, 5);
     pop();
 }
 

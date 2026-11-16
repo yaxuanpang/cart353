@@ -13,3 +13,21 @@ function drawEnergyLevel() {
     drawEnergy12();
     drawEnergy13();
 }
+
+function drawHungerLevel() {
+    drawHunger1();
+    drawHunger2();
+    drawHunger3();
+    drawHunger4();
+    drawHunger5();
+    drawHunger6();
+}
+
+function drawThirstLevel() {
+    drawThirst1();
+    drawThirst2();
+    drawThirst3();
+    drawThirst4();
+    drawThirst5();
+    drawThirst6();
+}
