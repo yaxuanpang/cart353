@@ -1,3 +1,35 @@
+function drawFurthestPalmTree(t) {
+    push();
+    translate(t.x, 100);   // origin = base of the trunk (the sand covers it)
+    scale(0.4);
+
+    // curved trunk
+    noFill();
+    stroke(120, 72, 30);
+    strokeWeight(t.w);
+    bezier(0, 0, 0, -t.h * 0.5, t.lean * 0.6, -t.h * 0.8, t.lean, -t.h);
+
+    // trunk rings
+    stroke(90, 52, 20);
+    strokeWeight(2);
+    for (let s = 0.1; s < 1; s += 0.12) {
+        let px = bezierPoint(0, 0, t.lean * 0.6, t.lean, s);
+        let py = bezierPoint(0, -t.h * 0.5, -t.h * 0.8, -t.h, s);
+        line(px - t.w / 2, py, px + t.w / 2, py);
+    }
+
+    // move the origin to the top of the trunk for the fronds
+    translate(t.lean, -t.h);
+    noStroke();
+    for (let i = 0; i < t.fronds; i++) {
+        let angle = map(i, 0, t.fronds - 1, -175, -5);
+        angle += sin(frameCount * 2 + t.phase + i * 20) * 3;   // gentle sway
+        drawFrond(angle, t.len);
+    }
+
+    pop();
+}
+
 function drawClosestPalmTree(t) {
     push();
     translate(t.x, 850);   // origin = base of the trunk (the sand covers it)
@@ -114,11 +146,11 @@ function drawFrond(angle, len) {
         let stemAngle = atan2(quadSlope(0, cy, ey, s), quadSlope(0, cx, ex, s));
 
         // leaflets get shorter toward the tip of the frond
-        let leafletLen = len * 0.3 * (1 - s * 0.7);
+        let leafletLen = len * 0.2 * (1 - s * 0.7);
 
         // one leaflet on each side, swept toward the tip and drooping a little
         for (let side = -1; side <= 1; side += 2) {
-            let a = stemAngle + side * 55;
+            let a = stemAngle + side * 45; // angle of how far leaflet spread
             line(px, py, px + cos(a) * leafletLen, py + sin(a) * leafletLen + leafletLen * 0.3);
         }
     }

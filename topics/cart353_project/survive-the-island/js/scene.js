@@ -21,6 +21,15 @@ function draw() {
     console.log(frameRate());
     if (showIsland) {
         islandDraw();
+        if (nightTime) {
+            noStroke();
+            fill(0, 0, 0, 150);
+            rect(0, 0, width, height);
+
+            campArrowDraw();
+            beachArrowDraw();
+            forestArrowDraw();
+        }
     }
     if (showCamp) {
         campDraw();

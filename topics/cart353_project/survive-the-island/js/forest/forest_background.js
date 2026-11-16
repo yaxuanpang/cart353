@@ -81,7 +81,7 @@ function forestBackgroundDraw() {
         }
     }
 
-    if (hitCount >= 5) {
+    if (hitCount >= 3) {
         woodCollected++;
         hitCount = 0;
     }

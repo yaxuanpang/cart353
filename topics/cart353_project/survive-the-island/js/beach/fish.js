@@ -436,7 +436,7 @@ class Boid {
         baby.alleles = [random(this.alleles), random(other.alleles)]; // child gets alleles from both parents
 
         for (let i = 0; i < 2; i++) { //has 2 alleles
-            if (random() < 0.03) { // 3% chance of babies being born with the color2 allele
+            if (random() < 0.05) { // 5% chance of babies being born with the color2 allele
                 baby.alleles[i] = false; // carrier of color2
             }
         }

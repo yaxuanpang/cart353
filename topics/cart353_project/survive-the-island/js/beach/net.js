@@ -106,10 +106,10 @@ function purchaseNet() {
         otherPurchaseButton(1385, 230, 0.6)
         drawFireWood(929, 102, 0.5)
 
-        textAlign(CENTER, LEFT);
+        textAlign(LEFT, CENTER);
         textSize(12);
-        text("1x    ", 1396, 233);
-        text("= 3 nets", 1459, 233);
+        text("1x    ", 1383, 233);
+        text("= 5 nets", 1437, 233);
 
     }
 }
@@ -118,6 +118,7 @@ function netMousePressed() {
     if (showNetMenu && bagPlaced && fishingClickCount === 1) {
         catchFish();
     }
+
     if (showNetMenu && mouseX <= 1497 && mouseX >= 1367 && mouseY <= 330 && mouseY >= 130) {
 
         if (!bagPlaced) {
@@ -128,13 +129,28 @@ function netMousePressed() {
         if (netLeftCount < 0) {
             bagPlaced = false;
             netLeftCount = 0;
+
+            let clickRepurchaseBagButton =
+                mouseX >= 1375 && mouseX <= 1489
+                && mouseY >= 218 && mouseY <= 248
+
+            if (showNetMenu && clickRepurchaseBagButton) {
+                if (woodTaken >= 1) {
+                    woodTaken -= 1;
+                    industrialNet = false;
+                    netLeftCount = 5;
+                    return;
+                }
+            }
         }
     }
-    fishingClickCount++;
+    if (bagPlaced) {
+        fishingClickCount++;
+    }
 }
 
 function drawPlacedNet() {
-    if (bagPlaced && fishingClickCount === 1) {
+    if (showNetMenu && bagPlaced && fishingClickCount === 1) {
         drawNetBag(mouseX - 44, mouseY - 59.5, 1.4);
     }
     else if (fishingClickCount > 1) {

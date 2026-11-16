@@ -2,6 +2,9 @@ let showPotArrowSign = false;
 let showPutInPotSign = false;
 let showTakeOutPotSign = false;
 
+let putInPot;
+let takeOutPot;
+
 function potArrowDraw() {
     potArrow();
     hoveringPot();
@@ -78,7 +81,12 @@ function potArrowSign() {
 
 function putInPotSign() {
     push();
-    translate(width / 2 - 105, height / 2 - 120);
+    if (potCollected) {
+        translate(width / 2 - 105, height / 2 - 270);
+    }
+    else {
+        translate(width / 2 - 105, height / 2 - 170);
+    }
     purchaseButton(width / 2 - 100, height / 2);
 
     noStroke();
@@ -96,7 +104,12 @@ function putInPotSign() {
 
 function takeOutPotSign() {
     push();
-    translate(width / 2 - 105, height / 2 - 180);
+    if (potCollected) {
+        translate(width / 2 - 105, height / 2 - 330);
+    }
+    else {
+        translate(width / 2 - 105, height / 2 - 230);
+    }
     purchaseButton(width / 2 - 100, height / 2);
 
     noStroke();
@@ -119,18 +132,26 @@ function potMousePressed() {
 
         let clickedPot = dist(mouseX, mouseY, potArrowCX, potArrowCY) < 10;
 
+        if (potCollected) {
+            putInPot = height / 2 - 240;
+            takeOutPot = height / 2 - 300;
+        }
+        else {
+            putInPot = height / 2 - 140;
+            takeOutPot = height / 2 - 200;
+        }
+
         let clickedPutInPotButton =
-            mouseX >= width / 2 - 75 &&
-            mouseX <= width / 2 + 115 &&
-            mouseY >= height / 2 - 90 &&
-            mouseY <= height / 2 - 40;
+            mouseX >= width / 2 - 80 &&
+            mouseX <= width / 2 + 110 &&
+            mouseY >= putInPot &&
+            mouseY <= putInPot + 50;
 
-        let clickedTakeOutPot =
-            mouseX >= width / 2 - 75 &&
-            mouseX <= width / 2 + 115 &&
-            mouseY >= height / 2 - 150 &&
-            mouseY <= height / 2 - 100;
-
+        let clickedTakeOutPotButton =
+            mouseX >= width / 2 - 80 &&
+            mouseX <= width / 2 + 110 &&
+            mouseY >= takeOutPot &&
+            mouseY <= takeOutPot + 50;
 
         if (showPutInPotSign && clickedPutInPotButton) {
             if (fishCollected >= 1 || woodCollected >= 1 || waterCollected >= 1) {
@@ -139,7 +160,7 @@ function potMousePressed() {
                 potCollected = true;
                 convertCollectedToPot();
             }
-        } else if (showTakeOutPotSign && clickedTakeOutPot) {
+        } else if (showTakeOutPotSign && clickedTakeOutPotButton) {
             if (potCollectedFish >= 1 || potCollectedWood >= 1 || potCollectedWater >= 1) {
                 showPutInPotSign = false;
                 showTakeOutPotSign = false;

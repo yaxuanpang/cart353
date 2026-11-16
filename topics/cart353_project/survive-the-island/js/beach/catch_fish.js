@@ -1,3 +1,6 @@
+let greenFishCaught = false;
+let orangeFishCaught = false;
+
 function insideNet(x, y) {
     return x >= mouseX - 46 && x <= mouseX + 42 &&
         y >= mouseY - 50 && y <= mouseY + 66;
@@ -23,7 +26,23 @@ function catchFish() {
             let escapeChance = map(b.dna.genes[1], 0, 1, 0.1, 0.6);
             if (random() > escapeChance) {
                 flock.boids.splice(i, 1);
-                caught++;
+                if (b.colorFish === 3) {
+                    orangeFishCaught = true;
+                    console.log("orange fish caught");
+                }
+                else if (b.colorFish === 2) {
+                    greenFishCaught = true;
+                    console.log("green fish caught");
+                }
+                else {
+                    orangeFishCaught = true;
+                    greenFishCaught = true;
+                }
+
+                if (b.isAdult()) {
+                    caught++;
+                }
+
             }
         }
     }
