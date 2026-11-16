@@ -1,6 +1,6 @@
 let showIsland = false;
-let showCamp = true;
-let showBeach = false;
+let showCamp = false;
+let showBeach = true;
 let showForest = false;
 
 let nightTime = false;
@@ -55,6 +55,9 @@ function draw() {
             fishGlowDraw();
             drawMenu();
         }
+        if (showBucket) {
+            bucketDip();
+        }
     }
     if (showForest) {
         forestDraw();
@@ -85,6 +88,7 @@ function mousePressed() {
 
 function keyPressed() {
     menuKeyPressed();
+    waterKeyPressed();
     if (keyCode === 32) {
         showIsland = true;
         showCamp = false;

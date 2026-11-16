@@ -7,6 +7,7 @@ function drawFire(x, y) {
     }
 
     push();
+    noStroke();
     blendMode(ADD);   // overlapping particles add up to bright cores
     for (let i = flames.length - 1; i >= 0; i--) {
         flames[i].update();
