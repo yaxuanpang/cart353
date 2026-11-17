@@ -46,7 +46,7 @@ function bucketDip() {
 }
 
 function waterKeyPressed() {
-    if (keyCode === 87) {
+    if (showBeach && keyCode === 87) {
         showBucket = true;
     }
 }

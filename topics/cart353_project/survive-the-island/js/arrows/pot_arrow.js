@@ -2,6 +2,8 @@ let showPotArrowSign = false;
 let showPutInPotSign = false;
 let showTakeOutPotSign = false;
 
+let showTakeOutPercentSign = false;
+
 let putInPot;
 let takeOutPot;
 
@@ -16,6 +18,11 @@ function potArrowDraw() {
     }
     if (showTakeOutPotSign) {
         takeOutPotSign();
+    }
+    if (showTakeOutPercentSign) {
+        drawTakeOutSign10();
+        drawTakeOutSign30();
+        drawTakeOutSign50();
     }
     if (potCollected && showPotArrowSign) {
         potArrowSign();
@@ -161,6 +168,12 @@ function potMousePressed() {
                 convertCollectedToPot();
             }
         } else if (showTakeOutPotSign && clickedTakeOutPotButton) {
+            showTakeOutPercentSign = true;
+            showPutInPotSign = true;
+            showTakeOutPotSign = true;
+        }
+
+        if (showTakeOutPercentSign) {
             if (potCollectedFish >= 1 || potCollectedWood >= 1 || potCollectedWater >= 1) {
                 showPutInPotSign = false;
                 showTakeOutPotSign = false;
@@ -183,4 +196,64 @@ function potMousePressed() {
         showPutInPotSign = false;
         showTakeOutPotSign = false;
     }
+}
+
+function drawTakeOutSign10() {
+    push();
+    if (potCollected) {
+        translate(width / 2 - 280, height / 2 - 265);
+    }
+    else {
+        translate(width / 2 - 280, height / 2 - 165);
+    }
+    otherPurchaseButton(113, 47, 0.7)
+
+    noStroke();
+    textAlign(LEFT, CENTER);
+    textSize(15);
+    fill(255);
+    text("10%", 120, 56);
+    drawResourcePot(width / 2 - 555, height / 2 - 333, 0.18);
+    text("=", 155, 56);
+    pop();
+}
+
+function drawTakeOutSign30() {
+    push();
+    if (potCollected) {
+        translate(width / 2 - 145, height / 2 - 265);
+    }
+    else {
+        translate(width / 2 - 145, height / 2 - 165);
+    }
+    otherPurchaseButton(113, 47, 0.7)
+
+    noStroke();
+    textAlign(LEFT, CENTER);
+    textSize(15);
+    fill(255);
+    text("30%", 120, 56);
+    drawResourcePot(width / 2 - 555, height / 2 - 333, 0.18);
+    text("=", 155, 56);
+    pop();
+}
+
+function drawTakeOutSign50() {
+    push();
+    if (potCollected) {
+        translate(width / 2 - 10, height / 2 - 265);
+    }
+    else {
+        translate(width / 2 - 10, height / 2 - 165);
+    }
+    otherPurchaseButton(113, 47, 0.7)
+
+    noStroke();
+    textAlign(LEFT, CENTER);
+    textSize(15);
+    fill(255);
+    text("50%", 120, 56);
+    drawResourcePot(width / 2 - 555, height / 2 - 333, 0.18);
+    text("=", 155, 56);
+    pop();
 }

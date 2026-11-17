@@ -146,7 +146,7 @@ function drawFrond(angle, len) {
         let stemAngle = atan2(quadSlope(0, cy, ey, s), quadSlope(0, cx, ex, s));
 
         // leaflets get shorter toward the tip of the frond
-        let leafletLen = len * 0.2 * (1 - s * 0.7);
+        let leafletLen = len * 0.3 * (1 - s * 0.8);
 
         // one leaflet on each side, swept toward the tip and drooping a little
         for (let side = -1; side <= 1; side += 2) {

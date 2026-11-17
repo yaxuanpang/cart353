@@ -317,7 +317,7 @@ class Salmon {
             }
         } else if (population <= 55) {
             if (this.bodyColor2) {
-                chance = 0.008;    // 0.8% per frame
+                chance = 0.008;    // 0.8 % per frame
             } else {
                 chance = 0.01;     // 1% per frame
             }

@@ -1,6 +1,6 @@
 let showIsland = false;
-let showCamp = false;
-let showBeach = true;
+let showCamp = true;
+let showBeach = false;
 let showForest = false;
 
 let nightTime = false;
@@ -61,6 +61,14 @@ function draw() {
     }
     if (showForest) {
         forestDraw();
+        forestDark = nightTime;
+        if (nightTime) {
+            noStroke();
+            fill(0, 0, 0, 200);
+            rect(0, 0, width, height);
+            fireflyDraw();
+            drawMenu();
+        }
     }
 }
 

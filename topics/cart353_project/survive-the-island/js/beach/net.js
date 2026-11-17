@@ -5,9 +5,11 @@ let industrialNet = true;
 
 function netDraw() {
     push();
-    textSize(23);
-    textAlign(CENTER, CENTER);
-    text("x" + netLeftCount, 1435, 160);
+    if (showBeach) {
+        textSize(23);
+        textAlign(CENTER, CENTER);
+        text("x" + netLeftCount, 1435, 160);
+    }
     pop();
 }
 
@@ -115,11 +117,11 @@ function purchaseNet() {
 }
 
 function netMousePressed() {
-    if (showNetMenu && bagPlaced && fishingClickCount === 1) {
+    if (showBeach && showNetMenu && bagPlaced && fishingClickCount === 1) {
         catchFish();
     }
 
-    if (showNetMenu && mouseX <= 1497 && mouseX >= 1367 && mouseY <= 330 && mouseY >= 130) {
+    if (showBeach && showNetMenu && mouseX <= 1497 && mouseX >= 1367 && mouseY <= 330 && mouseY >= 130) {
 
         if (!bagPlaced) {
             bagPlaced = true;

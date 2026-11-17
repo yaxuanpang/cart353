@@ -13,6 +13,7 @@ let frontPalmTrees8 = [];
 let showAxe = false;
 let hitCount = 0;
 let axeTimer = 0;
+let chopCount = 0;
 
 function forestBackgroundSetup() {
     createPalmTrees1();
@@ -24,6 +25,7 @@ function forestBackgroundSetup() {
     createFrontPalmTrees6();
     createFrontPalmTrees7();
     createFrontPalmTrees8();
+    fireflySetup();
 }
 
 function forestBackgroundDraw() {
@@ -59,6 +61,7 @@ function forestBackgroundDraw() {
 
         if (millis() - axeTimer > 1000) {
             hitCount++;
+            chopCount++;
             axeTimer = millis();
         }
     } else {
@@ -84,6 +87,11 @@ function forestBackgroundDraw() {
     if (hitCount >= 3) {
         woodCollected++;
         hitCount = 0;
+    }
+
+    if (chopCount >= 12) {
+        frontPalmTrees8.pop();   // removes the last tree in the array
+        chopCount = 0;
     }
 }
 

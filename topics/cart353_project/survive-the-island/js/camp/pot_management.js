@@ -5,6 +5,10 @@ let potCollectedWater = 0;
 let potCollected = false;
 let potTaken = false;
 
+let takeOutLow = false;
+let takeOutMed = false;
+let takeOutHigh = false;
+
 
 function convertCollectedToPot() {
     if (potCollected) {
