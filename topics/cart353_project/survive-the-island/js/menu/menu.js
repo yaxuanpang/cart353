@@ -16,6 +16,8 @@ let fishTaken = 0;
 let woodTaken = 0;
 let waterTaken = 0;
 
+let showInstruction = false;
+
 const collectedResourcesMenu = {
     x: 3,
     y: 270,
@@ -85,7 +87,7 @@ const netMenu = {
 
 
 function drawMenu() {
-
+    drawInstructionButton();
     drawResourceCollectedMenu(collectedResourcesMenu);
     drawGoldCoinsMenu(goldCoinsMenu);
     drawMainResourceMenu(mainResourceMenu);
@@ -145,9 +147,10 @@ function drawResourceCollectedMenu(menu) {
         textSize(16);
         //fill(84, 37, 4);
         fill(255);
-        text("Resources Collected", menu.x + 35, menu.y + 30);
+        textAlign(CENTER);
+        text("Resources Collected", menu.x + 105, menu.y + 30);
         textSize(18);
-        text("<", menu.closeButton.x + 10, menu.closeButton.y + 30);
+        text("<", menu.closeButton.x + 15, menu.closeButton.y + 30);
 
         drawFishIcon(menu.x + 40, menu.y + 80, 0.9, 0);
         drawLog(menu.x + 50, menu.y + 165, 60, 20, 0);
@@ -155,12 +158,11 @@ function drawResourceCollectedMenu(menu) {
         drawLog(menu.x + 40, menu.y + 165, 60, 20, 0);
         drawWaterIcon(menu.x + 40, menu.y + 250, 0.8);
 
-
         textSize(25);
         fill(255);
-        text(": " + fishCollected, menu.x + 110, menu.y + 86);
-        text(": " + woodCollected, menu.x + 110, menu.y + 168);
-        text(": " + waterCollected, menu.x + 110, menu.y + 250);
+        text(": " + fishCollected, menu.x + 130, menu.y + 86);
+        text(": " + woodCollected, menu.x + 130, menu.y + 168);
+        text(": " + waterCollected, menu.x + 130, menu.y + 250);
 
     }
 
@@ -170,10 +172,11 @@ function drawResourceCollectedMenu(menu) {
         strokeWeight(3);
         rect(collectedResourcesMenu.openButton.x, collectedResourcesMenu.openButton.y, collectedResourcesMenu.openButton.w, collectedResourcesMenu.openButton.h, collectedResourcesMenu.openButton.cornerRadius);
         noStroke();
+        textAlign(CENTER);
         textSize(18);
         //fill(84, 37, 4);
         fill(255);
-        text(">", collectedResourcesMenu.openButton.x + 10, collectedResourcesMenu.openButton.y + 30);
+        text(">", collectedResourcesMenu.openButton.x + 15, collectedResourcesMenu.openButton.y + 30);
     }
     pop();
 }
@@ -196,8 +199,9 @@ function drawMainResourceMenu(menu) {
 
         textSize(18);
         noStroke();
+        textAlign(CENTER);
         fill(255);
-        text("^", mainResourceMenu.x + mainResourceMenu.w / 2 + 15, 586);
+        text("^", mainResourceMenu.x + mainResourceMenu.w / 2 + 20, 586);
 
         drawFishIcon(menu.x + 950, menu.y + 50, 0.9, 0);
         drawLog(menu.x + 1160, menu.y + 55, 60, 20, 0); //furthest back
@@ -221,9 +225,10 @@ function drawMainResourceMenu(menu) {
         strokeWeight(3);
         rect(mainResourceMenu.x + mainResourceMenu.w / 2, 717, 40, 30, 3);
         noStroke();
+        textAlign(CENTER);
         textSize(18);
         fill(255);
-        text("^", mainResourceMenu.x + mainResourceMenu.w / 2 + 15, 743);
+        text("^", mainResourceMenu.x + mainResourceMenu.w / 2 + 20, 743);
         showIslandButton = false;
     }
     pop();
@@ -294,6 +299,19 @@ function islandButton(x, y) {
     fill(75, 140, 70);
     ellipse(8, 695, 50, 35);
     pop();
+}
+
+function drawInstructionButton() {
+    strokeWeight(3);
+    stroke(181, 110, 24);
+    fill(181, 110, 24, 200);
+    circle(0, 0, 150);
+
+    noStroke();
+    fill(255);
+    textAlign(CENTER);
+    textSize(35);
+    text("i", 30, 45);
 }
 
 function menuMousePressed() {

@@ -64,13 +64,14 @@ function drawCoin(x, y) {
     fill(255, 232, 56);
     ellipse(x + 2, y, 25, 35);
 
+    textAlign(CENTER);
     fill(217, 157, 17);
     textSize(20);
-    text("$", x - 3, y + 7);
+    text("$", x + 2.5, y + 7);
 
     fill(255, 179, 0);
     textSize(18);
-    text("$", x - 1.5, y + 6);
+    text("$", x + 2, y + 6);
 
     pop();
 }
