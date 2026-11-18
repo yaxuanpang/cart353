@@ -13,10 +13,10 @@ function potArrowDraw() {
     if (showPotArrowSign) {
         potArrowSign();
     }
-    if (showPutInPotSign) {
+    if (showPutInPotSign && !showTakeOutPercentSign) {
         putInPotSign();
     }
-    if (showTakeOutPotSign) {
+    if (showTakeOutPotSign && !showTakeOutPercentSign) {
         takeOutPotSign();
     }
     if (showTakeOutPercentSign) {
@@ -160,6 +160,25 @@ function potMousePressed() {
             mouseY >= takeOutPot &&
             mouseY <= takeOutPot + 50;
 
+        let clickedTakeOut20 =
+            mouseX >= 574.5 &&
+            mouseX <= 707.5 &&
+            mouseY >= 148 &&
+            mouseY <= 183;
+
+        let clickedTakeOut50 =
+            mouseX >= 709.5 &&
+            mouseX <= 842.5 &&
+            mouseY >= 148 &&
+            mouseY <= 183;
+
+        let clickedTakeOut80 =
+            mouseX >= 844.5 &&
+            mouseX <= 977.5 &&
+            mouseY >= 148 &&
+            mouseY <= 183;
+
+
         if (showPutInPotSign && clickedPutInPotButton) {
             if (fishCollected >= 1 || woodCollected >= 1 || waterCollected >= 1) {
                 showPutInPotSign = false;
@@ -169,21 +188,48 @@ function potMousePressed() {
             }
         } else if (showTakeOutPotSign && clickedTakeOutPotButton) {
             showTakeOutPercentSign = true;
-            showPutInPotSign = true;
-            showTakeOutPotSign = true;
+        }
+
+        if (showTakeOutPercentSign && clickedTakeOutPotButton) {
+            showTakeOutPotSign = false;
         }
 
         if (showTakeOutPercentSign) {
-            if (potCollectedFish >= 1 || potCollectedWood >= 1 || potCollectedWater >= 1) {
-                showPutInPotSign = false;
-                showTakeOutPotSign = false;
-                potCollected = true;
-                potTaken = true;
-                convertPotToTaken();
+            if (showTakeOutPercentSign) {
+                let hasResources = potCollectedFish >= 1 || potCollectedWood >= 1 || potCollectedWater >= 1;
+
+                if (hasResources && clickedTakeOut20) {
+                    takeOutLow = true;
+                    showPutInPotSign = false;
+                    showTakeOutPotSign = false;
+                    showTakeOutPercentSign = false;
+                    potCollected = true;
+                    potTaken = true;
+                    convertPotToTaken();
+                }
+                if (hasResources && clickedTakeOut50) {
+                    takeOutMed = true;
+                    showPutInPotSign = false;
+                    showTakeOutPotSign = false;
+                    showTakeOutPercentSign = false;
+                    potCollected = true;
+                    potTaken = true;
+                    convertPotToTaken();
+                }
+                if (hasResources && clickedTakeOut80) {
+                    takeOutHigh = true;
+                    showPutInPotSign = false;
+                    showTakeOutPotSign = false;
+                    showTakeOutPercentSign = false;
+                    potCollected = true;
+                    potTaken = true;
+                    convertPotToTaken();
+                }
             }
         }
 
         if (clickedPot) {
+            shoeTakeOutPrecent = false;
             showPutInPotSign = true;
             showTakeOutPotSign = true;
         } else {
@@ -201,59 +247,59 @@ function potMousePressed() {
 function drawTakeOutSign10() {
     push();
     if (potCollected) {
-        translate(width / 2 - 280, height / 2 - 265);
+        translate(width / 2 - 168, height / 2 - 218);
     }
     else {
-        translate(width / 2 - 280, height / 2 - 165);
+        translate(width / 2 - 168, height / 2 - 118);
     }
-    otherPurchaseButton(113, 47, 0.7)
+    otherPurchaseButton(0, 0, 0.7)
 
     noStroke();
     textAlign(LEFT, CENTER);
     textSize(15);
     fill(255);
-    text("10%", 120, 56);
-    drawResourcePot(width / 2 - 555, height / 2 - 333, 0.18);
-    text("=", 155, 56);
+    text("20%", 5, 10);
+    drawResourcePot(width / 2 - 665, height / 2 - 380, 0.18);
+    text("=", 43, 10);
     pop();
 }
 
 function drawTakeOutSign30() {
     push();
     if (potCollected) {
-        translate(width / 2 - 145, height / 2 - 265);
+        translate(width / 2 - 33, height / 2 - 218);
     }
     else {
-        translate(width / 2 - 145, height / 2 - 165);
+        translate(width / 2 - 33, height / 2 - 118);
     }
-    otherPurchaseButton(113, 47, 0.7)
+    otherPurchaseButton(0, 0, 0.7)
 
     noStroke();
     textAlign(LEFT, CENTER);
     textSize(15);
     fill(255);
-    text("30%", 120, 56);
-    drawResourcePot(width / 2 - 555, height / 2 - 333, 0.18);
-    text("=", 155, 56);
+    text("50%", 5, 10);
+    drawResourcePot(width / 2 - 665, height / 2 - 380, 0.18);
+    text("=", 43, 10);
     pop();
 }
 
 function drawTakeOutSign50() {
     push();
     if (potCollected) {
-        translate(width / 2 - 10, height / 2 - 265);
+        translate(width / 2 + 102, height / 2 - 218);
     }
     else {
-        translate(width / 2 - 10, height / 2 - 165);
+        translate(width / 2 + 102, height / 2 - 118);
     }
-    otherPurchaseButton(113, 47, 0.7)
+    otherPurchaseButton(0, 0, 0.7)
 
     noStroke();
     textAlign(LEFT, CENTER);
     textSize(15);
     fill(255);
-    text("50%", 120, 56);
-    drawResourcePot(width / 2 - 555, height / 2 - 333, 0.18);
-    text("=", 155, 56);
+    text("80%", 5, 10);
+    drawResourcePot(width / 2 - 665, height / 2 - 380, 0.18);
+    text("=", 43, 10);
     pop();
 }

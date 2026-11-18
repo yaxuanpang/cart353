@@ -6,10 +6,10 @@ let showNetMenu = true;
 
 let showIslandButton = true;
 
-let goldCoins = 1000;
-let fishCollected = 3;
-let woodCollected = 3;
-let waterCollected = 3;
+let goldCoins = 1200;
+let fishCollected = 10;
+let woodCollected = 10;
+let waterCollected = 10;
 
 
 let fishTaken = 0;

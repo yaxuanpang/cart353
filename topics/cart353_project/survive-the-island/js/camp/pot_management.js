@@ -24,12 +24,32 @@ function convertCollectedToPot() {
 
 function convertPotToTaken() {
     if (potTaken) {
-        fishTaken += potCollectedFish;
-        woodTaken += potCollectedWood;
-        waterTaken += potCollectedWater;
+        if (takeOutLow) {
+            fishTaken += potCollectedFish * 0.2;
+            woodTaken += potCollectedWood * 0.2;
+            waterTaken += potCollectedWater * 0.2;
 
-        potCollectedFish = 0;
-        potCollectedWood = 0;
-        potCollectedWater = 0;
+            potCollectedFish -= potCollectedFish * 0.2;
+            potCollectedWood -= potCollectedWood * 0.2;
+            potCollectedWater -= potCollectedWater * 0.2;
+        }
+        if (takeOutMed) {
+            fishTaken += potCollectedFish * 0.5;
+            woodTaken += potCollectedWood * 0.5;
+            waterTaken += potCollectedWater * 0.5;
+
+            potCollectedFish -= potCollectedFish * 0.5;
+            potCollectedWood -= potCollectedWood * 0.5;
+            potCollectedWater -= potCollectedWater * 0.5;
+        }
+        if (takeOutHigh) {
+            fishTaken += potCollectedFish * 0.8;
+            woodTaken += potCollectedWood * 0.8;
+            waterTaken += potCollectedWater * 0.8;
+
+            potCollectedFish -= potCollectedFish * 0.8;
+            potCollectedWood -= potCollectedWood * 0.8;
+            potCollectedWater -= potCollectedWater * 0.8;
+        }
     }
 }
