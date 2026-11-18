@@ -51,7 +51,7 @@ function draw() {
         beachDark = nightTime;
         beachDraw();
         if (!beachCharged && goldCoins >= 1) {
-            goldCoins -= 1;
+            //goldCoins -= 1;
             beachCharged = true;
         }
         if (nightTime) {
@@ -69,10 +69,11 @@ function draw() {
     if (!showBeach) {
         beachCharged = false;
     }
+
     if (showForest) {
         forestDraw();
         if (!forestCharged && goldCoins >= 3) {
-            goldCoins -= 3;
+            //goldCoins -= 3;
             forestCharged = true;
         }
         forestDark = nightTime;
@@ -129,17 +130,55 @@ function keyPressed() {
     }
 
     if (keyCode === 66) { //beach
-        showBeach = true;
-        showIsland = false;
-        showCamp = false;
-        showForest = false;
+        if (goldCoins > 0) {
+            showBeach = true;
+            showIsland = false;
+            showCamp = false;
+            showForest = false;
+        }
+        else if (goldCoins <= 0) {
+            if (showCamp) {
+                showBeach = false;
+                showIsland = false;
+                showCamp = true;
+                showForest = false;
+            }
+            if (showIsland) {
+                showBeach = false;
+                showIsland = true;
+                showCamp = false;
+                showForest = false;
+            }
+        }
 
     }
 
-    if (keyCode === 70) { //water collect
-        showForest = true;
-        showIsland = false;
-        showCamp = false;
-        showBeach = false;
+    if (keyCode === 70) { //forest
+        if (goldCoins > 2) {
+            showForest = true;
+            showIsland = false;
+            showCamp = false;
+            showBeach = false;
+        }
+        else if (goldCoins <= 2) {
+            if (showCamp) {
+                showBeach = false;
+                showIsland = false;
+                showCamp = true;
+                showForest = false;
+            }
+            if (showBeach) {
+                showBeach = true;
+                showIsland = false;
+                showCamp = false;
+                showForest = false;
+            }
+            if (showIsland) {
+                showBeach = false;
+                showIsland = true;
+                showCamp = false;
+                showForest = false;
+            }
+        }
     }
 }

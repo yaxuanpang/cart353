@@ -11,6 +11,8 @@ function beachBackgroundDraw() {
     drawBeach();
     drawBeachFront();
     oceanDraw();
+    drawShine(0.7);
+    drawSun(0.7);
 }
 
 function drawBeach() {
