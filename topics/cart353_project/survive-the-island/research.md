@@ -1,3 +1,5 @@
+inspiration research (week1/2):
+
 https://heritagecrafts.org.uk/craft/wooden-fishing-net-making/
 https://www.beachseines.com/history-of-seining.html
 Old nets made of plant fibers
@@ -28,5 +30,16 @@ Leftover sea salt used to preserve fish?? https://nofima.com/worth-knowing/all-y
 
 To do if i have time…
 
-
 Check old projects!!
+
+Procedural rhetoric → exploitation of people/environment → choice → Animal Crossing cultivating patience and consume in moderation
+
+https://www.shortform.com/books/blog/teamwork-in-a-crisis.html → people more likely to cooperate rather than fall into chaos → unless have previous mistrust/communication issues 
+https://www.bcoutdoorsmagazine.com/group-versus-solo-survival/ → fear/status/competition/perceived need to prioritize own survival over others = more likely damage group → start taking huge amounts without contributing much → conserve energy + perceived danger
+
+NPC → Jessica (opposite of player) and Kevin (same as player)
+
+- npc has low food but not enough to panic →  each time this happens the fear meter goes up → eventually they could hit a certain point where they start being hostile and damage the group dynamic by not contributing to the resource pot
+- sunny 3 days in a row → the chance of raining goes up 
+ex: before 3 days =  30% chance of rain and after = 60% every day. 
+The heat also affects the fishes → green fishes breed more than others and contributes a lot to the total number of fishes → if the heat is too high = mortality rate in young green fishes go up → affecting the general number of fishes the player can fish

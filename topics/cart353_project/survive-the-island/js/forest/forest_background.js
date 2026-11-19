@@ -84,14 +84,34 @@ function forestBackgroundDraw() {
         }
     }
 
-    if (hitCount >= 3) {
+    if (showAxe && hitCount >= 3) {
         woodCollected++;
         hitCount = 0;
     }
 
-    if (chopCount >= 12) {
-        frontPalmTrees8.pop();   // removes the last tree in the array
+    if (showAxe && chopCount >= 12) {
+        chopTree();   // removes the last tree in the array
         chopCount = 0;
+    }
+}
+
+function chopTree() {
+    let rows = [
+        frontPalmTrees8,
+        frontPalmTrees7,
+        frontPalmTrees6,
+        frontPalmTrees5,
+        frontPalmTrees4,
+        frontPalmTrees1,
+        midPalmTrees2,
+        midPalmTrees1,
+        palmTrees1
+    ];
+    for (let row of rows) {
+        if (row.length) {
+            row.pop();
+            return;
+        }
     }
 }
 

@@ -138,12 +138,14 @@ class Firefly {
         this.updateColor();
 
         this.maxforce = 0.05;
+        this.minY = 0;
+        this.maxY = 750;
         this.phase = random(360);
         this.adultR = this.r;
-        this.maturityAge = random(600, 900);
-        this.lifespan = random(3600, 5400) * map(g[4], 0, 1, 0.7, 1.3);
-        this.babyLifespan = random(450, this.maturityAge);
-        this.age = random(this.maturityAge, this.maturityAge + 600); // age at the start
+        this.maturityAge = random(120, 180);
+        this.lifespan = random(600, 720) * map(g[4], 0, 1, 0.7, 1.3);
+        this.babyLifespan = random(60, this.maturityAge);
+        this.age = random(this.maturityAge, this.maturityAge + 60); // age at the start
         this.cooldown = 0;
         this.diesYoung = false;
     }
@@ -166,6 +168,7 @@ class Firefly {
         this.flock(fireflies);
         this.update();
         this.borders();
+        this.keepInBand();
         this.grow();
         this.show();
     }
@@ -274,12 +277,28 @@ class Firefly {
         return createVector(0, 0);
     }
 
+    keepInBand() {
+        let margin = 60;
+
+        if (this.position.y < this.minY + margin) {
+            let strength = map(this.position.y, this.minY + margin, this.minY, 0, 1, true);
+            this.applyForce(createVector(0, this.maxforce * 3 * strength));
+        }
+
+        if (this.position.y > this.maxY - margin) {
+            let strength = map(this.position.y, this.maxY - margin, this.maxY, 0, 1, true);
+            this.applyForce(createVector(0, -this.maxforce * 3 * strength));
+        }
+    }
+
     borders() {
         let m = 20;
         if (this.position.x < -m) this.position.x = width + m;
         if (this.position.x > width + m) this.position.x = -m;
-        if (this.position.y < -m) this.position.y = height + m;
-        if (this.position.y > height + m) this.position.y = -m;
+
+        this.position.y = constrain(this.position.y, this.minY, this.maxY);
+        // if (this.position.y < -m) this.position.y = height + m;
+        // if (this.position.y > height + m) this.position.y = -m;
     }
 
     getColor() {
@@ -336,9 +355,9 @@ class Firefly {
 
         // the fewer fireflies = faster reproduction
         if (population < 10) {
-            chance = 0.1;
+            chance = 0.5;
         } else if (population <= 95) {
-            chance = 0.005;    // 0.5% per frame
+            chance = 0.01;    // 1% per frame
         } else {
             chance = 0.000001; // 0.0001% per frame
         }
@@ -348,8 +367,8 @@ class Firefly {
 
             let d = p5.Vector.dist(this.position, other.position);
             if (d < range && random() < chance) {
-                this.cooldown = 600;
-                other.cooldown = 600;
+                this.cooldown = 60;
+                other.cooldown = 60;
                 return this.makeChild(other);
             }
         }

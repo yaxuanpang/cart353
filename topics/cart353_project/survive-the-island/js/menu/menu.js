@@ -305,13 +305,13 @@ function drawInstructionButton() {
     strokeWeight(3);
     stroke(181, 110, 24);
     fill(181, 110, 24, 200);
-    circle(0, 0, 150);
+    circle(0, 0, 100);
 
     noStroke();
     fill(255);
     textAlign(CENTER);
-    textSize(35);
-    text("i", 30, 45);
+    textSize(25);
+    text("i", 15, 30);
 }
 
 function menuMousePressed() {
