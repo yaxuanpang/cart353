@@ -76,8 +76,8 @@ function draw() {
             //goldCoins -= 3;
             forestCharged = true;
         }
-        forestDark = !nightTime;
-        if (!nightTime) {
+        forestDark = nightTime;
+        if (nightTime) {
             noStroke();
             fill(0, 0, 0, 200);
             rect(0, 0, width, height);

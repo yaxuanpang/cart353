@@ -43,3 +43,8 @@ NPC → Jessica (opposite of player) and Kevin (same as player)
 - sunny 3 days in a row → the chance of raining goes up 
 ex: before 3 days =  30% chance of rain and after = 60% every day. 
 The heat also affects the fishes → green fishes breed more than others and contributes a lot to the total number of fishes → if the heat is too high = mortality rate in young green fishes go up → affecting the general number of fishes the player can fish
+
+https://www.rapala.ca/ca_en/blog/fish-points-for-more-bass
+https://www.quora.com/Is-there-more-fish-in-the-middle-of-the-ocean-or-close-to-the-coasts-Are-species-identical-or-different-regarding-the-place-they-live-in
+Fish go where nutrient goes and nutrient goes where the wind goes → closer to shore, slops, beaches
+

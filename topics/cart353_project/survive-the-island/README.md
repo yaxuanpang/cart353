@@ -2,7 +2,7 @@
 
 Yaxuan Pang
 
-[View this project online]()
+[View this project online](https://yaxuanpang.github.io/cart353/topics/cart353_project/survive-the-island/)
 
 ## Description
 
