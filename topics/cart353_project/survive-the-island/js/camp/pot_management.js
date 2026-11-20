@@ -25,31 +25,31 @@ function convertCollectedToPot() {
 function convertPotToTaken() {
     if (potTaken) {
         if (takeOutLow) {
-            fishTaken += potCollectedFish * 0.2;
-            woodTaken += potCollectedWood * 0.2;
-            waterTaken += potCollectedWater * 0.2;
+            fishTaken += round(potCollectedFish * 0.2);
+            woodTaken += round(potCollectedWood * 0.2);
+            waterTaken += round(potCollectedWater * 0.2);
 
-            potCollectedFish -= potCollectedFish * 0.2;
-            potCollectedWood -= potCollectedWood * 0.2;
-            potCollectedWater -= potCollectedWater * 0.2;
+            potCollectedFish -= round(potCollectedFish * 0.2);
+            potCollectedWood -= round(potCollectedWood * 0.2);
+            potCollectedWater -= round(potCollectedWater * 0.2);
         }
         if (takeOutMed) {
-            fishTaken += potCollectedFish * 0.5;
-            woodTaken += potCollectedWood * 0.5;
-            waterTaken += potCollectedWater * 0.5;
+            fishTaken += round(potCollectedFish * 0.5);
+            woodTaken += round(potCollectedWood * 0.5);
+            waterTaken += round(potCollectedWater * 0.5);
 
-            potCollectedFish -= potCollectedFish * 0.5;
-            potCollectedWood -= potCollectedWood * 0.5;
-            potCollectedWater -= potCollectedWater * 0.5;
+            potCollectedFish -= round(potCollectedFish * 0.5);
+            potCollectedWood -= round(potCollectedWood * 0.5);
+            potCollectedWater -= round(potCollectedWater * 0.5);
         }
         if (takeOutHigh) {
-            fishTaken += potCollectedFish * 0.8;
-            woodTaken += potCollectedWood * 0.8;
-            waterTaken += potCollectedWater * 0.8;
+            fishTaken += round(potCollectedFish * 0.8);
+            woodTaken += round(potCollectedWood * 0.8);
+            waterTaken += round(potCollectedWater * 0.8);
 
-            potCollectedFish -= potCollectedFish * 0.8;
-            potCollectedWood -= potCollectedWood * 0.8;
-            potCollectedWater -= potCollectedWater * 0.8;
+            potCollectedFish -= round(potCollectedFish * 0.8);
+            potCollectedWood -= round(potCollectedWood * 0.8);
+            potCollectedWater -= round(potCollectedWater * 0.8);
         }
     }
 }

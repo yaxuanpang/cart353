@@ -139,7 +139,7 @@ class Firefly {
 
         this.maxforce = 0.05;
         this.minY = 0;
-        this.maxY = 750;
+        this.maxY = 550;
         this.phase = random(360);
         this.adultR = this.r;
         this.maturityAge = random(120, 180);
