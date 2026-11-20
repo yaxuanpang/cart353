@@ -1,12 +1,16 @@
-let showMorning = false;
+let showNoon = true;
+let showSunrise = false;
+let showSunset = false;
+let showDawn = false;
+let show
 
-const campSky = {
+const campNoonSky = {
     topR: 5, topG: 170, topB: 247,
     botR: 120, botG: 230, botB: 255,
     height: 435
 };
 
-const beachSky = {
+const beachNoonSky = {
     topR: 5, topG: 170, topB: 247,
     botR: 179, botG: 244, botB: 255,
     height: 100
@@ -15,13 +19,14 @@ const beachSky = {
 function drawCampSky() {
     push();
     noFill();
-    let c1 = color(campSky.topR, campSky.topG, campSky.topB);
-    let c2 = color(campSky.botR, campSky.botG, campSky.botB);
-    for (let y = 0; y < campSky.height; y++) {
-        let t = y / campSky.height;
-        stroke(lerpColor(c1, c2, t));
-        line(0, y, width, y);
-        showMorning = true;
+    if (showNoon) {
+        let c1 = color(campNoonSky.topR, campNoonSky.topG, campNoonSky.topB);
+        let c2 = color(campNoonSky.botR, campNoonSky.botG, campNoonSky.botB);
+        for (let y = 0; y < campNoonSky.height; y++) {
+            let t = y / campNoonSky.height;
+            stroke(lerpColor(c1, c2, t));
+            line(0, y, width, y);
+        }
     }
     pop();
 }
@@ -29,43 +34,83 @@ function drawCampSky() {
 function drawBeachSky() {
     push();
     noFill();
-    let c3 = color(beachSky.topR, beachSky.topG, beachSky.topB);
-    let c4 = color(beachSky.botR, beachSky.botG, beachSky.botB);
-    for (let y = 0; y < beachSky.height; y++) {
-        let t = y / beachSky.height;
-        stroke(lerpColor(c3, c4, t));
-        line(0, y, width, y);
-        showMorning = true;
+    if (showNoon) {
+        let c3 = color(beachNoonSky.topR, beachNoonSky.topG, beachNoonSky.topB);
+        let c4 = color(beachNoonSky.botR, beachNoonSky.botG, beachNoonSky.botB);
+        for (let y = 0; y < beachNoonSky.height; y++) {
+            let t = y / beachNoonSky.height;
+            stroke(lerpColor(c3, c4, t));
+            line(0, y, width, y);
+        }
     }
     pop();
 }
 
-function drawSun(s) {
+function drawSun() {
     push();
-    scale(s);
-    if (showMorning) {
+    if (showNoon) {
         noStroke();
         blendMode(ADD);
         fill(255, 242, 212);
-        circle(width / 2 + 385, height / 6 - 80, 55);
-        fill(255, 242, 212);
-        circle(width / 2 + 385, height / 6 - 80, 55);
+        circle(width / 2 + 25, 50, 40);
     }
     pop();
 }
 
-function drawShine(s) {
+function drawShine() {
     push();
-    scale(s);
+    if (showDawn) {
+        translate(0, 110);
+    }
+    if (showSunrise) {
+        translate(190, 90);
+    }
+    if (showNoon) {
+        translate(width / 2 + 25, 50);
+    }
     noStroke();
+    fill(255, 242, 212, 230);
+    circle(0, 0, 90);
     fill(255, 242, 212, 150);
-    circle(width / 2 + 385, height / 6 - 80, 90);
-    circle(width / 2 + 385, height / 6 - 80, 145);
-    circle(width / 2 + 385, height / 6 - 80, 200); // only for morning
-    circle(width / 2 + 385, height / 6 - 80, 235);
-    // circle(width / 2 + 385, height / 6 - 80, 325);
-    // circle(width / 2 + 385, height / 6 - 80, 400);
-    // circle(width / 2 + 385, height / 6 - 80, 485);
-    // circle(width / 2 + 385, height / 6 - 80, 565);
+    circle(0, 0, 95);
+    circle(0, 0, 110);
+    fill(255, 242, 212, 100);
+    circle(0, 0, 130);
+    circle(0, 0, 150);
+    circle(0, 0, 190);
+    fill(255, 242, 212, 90);
+    circle(0, 0, 200);
+    circle(0, 0, 230);
+    pop();
+}
+
+function testingSun() {
+    push();
+    scale(1);
+    push();
+    //middles
+    noStroke();
+    blendMode(BLEND);
+    fill(0, 0, 255);
+    circle(0, 110, 40); // 2
+    circle(width, 110, 40); // 7
+
+
+    //middles2
+    noStroke();
+    blendMode(BLEND);
+    fill(0, 255, 0);
+    circle(190, 90, 40); // 2
+    circle(width - 190, 90, 40); // 7
+
+
+    //middles3
+    noStroke();
+    blendMode(BLEND);
+    fill(255, 0, 0);
+
+    circle(width / 2 - 320, 70, 40);//3
+
+    circle(width / 2 + 350, 70, 40); // 6
     pop();
 }

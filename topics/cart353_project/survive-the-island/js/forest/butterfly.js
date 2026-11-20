@@ -29,7 +29,7 @@ function butterflySetup() {
         colony.butterflies[i].updateColor();
     }
 
-    for (let i = 13; i < 20; i++) {
+    for (let i = 13; i < 23; i++) {
         colony.butterflies[i].colorType = 4;
         colony.butterflies[i].updateColor();
     }
@@ -420,13 +420,22 @@ class Butterfly {
             }
         }
 
+        if (this.colorType === 4 && other.colorType === 4) {
+            baby.colorType = 4;
+        }
+        else if (this.colorType === 4 || other.colorType === 4) {
+            if (random() < 0.5) {
+                baby.colorType = 4;
+            }
+        }
+
         baby.updateColor();
 
         baby.age = 0;
-        baby.r = baby.adultR * 0.3;
+        baby.r = baby.adultR * 0.5;
         baby.velocity = this.velocity.copy();
 
-        if (!baby.bodyColor4 && random() < 0.1) {   // 10% of other babies die before adulthood
+        if (!baby.bodyColor4 && baby.colorType === 4 && random() < 0.1) {   // 10% of other babies die before adulthood
             baby.diesYoung = true;
         }
         return baby;

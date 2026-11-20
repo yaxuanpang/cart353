@@ -426,7 +426,7 @@ class Boid {
 
         let childDNA = this.dna.crossover(other.dna);
         childDNA.mutate(0.01);  // 1% chance to mutate into green (color2)
-        if (random() < 0.05) { // 5% to mutate into orange (color3)
+        if (random() < 0.1) { // 10% to mutate into orange (color3)
             childDNA.genes[3] = constrain(childDNA.genes[3] + random(0, 0.15), 0, 1);
             //add a number between 0 and 0.15 to gene 3 (between 0 and 1)
         }
@@ -447,10 +447,10 @@ class Boid {
         baby.r = baby.adultR * 0.3;
         baby.velocity = this.velocity.copy();
 
-        if (random() < 0.2 && bodyColor) { // 20% of blue baby fishes will die before adulthood
+        if (random() < 0.1 && baby.bodyColor) { // 10% of blue baby fishes will die before adulthood
             baby.diesYoung = true;
         }
-        else if (random() < 0.3 && !bodyColor) { // 30% of non-blue baby fishes will die before adulthood
+        else if (random() < 0.3 && !baby.bodyColor) { // 30% of non-blue baby fishes will die before adulthood
             baby.diesYoung = true;
         }
         return baby;

@@ -7,12 +7,14 @@ function beachBackgroundDraw() {
     background(255);
 
     drawBeachSky();
+    drawShine();
+    drawSun();
+    testingSun();
     drawBeachPalmTrees();
     drawBeach();
     drawBeachFront();
     oceanDraw();
-    drawShine(0.7);
-    drawSun(0.7);
+
 }
 
 function drawBeach() {
@@ -70,9 +72,4 @@ function drawBeachPalmTrees() {
     for (let tree of beachPalmTrees) {
         drawFurthestPalmTree(tree);
     }
-    push();
-    noStroke();
-    fill(84, 212, 255, 50);
-    rect(0, 0, width, 100);
-    pop();
 }

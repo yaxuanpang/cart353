@@ -1,7 +1,7 @@
 let showIsland = false;
 let showCamp = false;
-let showBeach = false;
-let showForest = true;
+let showBeach = true;
+let showForest = false;
 
 let nightTime = false;
 
