@@ -1,3 +1,5 @@
+let showWind = false;
+
 function drawFurthestPalmTree(t) {
     push();
     translate(t.x, 100);   // origin = base of the trunk (the sand covers it)
@@ -23,7 +25,14 @@ function drawFurthestPalmTree(t) {
     noStroke();
     for (let i = 0; i < t.fronds; i++) {
         let angle = map(i, 0, t.fronds - 1, -175, -5);
-        angle += sin(frameCount * 2 + t.phase + i * 20) * 3;   // gentle sway
+        if (showWind) {
+            let gust = noise(frameCount * 0.03 + t.x * 0.005);
+            angle -= 15 + gust * gust * 40;
+            angle += sin(frameCount * 12 + i * 50) * 15;
+        }
+        else {
+            angle += sin(frameCount * 2 + t.phase + i * 20) * 10;   // gentle sway
+        }
         drawFrond(angle, t.len);
     }
 
@@ -54,7 +63,15 @@ function drawClosestPalmTree(t) {
     noStroke();
     for (let i = 0; i < t.fronds; i++) {
         let angle = map(i, 0, t.fronds - 1, -175, -5);
-        angle += sin(frameCount * 2 + t.phase + i * 20) * 3;   // gentle sway
+        if (showWind) {
+            let gust = noise(frameCount * 0.03 + t.x * 0.005);
+            angle -= 15 + gust * gust * 40;
+            angle += sin(frameCount * 12 + i * 50) * 15;
+        }
+        else {
+            angle += sin(frameCount * 2 + t.phase + i * 20) * 10;   // gentle sway
+        }
+
         drawFrond(angle, t.len);
     }
 
@@ -85,7 +102,14 @@ function drawCloserPalmTree(t) {
     noStroke();
     for (let i = 0; i < t.fronds; i++) {
         let angle = map(i, 0, t.fronds - 1, -175, -5);
-        angle += sin(frameCount * 2 + t.phase + i * 20) * 3;   // gentle sway
+        if (showWind) {
+            let gust = noise(frameCount * 0.03 + t.x * 0.005);
+            angle -= 15 + gust * gust * 40;
+            angle += sin(frameCount * 12 + i * 50) * 15;
+        }
+        else {
+            angle += sin(frameCount * 2 + t.phase + i * 20) * 10;   // gentle sway
+        }
         drawFrond(angle, t.len);
     }
 
@@ -116,7 +140,14 @@ function drawPalmTree(t) {
     noStroke();
     for (let i = 0; i < t.fronds; i++) {
         let angle = map(i, 0, t.fronds - 1, -175, -5);
-        angle += sin(frameCount * 2 + t.phase + i * 20) * 3;   // gentle sway
+        if (showWind) {
+            let gust = noise(frameCount * 0.03 + t.x * 0.005);
+            angle -= 15 + gust * gust * 40;
+            angle += sin(frameCount * 12 + i * 50) * 15;
+        }
+        else {
+            angle += sin(frameCount * 2 + t.phase + i * 20) * 10;   // gentle sway
+        }
         drawFrond(angle, t.len);
     }
 

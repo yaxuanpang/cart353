@@ -16,7 +16,6 @@ let axeTimer = 0;
 let chopCount = 0;
 
 function forestBackgroundSetup() {
-    createPalmTrees1();
     createMidPalmTrees1();
     createMidPalmTrees2();
     createFrontPalmTrees1();
@@ -31,24 +30,27 @@ function forestBackgroundSetup() {
 
 function forestBackgroundDraw() {
     drawCampSky();
-    drawPalmTrees1();
-    drawBackSand();
+    drawBackGrass();
     drawMidPalmTrees1();
-    drawMidSand2();
+    drawMidGrass2();
     drawMidPalmTrees2();
     drawMidSand();
+    drawMidGrass();
     drawFrontPalmTrees1();
     sunRay4();
     drawSand();
+    drawGrass();
     drawFrontPalmTrees4();
     sunRay3();
-    drawMidSand3();
+    drawMidSand2();
+    drawMidGrass3();
     drawFrontPalmTrees5();
     sunRay2();
     drawFrontPalmTrees6();
     drawFrontSand();
-    drawFrontPalmTrees7();
+    drawFrontGrass();
     butterflyDraw();
+    drawFrontPalmTrees7();
     sunRay1();
     drawFrontPalmTrees8();
     drawAxeMove();
@@ -75,7 +77,9 @@ function drawAxeMove() {
             axeTimer = millis();
         }
     } else {
-        axeTimer = millis(); // not holding = timer reset
+        axeTimer = millis(); // not holding = timer and count reset
+        hitCount = 0;
+        chopCount = 0;
     }
 
     if (mouseIsPressed) {
@@ -125,30 +129,13 @@ function chopTree() {
     }
 }
 
-const TREE_SPACING1 = 5;   // smaller number = denser back row
-
-function createPalmTrees1() {
-    palmTrees1 = [];
-    for (let x = 0; x < width + 40; x += TREE_SPACING1) {
-        palmTrees1.push({
-            x: x + random(-12, 12),
-            h: random(300, 350),
-            lean: random(-45, 45),
-            w: random(8, 14),
-            fronds: floor(random(6, 9)),
-            len: random(135, 200),
-            phase: random(360)
-        });
-    }
-}
-
 function drawPalmTrees1() {
     for (let tree of palmTrees1) {
         drawPalmTree(tree);
     }
 }
 
-const MID_TREE_SPACING1 = 20;
+const MID_TREE_SPACING1 = 15;
 
 function createMidPalmTrees1() {
     midPalmTrees1 = [];

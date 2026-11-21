@@ -15,7 +15,7 @@ function butterflySetup() {
 
     for (let i = 0; i < 30; i++) {
         let f = new Butterfly(random(width), random(height));
-        f.velocity = createVector(random(-0.1, 0.4), random(-0.4, 0.4));
+        f.velocity = createVector(random(-4, 5), random(-0.4, 0.4));
         colony.addButterfly(f);
     }
 
