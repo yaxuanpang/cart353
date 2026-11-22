@@ -23,7 +23,7 @@ function potArrowDraw() {
     }
     if (showTakeOutPercentSign) {
         drawCancelSign();
-        drawTakeOutSign20();
+        drawTakeOutSign30();
         drawTakeOutSign50();
         drawTakeOutSign100();
     }
@@ -210,7 +210,7 @@ function potMousePressed() {
         if (showTakeOutPercentSign) {
             let hasResources = potCollectedFish >= 1 || potCollectedWood >= 1 || potCollectedWater >= 1;
 
-            //take out 20%
+            //take out 30%
             if (hasResources && clickedTakeOut20) {
                 takeOutLow = true;
                 showPutInPotSign = false;
@@ -276,7 +276,7 @@ function potMousePressed() {
     }
 }
 
-function drawTakeOutSign20() {
+function drawTakeOutSign30() {
     push();
     if (potCollected) {
         translate(width / 2 - 168, height / 2 - 218);
@@ -290,7 +290,7 @@ function drawTakeOutSign20() {
     textAlign(LEFT, CENTER);
     textSize(15);
     fill(255);
-    text("20%", 5, 10);
+    text("30%", 5, 10);
     drawResourcePot(width / 2 - 665, height / 2 - 380, 0.18);
     text("=", 43, 10);
     pop();

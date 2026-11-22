@@ -15,6 +15,8 @@ let hitCount = 0;
 let axeTimer = 0;
 let chopCount = 0;
 
+let treesChopped = 0;
+
 function forestBackgroundSetup() {
     createMidPalmTrees1();
     createMidPalmTrees2();
@@ -58,6 +60,15 @@ function forestBackgroundDraw() {
     drawFrontPalmTrees8();
     drawAxeMove();
     sunRay0();
+    syncTreesWithWood();
+}
+
+function syncTreesWithWood() {
+    let treesDown = floor(totalWoodCount / 4);
+    while (treesChopped < treesDown) {
+        chopTree();
+        treesChopped++;
+    }
 }
 
 function drawAxeMove() {
@@ -103,11 +114,20 @@ function drawAxeMove() {
 
     if (showAxe && hitCount >= 3) {
         woodCollected++;
+        totalWoodCount++
         hitCount = 0;
+
+        let treesDown = floor(totalWoodCount / 4);
+        if (treesDown > treesChopped) {
+            chopTree();
+            treesChopped++;
+        }
     }
+    console.log((totalWoodCount));
 
     if (showAxe && chopCount >= 12) {
-        chopTree();   // removes the last tree in the array
+        chopTree();
+        treesChopped++;
         chopCount = 0;
     }
 }

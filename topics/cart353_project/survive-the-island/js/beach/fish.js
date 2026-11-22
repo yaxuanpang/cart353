@@ -383,17 +383,17 @@ class Boid {
         }
 
         // the fewer fish = faster reproduction
-        if (population < 30) {
+        if (population < 20) {
             if (this.bodyColor) {
                 chance = 0.2;      // 20% per frame
             } else {
                 chance = 0.5;       // 50% per frame
             }
-        } else if (population <= 230) {
+        } else if (population <= 200) {
             if (this.bodyColor) {
-                chance = 0.005;    // 0.5% per frame
+                chance = 0.0005;    // 0.05% per frame
             } else {
-                chance = 0.01;     // 5% per frame
+                chance = 0.001;     // 0.1% per frame
             }
         } else {
             if (this.bodyColor) {

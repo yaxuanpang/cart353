@@ -309,23 +309,23 @@ class Salmon {
         // the fewer fish = faster reproduction
         if (population < 5) {
             if (this.bodyColor2) {
-                chance = 0.5;      // 50% per frame
+                chance = 0.05;      // 5% per frame
                 range = 100;
             } else {
-                chance = 0.7;       // 70% per frame
+                chance = 0.07;       // 7% per frame
                 range = 100;
             }
-        } else if (population <= 55) {
+        } else if (population <= 50) {
             if (this.bodyColor2) {
-                chance = 0.008;    // 0.8 % per frame
+                chance = 0.0001;    // 0.01 % per frame
             } else {
-                chance = 0.01;     // 1% per frame
+                chance = 0.0005;     // 0.5% per frame
             }
         } else {
             if (this.bodyColor2) {
-                chance = 0.000001;   // 0.0001% per frame
+                chance = 0.00000001;   // 0.000001% per frame
             } else {
-                chance = 0.0001;    // 0.001% per frame
+                chance = 0.000001;    // 0.00001% per frame
             }
         }
 

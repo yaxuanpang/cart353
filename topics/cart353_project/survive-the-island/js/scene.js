@@ -1,9 +1,9 @@
 let showIsland = false;
-let showCamp = false;
+let showCamp = true;
 let showBeach = false;
-let showForest = true;
+let showForest = false;
 
-let nightTime = true;
+let nightTime = false;
 
 let startTime = 0;
 
@@ -21,7 +21,7 @@ function setup() {
 }
 
 function draw() {
-    console.log(frameRate());
+    //console.log(frameRate());
     if (showIsland) {
         islandDraw();
         if (nightTime) {
@@ -40,10 +40,12 @@ function draw() {
             noStroke();
             fill(0, 0, 0, 200);
             rect(0, 0, width, height);
-            floorGlow(width / 2 + 20, height - 190);
-            drawFire(width / 2 + 20, height - 200);
-            drawCampfire(width / 2 + 20, height - 195);
-            fireGlow(width / 2 + 20, height / 2 + 100);
+            if (showFire) {
+                floorGlow(width / 2 + 20, height - 190);
+                drawFire(width / 2 + 20, height - 200);
+                drawCampfire(width / 2 + 20, height - 195);
+                fireGlow(width / 2 + 20, height / 2 + 100);
+            }
             drawMenu();
         }
     }
@@ -80,7 +82,7 @@ function draw() {
         if (nightTime) {
             drawFog();
             noStroke();
-            fill(0, 0, 0, 170);
+            fill(0, 0, 0, 130);
             rect(0, 0, width, height);
             fireflyDraw();
             drawMenu();

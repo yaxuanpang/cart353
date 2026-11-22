@@ -106,12 +106,12 @@ function drawNetBag(x, y, s) {
 function purchaseNet() {
     if (netLeftCount === 0 && !bagPlaced) {
         otherPurchaseButton(1385, 230, 0.6)
-        drawFireWood(929, 102, 0.5)
+        drawFireWood(966, 111, 0.45)
 
         textAlign(LEFT, CENTER);
-        textSize(12);
-        text("5x    ", 1385, 233);
-        text("= 5 nets", 1437, 233);
+        textSize(11);
+        text("25x    ", 1384, 233);
+        text("= 5 nets", 1441, 233);
 
     }
 }

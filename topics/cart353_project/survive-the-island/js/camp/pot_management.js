@@ -9,6 +9,8 @@ let takeOutLow = false;
 let takeOutMed = false;
 let takeOutHigh = false;
 
+let totalWoodCount = 0;
+
 function potCollection() {
     if (potCollectedFish >= 1 || potCollectedWood >= 1 || potCollectedWater >= 1) {
         potCollected = true;
@@ -30,13 +32,13 @@ function convertCollectedToPot() {
 function convertPotToTaken() {
     if (potTaken) {
         if (takeOutLow) {
-            fishTaken += round(potCollectedFish * 0.2);
-            woodTaken += round(potCollectedWood * 0.2);
-            waterTaken += round(potCollectedWater * 0.2);
+            fishTaken += round(potCollectedFish * 0.3);
+            woodTaken += round(potCollectedWood * 0.3);
+            waterTaken += round(potCollectedWater * 0.3);
 
-            potCollectedFish -= round(potCollectedFish * 0.2);
-            potCollectedWood -= round(potCollectedWood * 0.2);
-            potCollectedWater -= round(potCollectedWater * 0.2);
+            potCollectedFish -= round(potCollectedFish * 0.3);
+            potCollectedWood -= round(potCollectedWood * 0.3);
+            potCollectedWater -= round(potCollectedWater * 0.3);
         }
         if (takeOutMed) {
             fishTaken += round(potCollectedFish * 0.5);

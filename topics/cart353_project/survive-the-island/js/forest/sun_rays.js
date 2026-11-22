@@ -1,6 +1,7 @@
 let ray1;
 let ray2;
 let ray3;
+
 let ray4;
 let ray5;
 let ray6;
