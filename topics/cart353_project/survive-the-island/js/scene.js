@@ -1,9 +1,9 @@
 let showIsland = false;
-let showCamp = true;
+let showCamp = false;
 let showBeach = false;
-let showForest = false;
+let showForest = true;
 
-let nightTime = false;
+let nightTime = true;
 
 let startTime = 0;
 
@@ -40,12 +40,10 @@ function draw() {
             noStroke();
             fill(0, 0, 0, 200);
             rect(0, 0, width, height);
-            if (firePurchased && woodTaken >= 0) {
-                floorGlow(width / 2 + 20, height - 190);
-                drawFire(width / 2 + 20, height - 200);
-                drawCampfire(width / 2 + 20, height - 195);
-                fireGlow(width / 2 + 20, height / 2 + 100);
-            }
+            floorGlow(width / 2 + 20, height - 190);
+            drawFire(width / 2 + 20, height - 200);
+            drawCampfire(width / 2 + 20, height - 195);
+            fireGlow(width / 2 + 20, height / 2 + 100);
             drawMenu();
         }
     }
@@ -80,8 +78,9 @@ function draw() {
         }
         forestDark = nightTime;
         if (nightTime) {
+            drawFog();
             noStroke();
-            fill(0, 0, 0, 200);
+            fill(0, 0, 0, 170);
             rect(0, 0, width, height);
             fireflyDraw();
             drawMenu();

@@ -26,6 +26,7 @@ function forestBackgroundSetup() {
     createFrontPalmTrees8();
     fireflySetup();
     butterflySetup();
+    sunRaySetup();
 }
 
 function forestBackgroundDraw() {
@@ -49,7 +50,9 @@ function forestBackgroundDraw() {
     drawFrontPalmTrees6();
     drawFrontSand();
     drawFrontGrass();
-    butterflyDraw();
+    if (!nightTime) {
+        butterflyDraw();
+    }
     drawFrontPalmTrees7();
     sunRay1();
     drawFrontPalmTrees8();
@@ -132,7 +135,12 @@ function chopTree() {
 function drawFog() {
     push();
     noStroke();
-    fill(84, 212, 255, 30);
+    if (!nightTime) {
+        fill(84, 212, 255, 30);
+    }
+    else {
+        fill(0, 0, 0, 50);
+    }
     rect(0, 0, width, height);
     pop();
 }

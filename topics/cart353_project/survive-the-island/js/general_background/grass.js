@@ -32,11 +32,13 @@ function drawFrontGrass() {
     ellipse(880, 720, 35, 25);
     ellipse(1400, 700, 255, 35);
     ellipse(1300, 720, 65, 35);
-    noStroke();
-    fill(84, 212, 255, 30);
-    rect(0, 0, width, 785);
 
-    fill(84, 212, 255, 30);
+    drawFog();
+    if (nightTime) {
+        fill(84, 212, 255, 30);
+    } else {
+        fill(0, 0, 0, 30);
+    }
     beginShape();
     for (let x = 0; x <= width; x += 10) {
         let y = 645 + sin(x * 1) * 5;
@@ -94,9 +96,7 @@ function drawMidGrass() {
     vertex(0, 410);
     endShape(CLOSE);
 
-    noStroke();
-    fill(84, 212, 255, 30);
-    rect(0, 0, width, 435);
+    drawFog();
 
     pop();
 }
@@ -153,9 +153,7 @@ function drawMidGrass3() {
     ellipse(890, 645, 15, 15);
 
 
-    noStroke();
-    fill(84, 212, 255, 30);
-    rect(0, 0, width, 655);
+    drawFog();
 
     pop();
 }
