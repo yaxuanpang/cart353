@@ -1,6 +1,6 @@
 let showIsland = false;
-let showCamp = false;
-let showBeach = true;
+let showCamp = true;
+let showBeach = false;
 let showForest = false;
 
 let nightTime = false;
@@ -40,18 +40,20 @@ function draw() {
             noStroke();
             fill(0, 0, 0, 200);
             rect(0, 0, width, height);
-            floorGlow(width / 2 + 20, height - 190);
-            drawFire(width / 2 + 20, height - 200);
-            drawCampfire(width / 2 + 20, height - 195);
-            fireGlow(width / 2 + 20, height / 2 + 100);
+            if (firePurchased && woodTaken >= 0) {
+                floorGlow(width / 2 + 20, height - 190);
+                drawFire(width / 2 + 20, height - 200);
+                drawCampfire(width / 2 + 20, height - 195);
+                fireGlow(width / 2 + 20, height / 2 + 100);
+            }
             drawMenu();
         }
     }
     if (showBeach) {
         beachDark = nightTime;
         beachDraw();
-        if (!beachCharged && goldCoins >= 1) {
-            //goldCoins -= 1;
+        if (!beachCharged && goldCoins >= 10) {
+            //goldCoins -= 10;
             beachCharged = true;
         }
         if (nightTime) {
@@ -72,8 +74,8 @@ function draw() {
 
     if (showForest) {
         forestDraw();
-        if (!forestCharged && goldCoins >= 3) {
-            //goldCoins -= 3;
+        if (!forestCharged && goldCoins >= 30) {
+            //goldCoins -= 30;
             forestCharged = true;
         }
         forestDark = nightTime;
@@ -154,13 +156,13 @@ function keyPressed() {
     }
 
     if (keyCode === 70) { //forest
-        if (goldCoins > 2) {
+        if (goldCoins > 29) {
             showForest = true;
             showIsland = false;
             showCamp = false;
             showBeach = false;
         }
-        else if (goldCoins <= 2) {
+        else if (goldCoins <= 29) {
             if (showCamp) {
                 showBeach = false;
                 showIsland = false;

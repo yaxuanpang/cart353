@@ -35,6 +35,16 @@ function drawFrontGrass() {
     noStroke();
     fill(84, 212, 255, 30);
     rect(0, 0, width, 785);
+
+    fill(84, 212, 255, 30);
+    beginShape();
+    for (let x = 0; x <= width; x += 10) {
+        let y = 645 + sin(x * 1) * 5;
+        vertex(x, y);
+    }
+    vertex(width, height);
+    vertex(0, height);
+    endShape(CLOSE);
     pop();
 }
 

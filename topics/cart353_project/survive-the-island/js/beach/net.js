@@ -110,7 +110,7 @@ function purchaseNet() {
 
         textAlign(LEFT, CENTER);
         textSize(12);
-        text("1x    ", 1383, 233);
+        text("5x    ", 1385, 233);
         text("= 5 nets", 1437, 233);
 
     }

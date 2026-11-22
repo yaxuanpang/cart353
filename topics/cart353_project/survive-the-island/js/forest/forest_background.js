@@ -129,10 +129,12 @@ function chopTree() {
     }
 }
 
-function drawPalmTrees1() {
-    for (let tree of palmTrees1) {
-        drawPalmTree(tree);
-    }
+function drawFog() {
+    push();
+    noStroke();
+    fill(84, 212, 255, 30);
+    rect(0, 0, width, height);
+    pop();
 }
 
 const MID_TREE_SPACING1 = 15;
@@ -156,11 +158,7 @@ function drawMidPalmTrees1() {
     for (let tree of midPalmTrees1) {
         drawPalmTree(tree);
     }
-    push();
-    noStroke();
-    fill(84, 212, 255, 30);
-    rect(0, 0, width, 435);
-    pop();
+    drawFog();
 }
 
 const MID_TREE_SPACING2 = 25;
@@ -184,11 +182,7 @@ function drawMidPalmTrees2() {
     for (let tree of midPalmTrees2) {
         drawPalmTree(tree);
     }
-    push();
-    noStroke();
-    fill(84, 212, 255, 30);
-    rect(0, 0, width, 435);
-    pop();
+    drawFog();
 }
 
 const FRONT_TREE_SPACING1 = 30;
@@ -218,11 +212,7 @@ function drawFrontPalmTrees1() {
     for (let tree of frontPalmTrees1) {
         drawPalmTree(tree);
     }
-    push();
-    noStroke();
-    fill(84, 212, 255, 30);
-    rect(0, 0, width, 445);
-    pop();
+    drawFog();
 }
 
 const FRONT_TREE_SPACING4 = 40;
@@ -252,11 +242,7 @@ function drawFrontPalmTrees4() {
     for (let tree of frontPalmTrees4) {
         drawCloserPalmTree(tree);
     }
-    push();
-    noStroke();
-    fill(84, 212, 255, 30);
-    rect(0, 0, width, 535);
-    pop();
+    drawFog();
 }
 
 const FRONT_TREE_SPACING5 = 40;
@@ -286,11 +272,7 @@ function drawFrontPalmTrees5() {
     for (let tree of frontPalmTrees5) {
         drawCloserPalmTree(tree);
     }
-    push();
-    noStroke();
-    fill(84, 212, 255, 30);
-    rect(0, 0, width, 685);
-    pop();
+    drawFog();
 }
 
 const FRONT_TREE_SPACING6 = 40;
@@ -349,11 +331,7 @@ function drawFrontPalmTrees7() {
     for (let tree of frontPalmTrees7) {
         drawClosestPalmTree(tree);
     }
-    push();
-    noStroke();
-    fill(84, 212, 255, 30);
-    rect(0, 0, width, height);
-    pop();
+    drawFog();
 }
 
 const FRONT_TREE_SPACING8 = 70;

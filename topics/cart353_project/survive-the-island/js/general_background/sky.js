@@ -52,22 +52,15 @@ function drawSun() {
         noStroke();
         blendMode(ADD);
         fill(255, 242, 212);
-        circle(width / 2 + 25, 50, 40);
+        circle(width / 2 + 25, 50, 40);//afternoon
     }
     pop();
 }
 
 function drawShine() {
     push();
-    if (showDawn) {
-        translate(0, 110);
-    }
-    if (showSunrise) {
-        translate(190, 90);
-    }
-    if (showNoon) {
-        translate(width / 2 + 25, 50);
-    }
+    translate(width / 2 + 25, 50);
+
     noStroke();
     fill(255, 242, 212, 230);
     circle(0, 0, 90);
@@ -92,25 +85,8 @@ function testingSun() {
     noStroke();
     blendMode(BLEND);
     fill(0, 0, 255);
-    circle(0, 110, 40); // 2
-    circle(width, 110, 40); // 7
-
-
-    //middles2
-    noStroke();
-    blendMode(BLEND);
+    circle(width / 2 + 25, 110, 40); //sunset
     fill(0, 255, 0);
-    circle(190, 90, 40); // 2
-    circle(width - 190, 90, 40); // 7
-
-
-    //middles3
-    noStroke();
-    blendMode(BLEND);
-    fill(255, 0, 0);
-
-    circle(width / 2 - 320, 70, 40);//3
-
-    circle(width / 2 + 350, 70, 40); // 6
+    circle(width / 2 + 25, -10, 40);//noon
     pop();
 }

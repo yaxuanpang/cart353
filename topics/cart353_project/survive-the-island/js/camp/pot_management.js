@@ -9,9 +9,14 @@ let takeOutLow = false;
 let takeOutMed = false;
 let takeOutHigh = false;
 
+function potCollection() {
+    if (potCollectedFish >= 1 || potCollectedWood >= 1 || potCollectedWater >= 1) {
+        potCollected = true;
+    }
+}
 
 function convertCollectedToPot() {
-    if (potCollected) {
+    if (!showTakeOutPercentSign) {
         potCollectedFish += fishCollected;
         potCollectedWood += woodCollected;
         potCollectedWater += waterCollected;
@@ -43,13 +48,13 @@ function convertPotToTaken() {
             potCollectedWater -= round(potCollectedWater * 0.5);
         }
         if (takeOutHigh) {
-            fishTaken += round(potCollectedFish * 0.8);
-            woodTaken += round(potCollectedWood * 0.8);
-            waterTaken += round(potCollectedWater * 0.8);
+            fishTaken += potCollectedFish;
+            woodTaken += potCollectedWood;
+            waterTaken += potCollectedWater;
 
-            potCollectedFish -= round(potCollectedFish * 0.8);
-            potCollectedWood -= round(potCollectedWood * 0.8);
-            potCollectedWater -= round(potCollectedWater * 0.8);
+            potCollectedFish = 0;
+            potCollectedWood = 0;
+            potCollectedWater = 0;
         }
     }
 }
