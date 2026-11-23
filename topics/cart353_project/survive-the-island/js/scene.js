@@ -1,6 +1,6 @@
 let showIsland = false;
-let showCamp = true;
-let showBeach = false;
+let showCamp = false;
+let showBeach = true;
 let showForest = false;
 
 let nightTime = false;
@@ -22,6 +22,10 @@ function setup() {
 
 function draw() {
     //console.log(frameRate());
+    jessicaGive();
+    kevinGive();
+    jessicaPotTaken();
+    kevinPotTaken();
     if (showIsland) {
         islandDraw();
         if (nightTime) {

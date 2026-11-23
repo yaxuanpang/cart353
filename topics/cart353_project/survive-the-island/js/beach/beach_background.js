@@ -7,13 +7,13 @@ function beachBackgroundDraw() {
     background(255);
 
     drawBeachSky();
-    drawShine();
-    drawSun();
-    testingSun();
     drawBeachPalmTrees();
     drawBeach();
     drawBeachFront();
+    sunBeam2();
     oceanDraw();
+    sunBeam1();
+    drawSun();
 
 }
 

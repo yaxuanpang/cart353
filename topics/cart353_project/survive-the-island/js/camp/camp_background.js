@@ -30,10 +30,10 @@ function campBackgroundDraw() {
     drawSand();
 
     drawResourcePot(width / 2 + 20, height / 2, 1);
-    potArrowDraw();
     houseArrowDraw();
 
     drawSunlight1();
+    potArrowDraw();
 
     if (firePurchased && woodTaken >= 0) {
         if (millis() - fireTimer > 30000) { // 30 seconds for testing

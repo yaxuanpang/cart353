@@ -4,6 +4,8 @@ let kevinTakenFish = false;
 let kevinTakenWood = false;
 let kevinTakenWater = false;
 
+let kevinDelay = 5000 + Math.random() * 5000;
+
 let kevinTimer = 0;
 
 function kevinGive() {
@@ -23,13 +25,14 @@ function kevinGive() {
             let kevinCollectedWood = floor(random(10, 15));
             totalWoodCount += kevinCollectedWood;
             potCollectedWood += kevinCollectedWood;
+            console.log((totalWoodCount + "kevin: " + kevinCollectedWood));
         }
         else {
             let kevinCollectedWood = floor(random(13, 24));
             totalWoodCount += kevinCollectedWood;
             potCollectedWood += kevinCollectedWood;
+            console.log((totalWoodCount + "kevin: " + kevinCollectedWood));
         }
-        console.log((totalWoodCount));
         //less than 30 water from player = low
         if (waterCollected >= 30) {
             let kevinCollectedWater = floor(random(3, 12));
@@ -51,6 +54,7 @@ function kevinPotTaken() {
         kevinTakenFish = false;
         kevinTakenWood = false;
         kevinTimer = millis();
+        kevinDelay = random(5000, 10000);
     }
     kevinTakeFish();
     kevinTakeWood();
@@ -59,7 +63,7 @@ function kevinPotTaken() {
 
 function kevinTakeFish() {
     if (!nightTime && !kevinTakenFish) {
-        if (millis() - kevinTimer > 5000) {
+        if (millis() - kevinTimer > kevinDelay) {
             if (potCollectedFish > 0) {
                 let roll = random(100);
                 let kevinTakeFish = 0;
@@ -87,7 +91,7 @@ function kevinTakeFish() {
 
 function kevinTakeWood() {
     if (!nightTime && !kevinTakenWood) {
-        if (millis() - kevinTimer > 5000) {
+        if (millis() - kevinTimer > kevinDelay) {
             if (potCollectedWood > 0) {
                 let roll = random(100);
                 let kevinTakeWood = 0;
@@ -115,7 +119,7 @@ function kevinTakeWood() {
 
 function kevinTakeWater() { //higher chance of kevin taking more water
     if (!nightTime && !kevinTakenWater) {
-        if (millis() - kevinTimer > 5000) {
+        if (millis() - kevinTimer > kevinDelay) {
             if (potCollectedWater > 0) {
                 let roll = random(100);
                 let kevinTakeWater = 0;

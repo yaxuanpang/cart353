@@ -11,10 +11,6 @@ function potArrowDraw() {
     potArrow();
     hoveringPot();
     potCollection();
-    jessicaGive();
-    kevinGive();
-    jessicaPotTaken();
-    kevinPotTaken();
     if (showPotArrowSign) {
         potArrowSign();
     }

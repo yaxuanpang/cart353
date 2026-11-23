@@ -137,8 +137,8 @@ function netMousePressed() {
                 && mouseY >= 218 && mouseY <= 248
 
             if (showNetMenu && clickRepurchaseBagButton) {
-                if (woodTaken >= 1) {
-                    woodTaken -= 1;
+                if (woodTaken >= 25) {
+                    woodTaken -= 25;
                     industrialNet = false;
                     netLeftCount = 5;
                     return;

@@ -3,6 +3,10 @@ let jessicaTakenFish = false;
 let jessicaTakenWood = false;
 let jessicaTakenWater = false;
 
+let jessicaDelay = 5000 + Math.random() * 5000;
+
+let jessicaPanicking = false;
+
 let jessicaTimer = 0;
 
 function jessicaGive() {
@@ -19,23 +23,24 @@ function jessicaGive() {
         }
         //less than 20 wood from player = low
         if (woodCollected >= 20) {
-            let jessicaCollectedWood = floor(random(0, 10));
+            let jessicaCollectedWood = floor(random(0, 7));
             totalWoodCount += jessicaCollectedWood;
             potCollectedWood += jessicaCollectedWood;
+            console.log((totalWoodCount + "jesscia: " + jessicaCollectedWood));
         }
         else {
-            let jessicaCollectedWood = floor(random(5, 25));
+            let jessicaCollectedWood = floor(random(5, 15));
             totalWoodCount += jessicaCollectedWood;
             potCollectedWood += jessicaCollectedWood;
+            console.log((totalWoodCount + "jesscia: " + jessicaCollectedWood));
         }
-        console.log((totalWoodCount));
         //less than 30 water from player = low
         if (waterCollected >= 30) {
             let jessicaCollectedWater = floor(random(0, 15));
             potCollectedWater += jessicaCollectedWater;
         }
         else {
-            let jessicaCollectedWater = floor(random(12, 27));
+            let jessicaCollectedWater = floor(random(12, 30));
             potCollectedWater += jessicaCollectedWater;
         }
         jessicaGiven = true;
@@ -50,6 +55,7 @@ function jessicaPotTaken() {
         jessicaTakenFish = false;
         jessicaTakenWood = false;
         jessicaTimer = millis();
+        jessicaDelay = random(5000, 10000);
     }
     jessciaTakeFish();
     jessciaTakeWood();
@@ -58,7 +64,7 @@ function jessicaPotTaken() {
 
 function jessciaTakeFish() {
     if (!nightTime && !jessicaTakenFish) {
-        if (millis() - jessicaTimer > 5000) {
+        if (millis() - jessicaTimer > jessicaDelay) {
             if (potCollectedFish > 0) {
                 let roll = random(100);
                 let jessicaTakeFish = 0;
@@ -86,7 +92,7 @@ function jessciaTakeFish() {
 
 function jessciaTakeWood() {
     if (!nightTime && !jessicaTakenWood) {
-        if (millis() - jessicaTimer > 5000) {
+        if (millis() - jessicaTimer > jessicaDelay) {
             if (potCollectedWood > 0) {
                 let roll = random(100);
                 let jessicaTakeWood = 0;
@@ -114,7 +120,7 @@ function jessciaTakeWood() {
 
 function jessciaTakeWater() {
     if (!nightTime && !jessicaTakenWater) {
-        if (millis() - jessicaTimer > 5000) {
+        if (millis() - jessicaTimer > jessicaDelay) {
             if (potCollectedWater > 0) {
                 let roll = random(100);
                 let jessicaTakeWater = 0;
@@ -138,4 +144,7 @@ function jessciaTakeWater() {
             }
         }
     }
+}
+
+function jessicaIsPanic() {
 }

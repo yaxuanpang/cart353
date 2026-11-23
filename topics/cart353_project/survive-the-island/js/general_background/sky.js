@@ -1,3 +1,4 @@
+let showMorning = false;
 let showNoon = true;
 let showSunrise = false;
 let showSunset = false;
@@ -48,32 +49,24 @@ function drawBeachSky() {
 
 function drawSun() {
     push();
-    if (showNoon) {
+    if (showMorning) {
         noStroke();
-        blendMode(ADD);
         fill(255, 242, 212);
-        circle(width / 2 + 25, 50, 40);//afternoon
+        circle(width / 2 + 20, 50, 40);//morning
+        drawShine();
     }
     pop();
 }
 
 function drawShine() {
     push();
-    translate(width / 2 + 25, 50);
+    translate(width / 2 + 20, 50);
 
     noStroke();
-    fill(255, 242, 212, 230);
+    fill(255, 242, 212, 50);
     circle(0, 0, 90);
-    fill(255, 242, 212, 150);
-    circle(0, 0, 95);
-    circle(0, 0, 110);
-    fill(255, 242, 212, 100);
-    circle(0, 0, 130);
-    circle(0, 0, 150);
-    circle(0, 0, 190);
-    fill(255, 242, 212, 90);
-    circle(0, 0, 200);
-    circle(0, 0, 230);
+    fill(255, 242, 212, 70);
+    circle(0, 0, 65);
     pop();
 }
 
