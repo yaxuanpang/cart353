@@ -75,7 +75,7 @@ class Colony {
             }
         }
 
-        if (woodCollected >= 5) {
+        if (totalWoodCount >= 24) { // half the trees in the front row in wood = 6 trees
 
             for (let i = this.butterflies.length - 1; i >= 0; i--) {
 

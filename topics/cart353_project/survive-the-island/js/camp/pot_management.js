@@ -11,6 +11,8 @@ let takeOutHigh = false;
 
 let totalWoodCount = 0;
 
+let playerTaken = false;
+
 function potCollection() {
     if (potCollectedFish >= 1 || potCollectedWood >= 1 || potCollectedWater >= 1) {
         potCollected = true;
@@ -30,7 +32,7 @@ function convertCollectedToPot() {
 }
 
 function convertPotToTaken() {
-    if (potTaken) {
+    if (potTaken && !nightTime) {
         if (takeOutLow) {
             fishTaken += round(potCollectedFish * 0.3);
             woodTaken += round(potCollectedWood * 0.3);
@@ -39,6 +41,9 @@ function convertPotToTaken() {
             potCollectedFish -= round(potCollectedFish * 0.3);
             potCollectedWood -= round(potCollectedWood * 0.3);
             potCollectedWater -= round(potCollectedWater * 0.3);
+
+            playerTaken = true;
+            console.log("player taken low");
         }
         if (takeOutMed) {
             fishTaken += round(potCollectedFish * 0.5);
@@ -48,6 +53,9 @@ function convertPotToTaken() {
             potCollectedFish -= round(potCollectedFish * 0.5);
             potCollectedWood -= round(potCollectedWood * 0.5);
             potCollectedWater -= round(potCollectedWater * 0.5);
+
+            playerTaken = true;
+            console.log("player taken med");
         }
         if (takeOutHigh) {
             fishTaken += potCollectedFish;
@@ -57,6 +65,9 @@ function convertPotToTaken() {
             potCollectedFish = 0;
             potCollectedWood = 0;
             potCollectedWater = 0;
+
+            playerTaken = true;
+            console.log("player taken");
         }
     }
 }

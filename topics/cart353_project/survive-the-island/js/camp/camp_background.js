@@ -12,22 +12,28 @@ function campBackgroundSetup() {
     createMidPalmTrees();
     createFrontPalmTrees();
     createPalmTrees();
+    sunRaySetup();
 }
 
 function campBackgroundDraw() {
     background(255);
     drawCampSky();
     drawBackPalmTrees();
+    drawSunlight4();
     drawMidPalmTrees();
     drawBackSand();
+    drawSunlight3();
     drawFrontPalmTrees();
     drawMidSand();
+    drawSunlight2();
     drawPalmTrees();
     drawSand();
 
     drawResourcePot(width / 2 + 20, height / 2, 1);
     potArrowDraw();
     houseArrowDraw();
+
+    drawSunlight1();
 
     if (firePurchased && woodTaken >= 0) {
         if (millis() - fireTimer > 30000) { // 30 seconds for testing
@@ -81,11 +87,7 @@ function drawBackPalmTrees() {
     for (let tree of backPalmTrees) {
         drawPalmTree(tree);
     }
-    push();
-    noStroke();
-    fill(84, 212, 255, 30);
-    rect(0, 0, width, 435);
-    pop();
+    drawFog();
 }
 
 // ======== middle row trees (no gaps) ======
@@ -110,11 +112,7 @@ function drawMidPalmTrees() {
     for (let tree of midPalmTrees) {
         drawPalmTree(tree);
     }
-    push();
-    noStroke();
-    fill(84, 212, 255, 30);
-    rect(0, 0, width, 435);
-    pop();
+    drawFog();
 }
 
 //====== front trees (smaller gap) =====
@@ -145,11 +143,7 @@ function drawFrontPalmTrees() {
     for (let tree of frontPalmTrees) {
         drawPalmTree(tree);
     }
-    push();
-    noStroke();
-    fill(84, 212, 255, 30);
-    rect(0, 0, width, 485);
-    pop();
+    drawFog();
 }
 
 // ======== front row trees (gap) ======
@@ -212,9 +206,7 @@ function drawMidSand() {
     vertex(0, height);
     endShape(CLOSE);
 
-    noStroke();
-    fill(84, 212, 255, 30);
-    rect(0, 0, width, 435);
+    drawFog();
 
     pop();
 }

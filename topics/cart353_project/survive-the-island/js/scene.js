@@ -37,9 +37,11 @@ function draw() {
     if (showCamp) {
         campDraw();
         if (nightTime) {
+            drawFog();
             noStroke();
-            fill(0, 0, 0, 200);
+            fill(0, 0, 0, 170);
             rect(0, 0, width, height);
+            drawSunlight1()
             if (showFire) {
                 floorGlow(width / 2 + 20, height - 190);
                 drawFire(width / 2 + 20, height - 200);

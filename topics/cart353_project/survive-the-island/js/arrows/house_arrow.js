@@ -21,7 +21,7 @@ function houseArrow() {
     circle(120, 100, 30);
     triangle(120, 130, 130, 90, 110, 90);
 
-    fill(128, 56, 4);
+    fill(87, 41, 11);
     circle(120, 100, 20);
     pop();
 }
@@ -43,10 +43,10 @@ function houseArrowSign() {
     textAlign(CENTER, CENTER);
     textSize(16);
     fill(255);
-    text("build cabin to", 123, 0);
+    text("build a shelter to", 123, 0);
     text("sleep in", 123, 18);
     text("=", 123, 38);
-    text("20x   ", 113, 60);
+    text("50x   ", 113, 60);
     drawFireWood(83, -8, 0.45);
     textSize(12);
     pop();
