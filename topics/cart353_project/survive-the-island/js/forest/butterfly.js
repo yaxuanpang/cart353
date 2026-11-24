@@ -8,7 +8,7 @@ let bodyColor4;
 function butterflySetup() {
     butterflyColor1 = color(255, 196, 79);
     butterflyColor2 = color(255, 161, 242);
-    butterflyColor3 = color(0, 42, 255);
+    butterflyColor3 = color(41, 180, 255);
     butterflyColor4 = color(168, 255, 173);
 
     colony = new Colony();

@@ -1,6 +1,6 @@
 let showIsland = false;
-let showCamp = false;
-let showBeach = true;
+let showCamp = true;
+let showBeach = false;
 let showForest = false;
 
 let nightTime = false;
@@ -124,6 +124,8 @@ function mousePressed() {
 function keyPressed() {
     menuKeyPressed();
     waterKeyPressed();
+    jessicaKeyPressed();
+    kevinKeyPressed();
     if (keyCode === 32) { // island
         showIsland = true;
         showCamp = false;

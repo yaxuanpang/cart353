@@ -1,12 +1,26 @@
 let kevinGiven = false;
-
 let kevinTakenFish = false;
 let kevinTakenWood = false;
 let kevinTakenWater = false;
+let showKevinTakenSign = false;
+let kevinSignShown = false;
 
 let kevinDelay = 5000 + Math.random() * 5000;
 
+let kevinPanicking = false;
+
+let kevinTookFish = 0;
+let kevinTookWood = 0;
+let kevinTookWater = 0;
+
+
 let kevinTimer = 0;
+
+function kevinPanic() {
+    if (kevinTookFish <= 10 || kevinTookWood <= 3 || kevinTookWater <= 15) {
+        kevinPanicking = true;
+    }
+}
 
 function kevinGive() {
     if (!nightTime && !kevinGiven) {
@@ -53,12 +67,22 @@ function kevinPotTaken() {
     if (nightTime) {
         kevinTakenFish = false;
         kevinTakenWood = false;
+        kevinTakenWater = false;
+        showKevinTakenSign = false;
+        kevinSignShown = false;
         kevinTimer = millis();
         kevinDelay = random(5000, 10000);
     }
     kevinTakeFish();
     kevinTakeWood();
     kevinTakeWater();
+
+    if (!nightTime && !kevinSignShown) {
+        if (kevinTakenFish || kevinTakenWood || kevinTakenWater) {
+            showKevinTakenSign = true;
+            kevinSignShown = true;
+        }
+    }
 }
 
 function kevinTakeFish() {
@@ -66,23 +90,42 @@ function kevinTakeFish() {
         if (millis() - kevinTimer > kevinDelay) {
             if (potCollectedFish > 0) {
                 let roll = random(100);
-                let kevinTakeFish = 0;
-                if (roll < 25) { // slightly higher chance for kevin to take more fish
-                    kevinTakeFish += potCollectedFish;
-                    potCollectedFish = 0;
-                    console.log("greedy kevin:" + kevinTakeFish);
-                }
-                else if (roll < 60) {
-                    kevinTakeFish += round(potCollectedFish * 0.5);
-                    potCollectedFish -= round(potCollectedFish * 0.5);
-                    console.log("kevin good:" + kevinTakeFish);
+                if (kevinPanicking) {
+                    if (roll < 20) {
+                        kevinTookFish += potCollectedFish;
+                        potCollectedFish = 0;
+                        console.log("greedy kevin:" + kevinTookFish);
+                    }
+                    else if (roll < 70) {
+                        kevinTookFish += round(potCollectedFish * 0.5);
+                        potCollectedFish -= round(potCollectedFish * 0.5);
+                        console.log("kevin good:" + kevinTookFish);
+                    }
+                    else {
+                        kevinTookFish += round(potCollectedFish * 0.3);
+                        potCollectedFish -= round(potCollectedFish * 0.3);
+                        console.log("kevin nice:" + kevinTookFish);
+                    }
+                    kevinTakenFish = true;
                 }
                 else {
-                    kevinTakeFish += round(potCollectedFish * 0.3);
-                    potCollectedFish -= round(potCollectedFish * 0.3);
-                    console.log("kevin nice:" + kevinTakeFish);
+                    if (roll < 15) { // slightly higher chance for kevin to take more fish
+                        kevinTookFish += potCollectedFish;
+                        potCollectedFish = 0;
+                        console.log("greedy kevin:" + kevinTookFish);
+                    }
+                    else if (roll < 60) {
+                        kevinTookFish += round(potCollectedFish * 0.5);
+                        potCollectedFish -= round(potCollectedFish * 0.5);
+                        console.log("kevin good:" + kevinTookFish);
+                    }
+                    else {
+                        kevinTookFish += round(potCollectedFish * 0.3);
+                        potCollectedFish -= round(potCollectedFish * 0.3);
+                        console.log("kevin nice:" + kevinTookFish);
+                    }
+                    kevinTakenFish = true;
                 }
-                kevinTakenFish = true;
 
             }
         }
@@ -94,23 +137,42 @@ function kevinTakeWood() {
         if (millis() - kevinTimer > kevinDelay) {
             if (potCollectedWood > 0) {
                 let roll = random(100);
-                let kevinTakeWood = 0;
-                if (roll < 15) {
-                    kevinTakeWood += potCollectedWood;
-                    potCollectedWood = 0;
-                    console.log("greedy kevin:" + kevinTakeWood);
-                }
-                else if (roll < 50) {
-                    kevinTakeWood += round(potCollectedWood * 0.5);
-                    potCollectedWood -= round(potCollectedWood * 0.5);
-                    console.log("kevin good:" + kevinTakeWood);
+                if (kevinPanicking) {
+                    if (roll < 20) {
+                        kevinTookFish += potCollectedFish;
+                        potCollectedFish = 0;
+                        console.log("greedy kevin:" + kevinTookFish);
+                    }
+                    else if (roll < 70) {
+                        kevinTookFish += round(potCollectedFish * 0.5);
+                        potCollectedFish -= round(potCollectedFish * 0.5);
+                        console.log("kevin good:" + kevinTookFish);
+                    }
+                    else {
+                        kevinTookFish += round(potCollectedFish * 0.3);
+                        potCollectedFish -= round(potCollectedFish * 0.3);
+                        console.log("kevin nice:" + kevinTookFish);
+                    }
+                    kevinTakenFish = true;
                 }
                 else {
-                    kevinTakeWood += round(potCollectedWood * 0.3);
-                    potCollectedWood -= round(potCollectedWood * 0.3);
-                    console.log("kevin nice:" + kevinTakeWood);
+                    if (roll < 10) {
+                        kevinTookWood += potCollectedWood;
+                        potCollectedWood = 0;
+                        console.log("greedy kevin:" + kevinTookWood);
+                    }
+                    else if (roll < 50) {
+                        kevinTookWood += round(potCollectedWood * 0.5);
+                        potCollectedWood -= round(potCollectedWood * 0.5);
+                        console.log("kevin good:" + kevinTookWood);
+                    }
+                    else {
+                        kevinTookWood += round(potCollectedWood * 0.3);
+                        potCollectedWood -= round(potCollectedWood * 0.3);
+                        console.log("kevin nice:" + kevinTookWood);
+                    }
+                    kevinTakenWood = true;
                 }
-                kevinTakenWood = true;
 
             }
         }
@@ -122,25 +184,69 @@ function kevinTakeWater() { //higher chance of kevin taking more water
         if (millis() - kevinTimer > kevinDelay) {
             if (potCollectedWater > 0) {
                 let roll = random(100);
-                let kevinTakeWater = 0;
-                if (roll < 25) {
-                    kevinTakeWater += potCollectedWater;
-                    potCollectedWater = 0;
-                    console.log("greedy kevin:" + kevinTakeWater);
-                }
-                else if (roll < 65) {
-                    kevinTakeWater += round(potCollectedWater * 0.5);
-                    potCollectedWater -= round(potCollectedWater * 0.5);
-                    console.log("kevin good:" + kevinTakeWater);
+                if (kevinPanicking) {
+                    if (roll < 25) {
+                        kevinTookFish += potCollectedFish;
+                        potCollectedFish = 0;
+                        console.log("greedy kevin:" + kevinTookFish);
+                    }
+                    else if (roll < 50) {
+                        kevinTookFish += round(potCollectedFish * 0.5);
+                        potCollectedFish -= round(potCollectedFish * 0.5);
+                        console.log("kevin good:" + kevinTookFish);
+                    }
+                    else {
+                        kevinTookFish += round(potCollectedFish * 0.3);
+                        potCollectedFish -= round(potCollectedFish * 0.3);
+                        console.log("kevin nice:" + kevinTookFish);
+                    }
+                    kevinTakenFish = true;
                 }
                 else {
-                    kevinTakeWater += round(potCollectedWater * 0.3);
-                    potCollectedWater -= round(potCollectedWater * 0.3);
-                    console.log("kevin nice:" + kevinTakeWater);
+                    if (roll < 20) {
+                        kevinTookWater += potCollectedWater;
+                        potCollectedWater = 0;
+                        console.log("greedy kevin:" + kevinTookWater);
+                    }
+                    else if (roll < 65) {
+                        kevinTookWater += round(potCollectedWater * 0.5);
+                        potCollectedWater -= round(potCollectedWater * 0.5);
+                        console.log("kevin good:" + kevinTookWater);
+                    }
+                    else {
+                        kevinTookWater += round(potCollectedWater * 0.3);
+                        potCollectedWater -= round(potCollectedWater * 0.3);
+                        console.log("kevin nice:" + kevinTookWater);
+                    }
+                    kevinTakenWater = true;
                 }
-                kevinTakenWater = true;
 
             }
         }
+    }
+}
+
+function kevinTakenSign() {
+    push();
+    translate(640, height / 2);
+    strokeWeight(3);
+    stroke(117, 66, 2);
+    fill(140, 83, 13);
+    rect(0, 0, 250, 80, 10);
+    textAlign(CENTER, CENTER);
+    noStroke();
+    fill(255);
+    textSize(20);
+    text("Kevin took resources", 130, 40);
+    textSize(10);
+    text("(press Z)", 130, 63);
+    fill(188, 20, 255);
+    circle(130, 15, 20);
+    pop();
+}
+
+function kevinKeyPressed() {
+    if (keyCode === 90) {
+        showKevinTakenSign = false;
     }
 }

@@ -29,7 +29,7 @@ function campBackgroundDraw() {
     drawPalmTrees();
     drawSand();
 
-    drawResourcePot(width / 2 + 20, height / 2, 1);
+    drawResourcePot(width / 2 + 15, height / 2, 1);
     houseArrowDraw();
 
     drawSunlight1();
@@ -61,6 +61,13 @@ function campBackgroundDraw() {
         fill(43, 12, 0, 50);
         ellipse(width / 2 + 20, height - 195 + 22, 150, 30);
         drawBurntCampfire(width / 2 + 20, height - 195);
+    }
+
+    if (showJessicaTakenSign) {
+        jessicaTakenSign();
+    }
+    if (showKevinTakenSign) {
+        kevinTakenSign();
     }
 }
 
