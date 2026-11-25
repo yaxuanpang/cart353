@@ -52,7 +52,7 @@ function forestBackgroundDraw() {
     drawFrontPalmTrees6();
     drawFrontSand();
     drawFrontGrass();
-    if (!nightTime) {
+    if (showNoon || showAfternoon || showSunset || showDawn || showSunrise || showMorning) {
         butterflyDraw();
     }
     drawFrontPalmTrees7();
@@ -155,10 +155,22 @@ function chopTree() {
 function drawFog() {
     push();
     noStroke();
-    if (!nightTime) {
+    if (showNoon || showMorning) {
         fill(84, 212, 255, 30);
     }
-    else {
+    if (showAfternoon) {
+        fill(250, 156, 85, 15);
+    }
+    if (showSunset || showSunrise) {
+        fill(250, 133, 45, 15);
+    }
+    if (showDusk || showDawn) {
+        fill(0, 0, 0, 30);
+    }
+    if (showNight || showPostNight) {
+        fill(0, 0, 0, 40);
+    }
+    if (nightTime) {
         fill(0, 0, 0, 50);
     }
     rect(0, 0, width, height);

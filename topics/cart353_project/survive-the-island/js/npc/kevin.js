@@ -23,7 +23,7 @@ function kevinPanic() {
 }
 
 function kevinGive() {
-    if (!nightTime && !kevinGiven) {
+    if (!kevinGiven) {
         //low player contribution = high kevin contribution
         //less than 40 fish from player = low
         if (fishCollected >= 40) {
@@ -58,13 +58,13 @@ function kevinGive() {
         }
         kevinGiven = true;
     }
-    if (nightTime) {
+    if (showDawn) {
         kevinGiven = false;
     }
 }
 
 function kevinPotTaken() {
-    if (nightTime) {
+    if (showDawn) {
         kevinTakenFish = false;
         kevinTakenWood = false;
         kevinTakenWater = false;
@@ -77,7 +77,7 @@ function kevinPotTaken() {
     kevinTakeWood();
     kevinTakeWater();
 
-    if (!nightTime && !kevinSignShown) {
+    if (showSunset && !kevinSignShown) {
         if (kevinTakenFish || kevinTakenWood || kevinTakenWater) {
             showKevinTakenSign = true;
             kevinSignShown = true;
@@ -86,7 +86,7 @@ function kevinPotTaken() {
 }
 
 function kevinTakeFish() {
-    if (!nightTime && !kevinTakenFish) {
+    if (!kevinTakenFish) {
         if (millis() - kevinTimer > kevinDelay) {
             if (potCollectedFish > 0) {
                 let roll = random(100);
@@ -133,7 +133,7 @@ function kevinTakeFish() {
 }
 
 function kevinTakeWood() {
-    if (!nightTime && !kevinTakenWood) {
+    if (!kevinTakenWood) {
         if (millis() - kevinTimer > kevinDelay) {
             if (potCollectedWood > 0) {
                 let roll = random(100);
@@ -180,7 +180,7 @@ function kevinTakeWood() {
 }
 
 function kevinTakeWater() { //higher chance of kevin taking more water
-    if (!nightTime && !kevinTakenWater) {
+    if (!kevinTakenWater) {
         if (millis() - kevinTimer > kevinDelay) {
             if (potCollectedWater > 0) {
                 let roll = random(100);

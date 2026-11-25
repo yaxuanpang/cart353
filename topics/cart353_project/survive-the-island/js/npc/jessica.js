@@ -22,7 +22,7 @@ function jessicaPanic() {
 }
 
 function jessicaGive() {
-    if (!nightTime && !jessicaGiven) {
+    if (!jessicaGiven) {
         //low player contribution = high jessica contribution
         //less than 40 fish from player = low
         if (fishCollected >= 40) {
@@ -57,13 +57,13 @@ function jessicaGive() {
         }
         jessicaGiven = true;
     }
-    if (nightTime) {
+    if (showDawn) {
         jessicaGiven = false;
     }
 }
 
 function jessicaPotTaken() {
-    if (nightTime) {
+    if (showDawn) {
         jessicaTakenFish = false;
         jessicaTakenWood = false;
         jessicaTakenWater = false;
@@ -76,7 +76,7 @@ function jessicaPotTaken() {
     jessicaTakeWood();
     jessicaTakeWater();
 
-    if (!nightTime && !jessicaSignShown) {
+    if (!jessicaSignShown) {
         if (jessicaTakenFish || jessicaTakenWood || jessicaTakenWater) {
             showJessicaTakenSign = true;
             jessicaSignShown = true;
@@ -85,7 +85,7 @@ function jessicaPotTaken() {
 }
 
 function jessicaTakeFish() {
-    if (!nightTime && !jessicaTakenFish) {
+    if (!jessicaTakenFish) {
         if (millis() - jessicaTimer > jessicaDelay) {
             if (potCollectedFish > 0) {
                 let roll = random(100);
@@ -132,7 +132,7 @@ function jessicaTakeFish() {
 }
 
 function jessicaTakeWood() {
-    if (!nightTime && !jessicaTakenWood) {
+    if (!jessicaTakenWood) {
         if (millis() - jessicaTimer > jessicaDelay) {
             if (potCollectedWood > 0) {
                 let roll = random(100);
@@ -179,7 +179,7 @@ function jessicaTakeWood() {
 }
 
 function jessicaTakeWater() {
-    if (!nightTime && !jessicaTakenWater) {
+    if (!jessicaTakenWater) {
         if (millis() - jessicaTimer > jessicaDelay) {
             if (potCollectedWater > 0) {
                 let roll = random(100);

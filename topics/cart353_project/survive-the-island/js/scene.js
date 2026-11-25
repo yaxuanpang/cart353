@@ -1,9 +1,7 @@
 let showIsland = false;
-let showCamp = true;
-let showBeach = false;
+let showCamp = false;
+let showBeach = true;
 let showForest = false;
-
-let nightTime = false;
 
 let startTime = 0;
 
@@ -14,7 +12,7 @@ let forestCharged = false;
 function setup() {
     createCanvas(1500, 750);
     angleMode(DEGREES);
-    frameRate(60);
+    frameRate(30);
     campSetup();
     beachSetup();
     forestSetup();
@@ -22,10 +20,7 @@ function setup() {
 
 function draw() {
     //console.log(frameRate());
-    jessicaGive();
-    kevinGive();
-    jessicaPotTaken();
-    kevinPotTaken();
+    drawDayCycle();
     if (showIsland) {
         islandDraw();
         if (nightTime) {
@@ -54,6 +49,73 @@ function draw() {
             }
             drawMenu();
         }
+        if (showSunset) {
+            drawFog();
+            noStroke();
+            fill(250, 133, 45, 10);
+            rect(0, 0, width, height);
+            drawSunlight1()
+            if (showFire) {
+                floorGlow(width / 2 + 20, height - 190);
+                drawFire(width / 2 + 20, height - 200);
+                drawCampfire(width / 2 + 20, height - 195);
+                fireGlow(width / 2 + 20, height / 2 + 100);
+            }
+        }
+        if (showDusk) {
+            drawFog();
+            noStroke();
+            fill(247, 95, 25, 30);
+            rect(0, 0, width, height);
+            fill(0, 0, 0, 70);
+            rect(0, 0, width, height);
+            drawMenu();
+            if (showFire) {
+                floorGlow(width / 2 + 20, height - 190);
+                drawFire(width / 2 + 20, height - 200);
+                drawCampfire(width / 2 + 20, height - 195);
+                fireGlow(width / 2 + 20, height / 2 + 100);
+            }
+        }
+        if (showNight) {
+            drawFog();
+            noStroke();
+            fill(247, 95, 25, 30);
+            rect(0, 0, width, height);
+            fill(0, 0, 0, 170);
+            rect(0, 0, width, height);
+            drawMenu();
+            if (showFire) {
+                floorGlow(width / 2 + 20, height - 190);
+                drawFire(width / 2 + 20, height - 200);
+                drawCampfire(width / 2 + 20, height - 195);
+                fireGlow(width / 2 + 20, height / 2 + 100);
+            }
+        }
+        if (showPostNight) {
+            drawFog();
+            noStroke();
+            fill(247, 95, 25, 30);
+            rect(0, 0, width, height);
+            fill(0, 0, 0, 170);
+            rect(0, 0, width, height);
+            drawMenu();
+        }
+        if (showDawn) {
+            drawFog();
+            noStroke();
+            fill(247, 95, 25, 30);
+            rect(0, 0, width, height);
+            fill(0, 0, 0, 70);
+            rect(0, 0, width, height);
+            drawMenu();
+            if (showFire) {
+                floorGlow(width / 2 + 20, height - 190);
+                drawFire(width / 2 + 20, height - 200);
+                drawCampfire(width / 2 + 20, height - 195);
+                fireGlow(width / 2 + 20, height / 2 + 100);
+            }
+        }
     }
     if (showBeach) {
         beachDark = nightTime;
@@ -67,6 +129,55 @@ function draw() {
             fill(0, 0, 0, 200);
             rect(0, 0, width, height);
 
+            fishGlowDraw();
+            sunBeam1();
+            drawMenu();
+        }
+        if (showSunset) {
+            noStroke();
+            fill(250, 133, 45, 60);
+            rect(0, 0, width, height);
+        }
+        if (showDusk) {
+            noStroke();
+            fill(247, 95, 25, 30);
+            rect(0, 0, width, height);
+            fill(0, 0, 0, 100);
+            rect(0, 0, width, height);
+            fishGlowDraw();
+            drawMenu();
+        }
+        if (showNight) {
+            noStroke();
+            fill(0, 0, 0, 170);
+            rect(0, 0, width, height);
+            fishGlowDraw();
+            drawMenu();
+        }
+        if (showPostNight) {
+            noStroke();
+            fill(0, 0, 0, 170);
+            rect(0, 0, width, height);
+            //moon
+            noStroke();
+            fill(255);
+            circle(width / 2 + 20, 50, 40);
+            circle(width / 2 + 20, 50, 40);
+            fill(255, 255, 255, 70);
+            circle(width / 2 + 20, 50, 65);
+            circle(width / 2 + 20, 50, 50);
+            fill(255, 255, 255, 50);
+            circle(width / 2 + 20, 50, 80);
+            sunBeam0001();
+            fishGlowDraw();
+            drawMenu();
+        }
+        if (showDawn) {
+            noStroke();
+            fill(247, 95, 25, 30);
+            rect(0, 0, width, height);
+            fill(0, 0, 0, 70);
+            rect(0, 0, width, height);
             fishGlowDraw();
             drawMenu();
         }
@@ -91,6 +202,38 @@ function draw() {
             fill(0, 0, 0, 130);
             rect(0, 0, width, height);
             fireflyDraw();
+            drawMenu();
+        }
+        if (showSunset) {
+            noStroke();
+            fill(250, 133, 45, 10);
+            rect(0, 0, width, height);
+        }
+        if (showDusk) {
+            drawFog();
+            noStroke();
+            fill(247, 95, 25, 30);
+            rect(0, 0, width, height);
+            fill(0, 0, 0, 70);
+            rect(0, 0, width, height);
+            fireflyDraw();
+            drawMenu();
+        }
+        if (showNight || showPostNight) {
+            drawFog();
+            noStroke();
+            fill(0, 0, 0, 100);
+            rect(0, 0, width, height);
+            fireflyDraw();
+            drawMenu();
+        }
+        if (showDawn) {
+            drawFog();
+            noStroke();
+            fill(247, 95, 25, 30);
+            rect(0, 0, width, height);
+            fill(0, 0, 0, 30);
+            rect(0, 0, width, height);
             drawMenu();
         }
     }
