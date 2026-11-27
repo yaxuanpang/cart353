@@ -13,7 +13,7 @@ function drawFire(x, y) {
         flames[i].update();
         flames[i].show();
         if (flames[i].life <= 0) {
-            flames.splice(i, 1);
+            flames.splice(i, 1); //particles disappear when their lifetime is up
         }
     }
     pop();
@@ -28,7 +28,7 @@ class FireParticle {
         this.vy = random(-3.2, -1.6);     // upward speed
         this.life = 1;                    // 1 = just born, 0 = gone
         this.decay = random(0.012, 0.024);
-        this.size = random(10, 38);
+        this.size = random(10, 38); //size of particles
         this.seed = random(1000);         // gives each particle its own sway
     }
 
@@ -46,17 +46,17 @@ class FireParticle {
     }
 
     show() {
-        let l = max(this.life, 0);
+        let l = max(this.life, 0);  // life from 1 (new) to 0 (dead) and never below 0
 
         let r = 255;            // stays bright for a long time
-        let g = 230 * l * l * l;        // drops quickly: yellow, then orange, then red
+        let g = 230 * l * l * l; // drops quickly: yellow, then orange, then red
         let b = 40 * l * l * l; // only a hint of white in the youngest ones
-        let a = 200 * l;
+        let a = 200 * l;  // fades out as it ages
 
-        let d = this.size * (0.35 + 0.65 * l * l);
+        let d = this.size * (0.35 + 0.65 * l * l); // full size when new, shrinks to 35% when old
 
-        fill(r, g, b, a);
-        circle(this.x, this.y, d);
+        fill(r, g, b, a); //colors
+        circle(this.x, this.y, d); // drawing the partciles
     }
 }
 
@@ -67,14 +67,15 @@ function drawCampfire(x, y) {
     drawLog(x, y + 12, 130, 18, -15);
 }
 
-function drawBurntCampfire(x, y) {
+function drawBurntCampfire(x, y) { //after fire
     // two crossed logs behind the flames
     drawBurntLog(x, y + 12, 130, 18, 15);
     drawBurntLog(width / 2 + 20, height - 180, 140, 20, 0);
     drawBurntLog(x, y + 12, 130, 18, -15);
 }
 
-// angle is in degrees
+//drawing the logs (camp fire, house wood)
+//position, length, thickness and angle of one log
 function drawLog(x, y, len, thick, angle) {
     push();
     translate(x, y);
@@ -108,6 +109,7 @@ function drawLog(x, y, len, thick, angle) {
     pop();
 }
 
+//burnt log after the fire
 function drawBurntLog(x, y, len, thick, angle) {
     push();
     translate(x, y);

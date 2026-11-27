@@ -13,7 +13,7 @@ let waterCollected = 0;
 
 
 let fishTaken = 0;
-let woodTaken = 0;
+let woodTaken = 20;
 let waterTaken = 0;
 
 let showInstruction = false;
@@ -100,6 +100,7 @@ function drawMenu() {
     }
     drawNetMenu(netMenu);
     drawPlacedNet();
+    trade();
 }
 
 function drawGoldCoinsMenu(menu) {
@@ -267,7 +268,7 @@ function drawNetMenu(netMenu) {
             textSize(18);
             noStroke();
             fill(255);
-            text("<", netMenu.openButton.x + 10, netMenu.openButton.y + 30);
+            text("<", netMenu.openButton.x + 15, netMenu.openButton.y + 30);
         }
     }
     pop();

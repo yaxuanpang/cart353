@@ -18,7 +18,7 @@ let jessicaTimer = 0;
 
 function jessicaPanic() {
     if (jessicaTookFish <= 5 || jessicaTookWood <= 9 || jessicaTookWater <= 12) {
-        if (dayCount >= 3) {
+        if (dayCount >= 1) {
             jessicaPanicking = true;
         }
     }

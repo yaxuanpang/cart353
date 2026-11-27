@@ -31,6 +31,9 @@ function campBackgroundDraw() {
 
     drawResourcePot(width / 2 + 15, height / 2, 1);
     houseArrowDraw();
+    if (showHouse) {
+        drawHouse();
+    }
 
     drawSunlight1();
     potArrowDraw();

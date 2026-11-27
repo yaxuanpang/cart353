@@ -19,7 +19,7 @@ let kevinTimer = 0;
 
 function kevinPanic() {
     if (kevinTookFish <= 10 || kevinTookWood <= 3 || kevinTookWater <= 15) {
-        if (dayCount >= 3) {
+        if (dayCount >= 1) {
             kevinPanicking = true;
         }
     }

@@ -270,6 +270,7 @@ function mousePressed() {
     }
 
     if (showCamp) {
+        houseMousePressed();
         fireMousePressed();
         potMousePressed();
     }
@@ -280,6 +281,7 @@ function keyPressed() {
     waterKeyPressed();
     jessicaKeyPressed();
     kevinKeyPressed();
+    tradeKeyPressed();
     if (keyCode === 32) { // island
         showIsland = true;
         showCamp = false;

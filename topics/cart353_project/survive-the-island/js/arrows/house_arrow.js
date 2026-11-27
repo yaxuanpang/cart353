@@ -1,5 +1,6 @@
 let showHouseArrowSign = false;
 let showPayHouseSign = false;
+let showHouse = false;
 
 function houseArrowDraw() {
     houseArrow();
@@ -46,7 +47,7 @@ function houseArrowSign() {
     text("build a shelter to", 123, 0);
     text("sleep in", 123, 18);
     text("=", 123, 38);
-    text("50x   ", 113, 60);
+    text("20x   ", 113, 60);
     drawFireWood(83, -8, 0.45);
     textSize(12);
     pop();
@@ -54,7 +55,7 @@ function houseArrowSign() {
 
 function payHouseSign() {
     push();
-    translate(width / 2 - 100, height / 2);
+    translate(1150, height / 2 - 60);
     purchaseButton(width / 2 - 100, height / 2);
 
     noStroke();
@@ -68,25 +69,48 @@ function payHouseSign() {
     text(woodTaken + "x", 72, 56);
     drawFireWood(48, -11, 0.45);
 
-    if (woodTaken - 3 < 0) {
+    if (woodTaken - 20 < 0) {
         textSize(12);
         text("Not enough", 198, 50);
         text("wood", 182, 62);
     }
 
-    if (woodTaken - 3 < 10 && woodTaken - 3 >= 0) {
-        text(woodTaken - 3 + "x", 150, 56);
-        drawFireWood(103, -11, 0.45);
+    if (woodTaken - 20 < 10 && woodTaken - 20 >= 0) {
+        text(woodTaken - 20 + "x", 160, 56);
+        drawFireWood(110, -11, 0.45);
     }
 
-    if (woodTaken - 3 >= 10 && woodTaken - 3 < 100) {
-        text(woodTaken - 3 + "x", 157, 56);
+    if (woodTaken - 20 >= 10 && woodTaken - 20 < 100) {
+        text(woodTaken - 20 + "x", 157, 56);
         drawFireWood(107, -11, 0.45);
     }
 
-    if (woodTaken - 3 >= 100) {
-        text(woodTaken - 3 + "x", 166, 56);
+    if (woodTaken - 20 >= 100) {
+        text(woodTaken - 20 + "x", 166, 56);
         drawFireWood(113, -11, 0.45);
     }
     pop();
+}
+
+function houseMousePressed() {
+    if (showCamp) {
+        let houseArrowCX = width / 2 + 400 + (120);
+        let houseArrowCY = height / 2 - 60 + (100);
+
+        let clickedHouseArrow = dist(mouseX, mouseY, houseArrowCX, houseArrowCY) < 10;
+
+        let clickedPurchaseHouseButton =
+            mouseX >= 1175 &&
+            mouseX <= 1365 &&
+            mouseY >= 345 &&
+            mouseY <= 395;
+
+        if (showPayHouseSign && clickedPurchaseHouseButton && woodTaken >= 20) {
+            woodTaken -= 20;
+            showHouse = true;
+            showPayHouseSign = false;
+            return;
+        }
+        showPayHouseSign = clickedHouseArrow;
+    }
 }
