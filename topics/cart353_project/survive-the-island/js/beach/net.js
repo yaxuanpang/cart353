@@ -106,12 +106,12 @@ function drawNetBag(x, y, s) {
 function purchaseNet() {
     if (netLeftCount === 0 && !bagPlaced) {
         otherPurchaseButton(1385, 230, 0.6)
-        drawFireWood(966, 111, 0.45)
+        drawFireWood(964, 111, 0.45)
 
         textAlign(LEFT, CENTER);
         textSize(11);
-        text("25x    ", 1384, 233);
-        text("= 5 nets", 1441, 233);
+        text("5x    ", 1388, 233);
+        text("= 5 nets", 1437, 233);
 
     }
 }
@@ -137,8 +137,8 @@ function netMousePressed() {
                 && mouseY >= 218 && mouseY <= 248
 
             if (showNetMenu && clickRepurchaseBagButton) {
-                if (woodTaken >= 25) {
-                    woodTaken -= 25;
+                if (woodTaken >= 5) {
+                    woodTaken -= 5;
                     industrialNet = false;
                     netLeftCount = 5;
                     return;

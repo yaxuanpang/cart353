@@ -6,7 +6,7 @@ let showNetMenu = true;
 
 let showIslandButton = true;
 
-let goldCoins = 240;
+let goldCoins = 120;
 let fishCollected = 0;
 let woodCollected = 0;
 let waterCollected = 0;

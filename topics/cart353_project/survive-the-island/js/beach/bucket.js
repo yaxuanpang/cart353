@@ -40,6 +40,7 @@ function bucketDip() {
         bucketSpeed = 0;
         showBucket = false;
         waterCollected += 3;
+        playerWater += 3;
     }
 
     drawBucket(width / 4 + 225, bucketY, 0.8);

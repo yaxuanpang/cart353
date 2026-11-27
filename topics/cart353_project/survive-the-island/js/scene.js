@@ -1,6 +1,6 @@
 let showIsland = false;
-let showCamp = false;
-let showBeach = true;
+let showCamp = true;
+let showBeach = false;
 let showForest = false;
 
 let startTime = 0;
@@ -20,6 +20,11 @@ function setup() {
 
 function draw() {
     //console.log(frameRate());
+    // in draw(), once per frame
+    jessicaGive();
+    kevinGive();
+    jessicaPotTaken();
+    kevinPotTaken();
     drawDayCycle();
     if (showIsland) {
         islandDraw();
@@ -100,6 +105,12 @@ function draw() {
             fill(0, 0, 0, 170);
             rect(0, 0, width, height);
             drawMenu();
+            if (showFire) {
+                floorGlow(width / 2 + 20, height - 190);
+                drawFire(width / 2 + 20, height - 200);
+                drawCampfire(width / 2 + 20, height - 195);
+                fireGlow(width / 2 + 20, height / 2 + 100);
+            }
         }
         if (showDawn) {
             drawFog();
@@ -151,13 +162,6 @@ function draw() {
             noStroke();
             fill(0, 0, 0, 170);
             rect(0, 0, width, height);
-            fishGlowDraw();
-            drawMenu();
-        }
-        if (showPostNight) {
-            noStroke();
-            fill(0, 0, 0, 170);
-            rect(0, 0, width, height);
             //moon
             noStroke();
             fill(255);
@@ -169,6 +173,13 @@ function draw() {
             fill(255, 255, 255, 50);
             circle(width / 2 + 20, 50, 80);
             sunBeam0001();
+            fishGlowDraw();
+            drawMenu();
+        }
+        if (showPostNight) {
+            noStroke();
+            fill(0, 0, 0, 170);
+            rect(0, 0, width, height);
             fishGlowDraw();
             drawMenu();
         }

@@ -182,7 +182,7 @@ function drawCampSky() {
 
 function drawSun() {
     push();
-    if (showSunset) {
+    if (showSunrise) {
         noStroke();
         fill(255, 242, 212);
         circle(width / 2 + 20, 50, 40);
@@ -194,7 +194,7 @@ function drawSun() {
 function drawShine() {
     push();
     translate(width / 2 + 20, 50);
-    if (showSunset) {
+    if (showSunrise) {
         noStroke();
         fill(255, 115, 0, 50);
         circle(0, 0, 185);

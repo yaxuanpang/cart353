@@ -155,13 +155,13 @@ function potMousePressed() {
             mouseX >= width / 2 - 80 &&
             mouseX <= width / 2 + 110 &&
             mouseY >= putInPot &&
-            mouseY <= putInPot + 60;
+            mouseY <= putInPot + 58;
 
         let clickedTakeOutPotButton =
             mouseX >= width / 2 - 80 &&
             mouseX <= width / 2 + 110 &&
-            mouseY >= takeOutPot &&
-            mouseY <= takeOutPot + 60;
+            mouseY >= 75 &&
+            mouseY <= 125;
 
         let clickedTakeOut20 =
             mouseX >= 574.5 &&
@@ -184,8 +184,8 @@ function potMousePressed() {
         let clickedCancelButton =
             mouseX >= 735 &&
             mouseX <= 825 &&
-            mouseY >= 105 &&
-            mouseY <= 140;
+            mouseY >= 35 &&
+            mouseY <= 70;
 
         let clickedCancelButtonDown =
             mouseX >= 735 &&
@@ -338,10 +338,10 @@ function drawTakeOutSign100() {
 function drawCancelSign() {
     push();
     if (showTakeOutPercentSign && potCollected) {
-        translate(735, 105);
+        translate(735, 35);
     }
     else {
-        translate(735, 205);
+        translate(735, 105);
     }
     noStroke();
     fill(255, 71, 10);

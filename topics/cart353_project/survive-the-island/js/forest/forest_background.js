@@ -114,6 +114,7 @@ function drawAxeMove() {
 
     if (showAxe && hitCount >= 3) {
         woodCollected++;
+        playerWood++;
         totalWoodCount++
         hitCount = 0;
 

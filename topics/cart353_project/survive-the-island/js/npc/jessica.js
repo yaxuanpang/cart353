@@ -12,48 +12,67 @@ let jessicaPanicking = false;
 let jessicaTookFish = 0;
 let jessicaTookWood = 0;
 let jessicaTookWater = 0;
+let jessicaCoins = 160;
 
 let jessicaTimer = 0;
 
 function jessicaPanic() {
-    if (jessicaTookFish <= 15 || jessicaTookWood <= 9 || jessicaTookWater <= 12) {
-        jessicaPanicking = true;
+    if (jessicaTookFish <= 5 || jessicaTookWood <= 9 || jessicaTookWater <= 12) {
+        if (dayCount >= 3) {
+            jessicaPanicking = true;
+        }
     }
 }
 
 function jessicaGive() {
-    if (!jessicaGiven) {
+    if (showAfternoon && !jessicaGiven) {
         //low player contribution = high jessica contribution
         //less than 40 fish from player = low
-        if (fishCollected >= 40) {
-            let jessicaCollectedFish = floor(random(0, 20));
-            potCollectedFish += jessicaCollectedFish;
+        if (playerFish >= 40) {
+            if (jessicaCoins > 9) {
+                let jessicaCollectedFish = floor(random(0, 20));
+                potCollectedFish += jessicaCollectedFish;
+                jessicaCoins -= 10;
+            }
         }
         else {
-            let jessicaCollectedFish = floor(random(10, 45));
-            potCollectedFish += jessicaCollectedFish;
+            if (jessicaCoins >= 10) {
+                let jessicaCollectedFish = floor(random(10, 45));
+                potCollectedFish += jessicaCollectedFish;
+                jessicaCoins -= 10;
+            }
         }
         //less than 20 wood from player = low
-        if (woodCollected >= 20) {
-            let jessicaCollectedWood = floor(random(0, 7));
-            totalWoodCount += jessicaCollectedWood;
-            potCollectedWood += jessicaCollectedWood;
-            console.log((totalWoodCount + "jesscia: " + jessicaCollectedWood));
+        if (playerWood >= 20) {
+            if (jessicaCoins > 29) {
+                let jessicaCollectedWood = floor(random(0, 7));
+                totalWoodCount += jessicaCollectedWood;
+                potCollectedWood += jessicaCollectedWood;
+                jessicaCoins -= 30;
+                console.log((totalWoodCount + "jesscia: " + jessicaCollectedWood + "coins: " + jessicaCoins));
+            }
         }
         else {
-            let jessicaCollectedWood = floor(random(5, 15));
-            totalWoodCount += jessicaCollectedWood;
-            potCollectedWood += jessicaCollectedWood;
-            console.log((totalWoodCount + "jesscia: " + jessicaCollectedWood));
+            if (jessicaCoins > 29) {
+                let jessicaCollectedWood = floor(random(5, 15));
+                totalWoodCount += jessicaCollectedWood;
+                potCollectedWood += jessicaCollectedWood;
+                jessicaCoins -= 30;
+                console.log((totalWoodCount + "jesscia: " + jessicaCollectedWood + "coins: " + jessicaCoins));
+            }
         }
         //less than 30 water from player = low
-        if (waterCollected >= 30) {
-            let jessicaCollectedWater = floor(random(0, 15));
-            potCollectedWater += jessicaCollectedWater;
+        if (playerWater >= 30) {
+            if (jessicaCoins > 9) {
+                let jessicaCollectedWater = floor(random(0, 28));
+                potCollectedWater += jessicaCollectedWater;
+            }
         }
         else {
-            let jessicaCollectedWater = floor(random(12, 36));
-            potCollectedWater += jessicaCollectedWater;
+            if (jessicaCoins > 9) {
+                let jessicaCollectedWater = floor(random(21, 39));
+                potCollectedWater += jessicaCollectedWater;
+            }
         }
         jessicaGiven = true;
     }
@@ -63,7 +82,7 @@ function jessicaGive() {
 }
 
 function jessicaPotTaken() {
-    if (showDawn) {
+    if (showAfternoon) {
         jessicaTakenFish = false;
         jessicaTakenWood = false;
         jessicaTakenWater = false;
@@ -85,12 +104,12 @@ function jessicaPotTaken() {
 }
 
 function jessicaTakeFish() {
-    if (!jessicaTakenFish) {
+    if (showSunset && !jessicaTakenFish) {
         if (millis() - jessicaTimer > jessicaDelay) {
             if (potCollectedFish > 0) {
                 let roll = random(100);
                 if (jessicaPanicking) {
-                    if (roll < 40) {
+                    if (roll < 20) {
                         jessicaTookFish += potCollectedFish;
                         potCollectedFish = 0;
                         console.log("greedy jessica:" + jessicaTookFish);
@@ -108,12 +127,12 @@ function jessicaTakeFish() {
                     jessicaTakenFish = true;
                 }
                 else {
-                    if (roll < 10) {
+                    if (roll < 5) {
                         jessicaTookFish += potCollectedFish;
                         potCollectedFish = 0;
                         console.log("greedy jessica:" + jessicaTookFish);
                     }
-                    else if (roll < 50) {
+                    else if (roll < 30) {
                         jessicaTookFish += round(potCollectedFish * 0.5);
                         potCollectedFish -= round(potCollectedFish * 0.5);
                         console.log("jessica good:" + jessicaTookFish);
@@ -132,17 +151,17 @@ function jessicaTakeFish() {
 }
 
 function jessicaTakeWood() {
-    if (!jessicaTakenWood) {
+    if (showSunset && !jessicaTakenWood) {
         if (millis() - jessicaTimer > jessicaDelay) {
             if (potCollectedWood > 0) {
                 let roll = random(100);
                 if (jessicaPanicking) {
-                    if (roll < 30) {
+                    if (roll < 20) {
                         jessicaTookWood += potCollectedWood;
                         potCollectedWood = 0;
                         console.log("greedy jessica:" + jessicaTookWood);
                     }
-                    else if (roll < 90) {
+                    else if (roll < 70) {
                         jessicaTookWood += round(potCollectedWood * 0.5);
                         potCollectedWood -= round(potCollectedWood * 0.5);
                         console.log("jessica good:" + jessicaTookWood);
@@ -155,7 +174,7 @@ function jessicaTakeWood() {
                     jessicaTakenWood = true;
                 }
                 else {
-                    if (roll < 10) {
+                    if (roll < 5) {
                         jessicaTookWood += potCollectedWood;
                         potCollectedWood = 0;
                         console.log("greedy jessica:" + jessicaTookWood);
@@ -179,17 +198,17 @@ function jessicaTakeWood() {
 }
 
 function jessicaTakeWater() {
-    if (!jessicaTakenWater) {
+    if (showSunset && !jessicaTakenWater) {
         if (millis() - jessicaTimer > jessicaDelay) {
             if (potCollectedWater > 0) {
                 let roll = random(100);
                 if (jessicaPanicking) {
-                    if (roll < 20) {
+                    if (roll < 10) {
                         jessicaTookWood += potCollectedWood;
                         potCollectedWood = 0;
                         console.log("greedy jessica:" + jessicaTookWood);
                     }
-                    else if (roll < 90) {
+                    else if (roll < 80) {
                         jessicaTookWood += round(potCollectedWood * 0.5);
                         potCollectedWood -= round(potCollectedWood * 0.5);
                         console.log("jessica good:" + jessicaTookWood);
@@ -202,12 +221,12 @@ function jessicaTakeWater() {
                     jessicaTakenWood = true;
                 }
                 else {
-                    if (roll < 10) {
+                    if (roll < 5) {
                         jessicaTookWater += potCollectedWater;
                         potCollectedWater = 0;
                         console.log("greedy jessica:" + jessicaTookWater);
                     }
-                    else if (roll < 50) {
+                    else if (roll < 40) {
                         jessicaTookWater += round(potCollectedWater * 0.5);
                         potCollectedWater -= round(potCollectedWater * 0.5);
                         console.log("jessica good:" + jessicaTookWater);

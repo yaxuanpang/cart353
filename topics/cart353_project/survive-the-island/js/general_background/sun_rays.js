@@ -25,7 +25,7 @@ function sunRaySetup() {
     //nightime colors
     ray004 = color(103, 171, 230, 3);
     ray04 = color(103, 171, 230, 5);
-    ray0004 = color(103, 171, 230, 8);
+    ray0004 = color(177, 217, 252, 8);
     ray4 = color(103, 171, 230, 40);
     ray5 = color(103, 171, 230, 60);
     ray6 = color(103, 171, 230, 110);
@@ -355,7 +355,7 @@ function sunRay0() {
         rect(-230, 0, 80, height + 800);
     }
     if (showMorning) {
-        fill(ray4);
+        fill(ray0004);
         rect(width / 2 - 100, 0, 40, height + 800);
         rect(width / 2 - 400, 0, 20, height + 800);
         rect(width / 2 - 360, 0, 35, height + 800);
@@ -402,7 +402,7 @@ function sunRay1() {
         rect(width / 2 - 770, 0, 30, height + 800);
     }
     if (showMorning) {
-        fill(ray4);
+        fill(ray0004);
         rect(width / 2 + 10, 0, 60, height + 800);
         rect(width / 2 + 200, 0, 50, height + 800);
         rect(width / 2 - 490, 0, 45, height + 800);
@@ -453,7 +453,7 @@ function sunRay2() {
         rect(-60, 0, 15, height + 800);
     }
     if (showMorning) {
-        fill(ray4);
+        fill(ray0004);
         rect(width / 2 + 20, 0, 50, height + 800);
         rect(width / 2 - 210, 0, 60, height + 800);
         rect(width / 2 - 550, 0, 30, height + 800);
@@ -662,14 +662,14 @@ function sunBeam0001() { //middle
         rect(width / 2 + 10, 0, 20, height);
         rect(width / 2 + 15, 0, 10, height);
     }
-    if (showSunset) {
-        fill(ray8);
+    if (showSunrise) {
+        fill(ray7);
         rect(width / 2, 0, 40, height);
         rect(width / 2 + 10, 0, 20, height);
         rect(width / 2 + 10, 0, 20, height);
         rect(width / 2 + 15, 0, 10, height);
     }
-    if (showPostNight) {
+    if (showNight) {
         fill(255, 255, 255, 3);
         rect(width / 2, 0, 40, height);
         rect(width / 2 + 10, 0, 20, height);

@@ -12,7 +12,12 @@ let sunriseTimer = 0;
 let dawnTimer = 0;
 let morningTimer = 0;
 
+let playerFish = 0;
+let playerWood = 0;
+let playerWater = 0;
+
 function drawDayCycle() {
+    console.log("DAY: " + dayCount);
     if (state === 'NOON') {
         showNoon = true;
         showAfternoon = false;
@@ -24,13 +29,9 @@ function drawDayCycle() {
         showDawn = false;
         showSunrise = false;
         showMorning = false;
-        if (millis() - noonTimer > 3000) {
+        if (millis() - noonTimer > 15000) {
             state = 'AFTERNOON'
             afternoonTimer = millis();
-        }
-        if (random() < 50) {
-            jessicaGive();
-            kevinGive();
         }
     }
     else if (state === 'AFTERNOON') {
@@ -44,14 +45,11 @@ function drawDayCycle() {
         showDawn = false;
         showSunrise = false;
         showMorning = false;
-        if (millis() - afternoonTimer > 3000) {
+        if (millis() - afternoonTimer > 15000) {
             state = 'SUNSET'
             sunsetTimer = millis();
         }
-        if (random() < 50) {
-            jessicaGive();
-            kevinGive();
-        }
+
     }
     else if (state === 'SUNSET') {
         showNoon = false;
@@ -64,16 +62,10 @@ function drawDayCycle() {
         showDawn = false;
         showSunrise = false;
         showMorning = false;
-        if (millis() - sunsetTimer > 3000) {
+        if (millis() - sunsetTimer > 15000) {
             state = 'DUSK'
             duskTimer = millis();
         }
-        if (random() < 50) {
-            jessicaGive();
-            kevinGive();
-        }
-        jessicaPotTaken();
-        kevinPotTaken();
     }
     else if (state === 'DUSK') {
         showNoon = false;
@@ -86,7 +78,7 @@ function drawDayCycle() {
         showDawn = false;
         showSunrise = false;
         showMorning = false;
-        if (millis() - duskTimer > 3000) {
+        if (millis() - duskTimer > 15000) {
             state = 'NIGHT'
             nightTimer = millis();
         }
@@ -102,7 +94,7 @@ function drawDayCycle() {
         showDawn = false;
         showSunrise = false;
         showMorning = false;
-        if (millis() - nightTimer > 3000) {
+        if (millis() - nightTimer > 15000) {
             state = 'MIDNIGHT'
             midnightTimer = millis();
         }
@@ -118,7 +110,7 @@ function drawDayCycle() {
         showDawn = false;
         showSunrise = false;
         showMorning = false;
-        if (millis() - midnightTimer > 3000) {
+        if (millis() - midnightTimer > 15000) {
             state = 'POSTNIGHT'
             postNightTimer = millis();
         }
@@ -134,9 +126,13 @@ function drawDayCycle() {
         showDawn = false;
         showSunrise = false;
         showMorning = false;
-        if (millis() - postNightTimer > 3000) {
+        if (millis() - postNightTimer > 15000) {
             state = 'DAWN'
             dawnTimer = millis();
+            playerFish = 0;
+            playerWood = 0;
+            playerWater = 0;
+            dayCount++;
         }
     }
     else if (state === 'DAWN') {
@@ -150,11 +146,10 @@ function drawDayCycle() {
         showDawn = true;
         showSunrise = false;
         showMorning = false;
-        if (millis() - dawnTimer > 3000) {
+        if (millis() - dawnTimer > 15000) {
             state = 'SUNRISE'
             sunriseTimer = millis();
         }
-        dayCount++;
     }
     else if (state === 'SUNRISE') {
         showNoon = false;
@@ -167,7 +162,7 @@ function drawDayCycle() {
         showDawn = false;
         showSunrise = true;
         showMorning = false;
-        if (millis() - sunriseTimer > 3000) {
+        if (millis() - sunriseTimer > 15000) {
             state = 'MORNING'
             morningTimer = millis();
         }
@@ -183,7 +178,7 @@ function drawDayCycle() {
         showDawn = false;
         showSunrise = false;
         showMorning = true;
-        if (millis() - morningTimer > 3000) {
+        if (millis() - morningTimer > 15000) {
             state = 'NOON'
             noonTimer = millis();
         }
